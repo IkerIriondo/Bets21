@@ -28,7 +28,7 @@ public class ApplicationLauncher {
 		System.out.println("Locale: "+Locale.getDefault());
 		
 		MainGUI a=new MainGUI();
-		a.setVisible(true);
+		//a.setVisible(true);
 
 
 		try {

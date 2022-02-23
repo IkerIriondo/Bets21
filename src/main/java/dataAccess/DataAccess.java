@@ -17,8 +17,10 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
+import domain.Erabiltzailea;
 import domain.Event;
 import domain.Question;
+import domain.User;
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -148,6 +150,9 @@ public class DataAccess  {
 			db.persist(ev19);
 			db.persist(ev20);			
 			
+			Erabiltzailea user = new Erabiltzailea("Iker","Pagola",new Date(),"proba@gmail.com", "User1","1234");
+			db.persist(user);
+			
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
 		}
@@ -261,5 +266,13 @@ public boolean existQuestion(Event event, String question) {
 		db.close();
 		System.out.println("DataBase closed");
 	}
+	
+
+	public boolean isLogin(String email, String password) {
+		User user = db.find(Erabiltzailea.class, email);
+		if (user==null)return false;
+		else return user.isCorrectPassword(password);
+	}
+	
 	
 }

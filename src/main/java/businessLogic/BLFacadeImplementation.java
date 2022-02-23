@@ -7,6 +7,8 @@ import java.util.Vector;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Question;
@@ -124,6 +126,14 @@ public class BLFacadeImplementation  implements BLFacade {
     	dbManager.open(false);
 		dbManager.initializeDB();
 		dbManager.close();
+	}
+
+	@Override
+	public boolean isLogin(String email, String password) {
+		dbManager.open(false);
+		Boolean ema = dbManager.isLogin(email, password);
+		dbManager.close();
+		return ema;
 	}
 
 }
