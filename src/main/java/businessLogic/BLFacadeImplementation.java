@@ -12,6 +12,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Question;
+import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -129,9 +130,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public boolean isLogin(String email, String password) {
+	public User isLogin(String email, String password) {
 		dbManager.open(false);
-		Boolean ema = dbManager.isLogin(email, password);
+		User ema = dbManager.isLogin(email, password);
 		dbManager.close();
 		return ema;
 	}

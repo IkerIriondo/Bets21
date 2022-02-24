@@ -268,10 +268,10 @@ public boolean existQuestion(Event event, String question) {
 	}
 	
 
-	public boolean isLogin(String email, String password) {
-		User user = db.find(Erabiltzailea.class, email);
-		if (user==null)return false;
-		else return user.isCorrectPassword(password);
+	public User isLogin(String email, String password) {
+		User user = db.find(User.class, email);
+		if (user==null || !user.isCorrectPassword(password))return null;
+		else return user;
 	}
 	
 	

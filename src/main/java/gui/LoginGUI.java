@@ -9,6 +9,8 @@ import javax.swing.JTextField;
 
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
+import domain.Erabiltzailea;
+import domain.User;
 
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -90,10 +92,17 @@ public class LoginGUI {
 		hasiButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				User user = appFacadeInterface.isLogin(emailField.getText(), passField.getText());
 				
+				if (user==null){
 					
-					System.out.println(appFacadeInterface.isLogin(emailField.getText(), passField.getText()));
-				
+					System.out.println("User not found");
+					
+				}else if (user.getClass()==Erabiltzailea.class) {
+					
+					System.out.println("Correctly logged in");
+					
+				}
 				
 			}
 		});
