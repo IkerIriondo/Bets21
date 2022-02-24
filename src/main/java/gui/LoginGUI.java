@@ -90,10 +90,10 @@ public class LoginGUI {
 		hasiButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(erabilSelect.isSelected()) {
+				
 					
 					System.out.println(appFacadeInterface.isLogin(emailField.getText(), passField.getText()));
-				}
+				
 				
 			}
 		});
