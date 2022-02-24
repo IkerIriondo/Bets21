@@ -32,7 +32,7 @@ public class ApplicationLauncher {
 		MainGUI a=new MainGUI();
 		//a.setVisible(true);
 		LoginGUI b=new LoginGUI();
-
+	
 
 		try {
 			

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.JTextField;
 
 import businessLogic.BLFacade;
@@ -16,9 +18,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
-public class LoginGUI {
+public class LoginGUI extends Frame {
 
 	private JFrame frame;
 	private JTextField emailField;
@@ -43,7 +47,22 @@ public class LoginGUI {
 	 * Create the application.
 	 */
 	public LoginGUI() {
+		super();
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					System.out.println("Error: "+e1.toString()+" , probably problems with Business Logic or Database");
+				}
+				System.exit(1);
+			}
+		});
+		
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -79,7 +98,9 @@ public class LoginGUI {
 		
 		hasiButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				BLFacade facade = MainGUI.getBusinessLogic();
+				
 				User user = facade.isLogin(emailField.getText(), passField.getText());
 				
 				if (user==null){
@@ -106,6 +127,8 @@ public class LoginGUI {
 		JButton registerButton = new JButton("ERREGISTRATU");
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				RegisterGUI r = new RegisterGUI();
 			}
 		});
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));

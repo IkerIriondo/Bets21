@@ -5,10 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class RegisterGUI {
+public class RegisterGUI extends Frame {
 
 	private JFrame frame;
 	private JTextField izenaField;
@@ -39,7 +43,22 @@ public class RegisterGUI {
 	 * Create the application.
 	 */
 	public RegisterGUI() {
+		super();
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					System.out.println("Error: "+e1.toString()+" , probably problems with Business Logic or Database");
+				}
+				System.exit(1);
+			}
+		});
+		
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
