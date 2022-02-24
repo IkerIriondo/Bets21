@@ -23,18 +23,6 @@ public class LoginGUI {
 	private JFrame frame;
 	private JTextField emailField;
 	private JTextField passField;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-
-	private static BLFacade appFacadeInterface;
-		
-		public static BLFacade getBusinessLogic(){
-			return appFacadeInterface;
-		}
-		 
-		public static void setBussinessLogic (BLFacade afi){
-			appFacadeInterface=afi;
-		}
-	
 	/**
 	 * Launch the application.
 	 */
@@ -91,8 +79,8 @@ public class LoginGUI {
 		
 		hasiButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				User user = appFacadeInterface.isLogin(emailField.getText(), passField.getText());
+				BLFacade facade = MainGUI.getBusinessLogic();
+				User user = facade.isLogin(emailField.getText(), passField.getText());
 				
 				if (user==null){
 					
@@ -116,6 +104,10 @@ public class LoginGUI {
 		frame.getContentPane().add(jarraituButton);
 		
 		JButton registerButton = new JButton("ERREGISTRATU");
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		registerButton.setBounds(62, 130, 158, 34);
 		frame.getContentPane().add(registerButton);
