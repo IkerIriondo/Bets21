@@ -67,35 +67,23 @@ public class LoginGUI {
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblEmail.setBounds(62, 25, 97, 21);
+		lblEmail.setBounds(62, 42, 97, 21);
 		frame.getContentPane().add(lblEmail);
 		
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPassword.setBounds(62, 57, 97, 21);
+		lblPassword.setBounds(62, 74, 97, 21);
 		frame.getContentPane().add(lblPassword);
 		
 		emailField = new JTextField();
-		emailField.setBounds(230, 27, 134, 21);
+		emailField.setBounds(230, 44, 134, 21);
 		frame.getContentPane().add(emailField);
 		emailField.setColumns(10);
 		
 		passField = new JTextField();
 		passField.setColumns(10);
-		passField.setBounds(230, 59, 134, 21);
+		passField.setBounds(230, 76, 134, 21);
 		frame.getContentPane().add(passField);
-		
-		JRadioButton erabilSelect = new JRadioButton("Erabiltzailea");
-		buttonGroup.add(erabilSelect);
-		erabilSelect.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		erabilSelect.setBounds(91, 100, 109, 23);
-		frame.getContentPane().add(erabilSelect);
-		
-		JRadioButton adminSelect = new JRadioButton("Admin");
-		buttonGroup.add(adminSelect);
-		adminSelect.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		adminSelect.setBounds(230, 100, 109, 23);
-		frame.getContentPane().add(adminSelect);
 		
 		JButton hasiButton = new JButton("Saioa hasi");
 		
@@ -110,17 +98,17 @@ public class LoginGUI {
 			}
 		});
 		hasiButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		hasiButton.setBounds(72, 146, 97, 23);
+		hasiButton.setBounds(253, 130, 111, 34);
 		frame.getContentPane().add(hasiButton);
 		
 		JButton jarraituButton = new JButton("Jarraitu saioa hasi gabe");
 		jarraituButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		jarraituButton.setBounds(195, 146, 169, 23);
+		jarraituButton.setBounds(10, 214, 169, 23);
 		frame.getContentPane().add(jarraituButton);
 		
 		JButton registerButton = new JButton("ERREGISTRATU");
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		registerButton.setBounds(136, 195, 158, 34);
+		registerButton.setBounds(62, 130, 158, 34);
 		frame.getContentPane().add(registerButton);
 	}
 }
