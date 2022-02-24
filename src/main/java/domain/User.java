@@ -65,6 +65,4 @@ public abstract class User {
 		return this.getPassword().contentEquals(password);
 	}
 	
-
-	
 }
