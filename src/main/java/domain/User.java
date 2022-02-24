@@ -10,7 +10,7 @@ public abstract class User {
 
 	String izena;
 	String abizena;
-	Date jaioDate;
+	String jaioDate;
 	@Id
 	String email;
 	String username;
@@ -18,7 +18,7 @@ public abstract class User {
 	
 	
 	
-	public User(String izena, String abizena, Date jaioDate, String email, String username, String password) {
+	public User(String izena, String abizena, String jaioDate, String email, String username, String password) {
 		super();
 		this.izena = izena;
 		this.abizena = abizena;
@@ -39,10 +39,10 @@ public abstract class User {
 	public void setAbizena(String abizena) {
 		this.abizena = abizena;
 	}
-	public Date getJaioDate() {
+	public String getJaioDate() {
 		return jaioDate;
 	}
-	public void setJaioDate(Date jaioDate) {
+	public void setJaioDate(String jaioDate) {
 		this.jaioDate = jaioDate;
 	}
 	public String getEmail() {

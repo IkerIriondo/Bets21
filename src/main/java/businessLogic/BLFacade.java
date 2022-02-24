@@ -60,6 +60,12 @@ public interface BLFacade  {
 	@WebMethod public void initializeBD();
 
 	@WebMethod public User isLogin(String email, String password);
+
+
+	@WebMethod public void register(String text, String text2, String text3, String text4, String text5, String text6);
+
+
+	
 	
 	
 }

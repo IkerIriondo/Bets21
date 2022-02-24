@@ -12,6 +12,11 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import businessLogic.BLFacade;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class RegisterGUI extends Frame {
 
 	private JFrame frame;
@@ -22,6 +27,7 @@ public class RegisterGUI extends Frame {
 	private JTextField usernameField;
 	private JTextField PasswordField;
 	private JTextField confirmPasswordField;
+	private JButton atzeraButton;
 
 	/**
 	 * Launch the application.
@@ -106,8 +112,21 @@ public class RegisterGUI extends Frame {
 		frame.getContentPane().add(lblConfirmPassword);
 		
 		JButton registerButton = new JButton("ERREGISTRATU");
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BLFacade facade = MainGUI.getBusinessLogic();
+				if(!PasswordField.getText().contentEquals(confirmPasswordField.getText())) {
+					System.out.println("Pasahitzak ezberdinak dira");
+				}else{
+					
+					facade.register(izenaField.getText(),abizenaField.getText(),jaioDatField.getText(), emailField.getText(),usernameField.getText(),PasswordField.getText());
+					
+				}
+				
+			}
+		});
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		registerButton.setBounds(133, 200, 158, 34);
+		registerButton.setBounds(178, 200, 158, 34);
 		frame.getContentPane().add(registerButton);
 		
 		izenaField = new JTextField();
@@ -144,5 +163,17 @@ public class RegisterGUI extends Frame {
 		confirmPasswordField.setColumns(10);
 		confirmPasswordField.setBounds(235, 160, 134, 21);
 		frame.getContentPane().add(confirmPasswordField);
+		
+		atzeraButton = new JButton("ATZERA");
+		atzeraButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				frame.setVisible(false);
+				LoginGUI l = new LoginGUI();
+				
+			}
+		});
+		atzeraButton.setBounds(28, 227, 89, 23);
+		frame.getContentPane().add(atzeraButton);
 	}
 }

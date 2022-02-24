@@ -21,12 +21,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class LoginGUI extends Frame {
 
 	private JFrame frame;
 	private JTextField emailField;
-	private JTextField passField;
+	private JPasswordField passField;
 	/**
 	 * Launch the application.
 	 */
@@ -89,7 +90,7 @@ public class LoginGUI extends Frame {
 		frame.getContentPane().add(emailField);
 		emailField.setColumns(10);
 		
-		passField = new JTextField();
+		passField = new JPasswordField();
 		passField.setColumns(10);
 		passField.setBounds(230, 76, 134, 21);
 		frame.getContentPane().add(passField);

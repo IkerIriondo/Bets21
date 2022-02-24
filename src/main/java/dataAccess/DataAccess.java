@@ -150,7 +150,11 @@ public class DataAccess  {
 			db.persist(ev19);
 			db.persist(ev20);			
 			
-			Erabiltzailea user = new Erabiltzailea("Iker","Pagola",new Date(),"proba@gmail.com", "User1","1234");
+			//ADMINISTRATZAILEAK
+			
+			
+			//ERABILTZAILEAK
+			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","new Date()","proba@gmail.com", "User1","1234");
 			db.persist(user);
 			
 			db.getTransaction().commit();
@@ -272,6 +276,19 @@ public boolean existQuestion(Event event, String question) {
 		User user = db.find(User.class, email);
 		if (user==null || !user.isCorrectPassword(password))return null;
 		else return user;
+	}
+
+	public void register(String izena, String abizena, String jaioDat, String email, String username, String password) {
+		if (db.find(User.class, email)==null) {
+			db.getTransaction().begin();
+			Erabiltzailea user = new Erabiltzailea(izena, abizena, jaioDat, email, username, password);
+			db.persist(user);
+			db.getTransaction().commit();
+			System.out.println("Erabiltzailea sortuta");
+		}else {
+			System.out.println("Dagoeneko badago erabiltzaile bat email horrekin");
+		}
+		
 	}
 	
 	
