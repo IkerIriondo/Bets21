@@ -66,6 +66,8 @@ public abstract class User {
 	}
 	
 	
-	
+	public void hi(){
+		
+	}
 	
 }
