@@ -2,8 +2,10 @@ package domain;
 
 import java.util.Date;
 import dataAccess.*;
-import javax.persistence.Id;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
 public abstract class User {
 
 	String izena;
