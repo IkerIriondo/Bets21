@@ -313,3 +313,73 @@ Type domain.Erabiltzailea is not enhanced.
 [2022-02-25 16:04:28 #11 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-02-25 16:12:23 #1 store] 
+Database 'C:\Users\emman\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 15872@LAPTOP-TF23AETS
+
+[2022-02-25 16:12:23 #2 type.registry] 
+New type domain.Question
+
+[2022-02-25 16:12:23 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-02-25 16:12:23 #4 type.registry] 
+New type domain.Event
+
+[2022-02-25 16:12:23 #5 type] 
+Type domain.Event is not enhanced.
+
+[2022-02-25 16:12:23 #6 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-02-25 16:12:23 #7 type.registry] 
+New type domain.User
+
+[2022-02-25 16:12:23 #8 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-02-25 16:12:23 #9 type] 
+Type domain.User is not enhanced.
+
+[2022-02-25 16:12:23 #10 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-02-25 16:12:23 #11 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-02-25 16:13:28 #1 store] 
+Database 'C:\Users\emman\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 16488@LAPTOP-TF23AETS
+
+[2022-02-25 16:13:29 #2 type.registry] 
+New type domain.Question
+
+[2022-02-25 16:13:29 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-02-25 16:13:29 #4 type.registry] 
+New type domain.Event
+
+[2022-02-25 16:13:29 #5 type] 
+Type domain.Event is not enhanced.
+
+[2022-02-25 16:13:29 #6 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-02-25 16:13:29 #7 type.registry] 
+New type domain.User
+
+[2022-02-25 16:13:29 #8 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-02-25 16:13:29 #9 type] 
+Type domain.User is not enhanced.
+
+[2022-02-25 16:13:29 #10 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-02-25 16:13:29 #11 type.registry] 
+New type java.util.Vector<java.lang.Object>
+

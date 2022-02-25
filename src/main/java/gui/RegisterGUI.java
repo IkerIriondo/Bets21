@@ -118,6 +118,7 @@ public class RegisterGUI extends Frame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				boolean ema;
 				String izena = izenaField.getText();
+				System.out.println("Izena " + izena + "hau da");
 				String abizena = abizenaField.getText();
 				String jaioData = jaioDatField.getText();
 				String email = emailField.getText();
@@ -126,13 +127,15 @@ public class RegisterGUI extends Frame {
 				String passConfirm = confirmPasswordField.getText();
 				if(!password.contentEquals(passConfirm)) {
 					System.out.println("Pasahitzak ezberdinak dira");
-				}else if(izena != null && abizena != null && jaioData != null && email != null && username != null && password != null){
+				}else if(!izena.isBlank()&& !abizena.isBlank() && !jaioData.isBlank() && !email.isBlank()&& !username.isBlank() && !password.isBlank()){
 					
 					ema = facade.register(izena,abizena,jaioData,email,username,password);
 					if (ema) {
 						frame.setVisible(false);
 						LoginGUI l = new LoginGUI();
 					}
+				}else {
+					System.out.println("Sartu ondo datuak");
 				}
 				
 			}
