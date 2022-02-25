@@ -109,9 +109,10 @@ public class LoginGUI extends Frame {
 					System.out.println("User not found");
 					
 				}else if (user.getClass()==Erabiltzailea.class) {
-					
+					frame.setVisible(false);
 					System.out.println("Correctly logged in");
-					
+					FindQuestionsGUI f = new FindQuestionsGUI();
+					f.setVisible(true);
 				}
 				
 			}
@@ -121,6 +122,15 @@ public class LoginGUI extends Frame {
 		frame.getContentPane().add(hasiButton);
 		
 		JButton jarraituButton = new JButton("Jarraitu saioa hasi gabe");
+		jarraituButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				frame.setVisible(false);
+				FindQuestionsGUI f = new FindQuestionsGUI();
+				f.setVisible(true);
+				
+			}
+		});
 		jarraituButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		jarraituButton.setBounds(10, 214, 169, 23);
 		frame.getContentPane().add(jarraituButton);

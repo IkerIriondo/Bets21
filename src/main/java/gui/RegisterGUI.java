@@ -16,6 +16,7 @@ import businessLogic.BLFacade;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class RegisterGUI extends Frame {
 
@@ -25,8 +26,8 @@ public class RegisterGUI extends Frame {
 	private JTextField jaioDatField;
 	private JTextField emailField;
 	private JTextField usernameField;
-	private JTextField PasswordField;
-	private JTextField confirmPasswordField;
+	private JPasswordField PasswordField;
+	private JPasswordField confirmPasswordField;
 	private JButton atzeraButton;
 
 	/**
@@ -115,12 +116,23 @@ public class RegisterGUI extends Frame {
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BLFacade facade = MainGUI.getBusinessLogic();
-				if(!PasswordField.getText().contentEquals(confirmPasswordField.getText())) {
+				boolean ema;
+				String izena = izenaField.getText();
+				String abizena = abizenaField.getText();
+				String jaioData = jaioDatField.getText();
+				String email = emailField.getText();
+				String username = usernameField.getText();
+				String password = PasswordField.getText();
+				String passConfirm = confirmPasswordField.getText();
+				if(!password.contentEquals(passConfirm)) {
 					System.out.println("Pasahitzak ezberdinak dira");
-				}else{
+				}else if(izena != null && abizena != null && jaioData != null && email != null && username != null && password != null){
 					
-					facade.register(izenaField.getText(),abizenaField.getText(),jaioDatField.getText(), emailField.getText(),usernameField.getText(),PasswordField.getText());
-					
+					ema = facade.register(izena,abizena,jaioData,email,username,password);
+					if (ema) {
+						frame.setVisible(false);
+						LoginGUI l = new LoginGUI();
+					}
 				}
 				
 			}
@@ -154,12 +166,12 @@ public class RegisterGUI extends Frame {
 		usernameField.setBounds(235, 110, 134, 21);
 		frame.getContentPane().add(usernameField);
 		
-		PasswordField = new JTextField();
+		PasswordField = new JPasswordField();
 		PasswordField.setColumns(10);
 		PasswordField.setBounds(235, 135, 134, 21);
 		frame.getContentPane().add(PasswordField);
 		
-		confirmPasswordField = new JTextField();
+		confirmPasswordField = new JPasswordField();
 		confirmPasswordField.setColumns(10);
 		confirmPasswordField.setBounds(235, 160, 134, 21);
 		frame.getContentPane().add(confirmPasswordField);

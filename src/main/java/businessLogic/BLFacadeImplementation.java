@@ -138,10 +138,11 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public void register(String izena, String abizena, String jaioDat, String email, String username, String password) {
+	public boolean register(String izena, String abizena, String jaioDat, String email, String username, String password) {
 		dbManager.open(false);
-		dbManager.register(izena,abizena,jaioDat,email,username,password);
+		boolean b = dbManager.register(izena,abizena,jaioDat,email,username,password);
 		dbManager.close();
+		return b;
 	}
 
 }

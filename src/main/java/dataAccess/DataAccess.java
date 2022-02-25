@@ -278,15 +278,17 @@ public boolean existQuestion(Event event, String question) {
 		else return user;
 	}
 
-	public void register(String izena, String abizena, String jaioDat, String email, String username, String password) {
+	public boolean register(String izena, String abizena, String jaioDat, String email, String username, String password) {
 		if (db.find(User.class, email)==null) {
 			db.getTransaction().begin();
 			Erabiltzailea user = new Erabiltzailea(izena, abizena, jaioDat, email, username, password);
 			db.persist(user);
 			db.getTransaction().commit();
 			System.out.println("Erabiltzailea sortuta");
+			return true;
 		}else {
 			System.out.println("Dagoeneko badago erabiltzaile bat email horrekin");
+			return false;
 		}
 		
 	}
