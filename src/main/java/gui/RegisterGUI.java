@@ -118,7 +118,6 @@ public class RegisterGUI extends Frame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				boolean ema;
 				String izena = izenaField.getText();
-				System.out.println("Izena " + izena + "hau da");
 				String abizena = abizenaField.getText();
 				String jaioData = jaioDatField.getText();
 				String email = emailField.getText();
