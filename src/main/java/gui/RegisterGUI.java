@@ -154,6 +154,8 @@ public class RegisterGUI extends Frame {
 		frame.getContentPane().add(abizenaField);
 		
 		jaioDatField = new JTextField();
+		jaioDatField.setText("uuuu/hh/ee");
+		jaioDatField.setToolTipText("");
 		jaioDatField.setColumns(10);
 		jaioDatField.setBounds(235, 60, 134, 21);
 		frame.getContentPane().add(jaioDatField);
