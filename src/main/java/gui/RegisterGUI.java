@@ -8,22 +8,29 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import businessLogic.BLFacade;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.DropMode;
+import javax.swing.JFormattedTextField;
 
 public class RegisterGUI extends Frame {
 
 	private JFrame frame;
 	private JTextField izenaField;
 	private JTextField abizenaField;
-	private JTextField jaioDatField;
+	private JFormattedTextField jaioDatField;
 	private JTextField emailField;
 	private JTextField usernameField;
 	private JPasswordField PasswordField;
@@ -126,12 +133,28 @@ public class RegisterGUI extends Frame {
 				String passConfirm = confirmPasswordField.getText();
 				if(!password.contentEquals(passConfirm)) {
 					System.out.println("Pasahitzak ezberdinak dira");
-				}else if(!izena.isBlank()&& !abizena.isBlank() && !jaioData.isBlank() && !email.isBlank()&& !username.isBlank() && !password.isBlank()){
-					
-					ema = facade.register(izena,abizena,jaioData,email,username,password);
-					if (ema) {
-						frame.setVisible(false);
-						LoginGUI l = new LoginGUI();
+				}else if(!izena.isBlank() && !abizena.isBlank() && !jaioData.isBlank() && !email.isBlank()&& !username.isBlank() && !password.isBlank()){
+					String[] osagaiak = jaioData.split("/");
+					String urtea = osagaiak[0];
+					String hilabete = osagaiak[1];
+					String egun = osagaiak[2];
+					int u = Integer.parseInt(urtea);
+					int h = Integer.parseInt(hilabete);
+					int eg = Integer.parseInt(egun);
+
+					if(dataZuzena(jaioData)) {
+						Period adina = Period.between(LocalDate.of(u, h, eg), LocalDate.now());
+						if(adina.getYears() >= 18) {
+							ema = facade.register(izena,abizena,jaioData,email,username,password);
+							if (ema) {
+								frame.setVisible(false);
+								LoginGUI l = new LoginGUI();
+							}
+						}else {
+							System.out.println("Adingabea zara");
+						}
+					}else {
+						System.out.println("Sartutako data ez da zuzena");
 					}
 				}else {
 					System.out.println("Sartu ondo datuak");
@@ -153,9 +176,17 @@ public class RegisterGUI extends Frame {
 		abizenaField.setBounds(235, 35, 134, 21);
 		frame.getContentPane().add(abizenaField);
 		
-		jaioDatField = new JTextField();
-		jaioDatField.setText("uuuu/hh/ee");
-		jaioDatField.setToolTipText("");
+		jaioDatField = new JFormattedTextField();
+		MaskFormatter mask;
+		try {
+			mask = new MaskFormatter("####/##/##");
+			mask.install(jaioDatField);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		jaioDatField.setName("");
+		jaioDatField.setToolTipText("uuuu/hh/ee");
 		jaioDatField.setColumns(10);
 		jaioDatField.setBounds(235, 60, 134, 21);
 		frame.getContentPane().add(jaioDatField);
@@ -191,5 +222,18 @@ public class RegisterGUI extends Frame {
 		});
 		atzeraButton.setBounds(28, 227, 89, 23);
 		frame.getContentPane().add(atzeraButton);
+		
+		
+	}
+	
+	private boolean dataZuzena(String data) {
+		try {
+			SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(data);
+		}catch(ParseException e1) {
+			return false;
+		}
+		return true;
 	}
 }
