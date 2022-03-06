@@ -3,6 +3,7 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class GertaeraSortuGUI {
 
@@ -38,6 +39,10 @@ public class GertaeraSortuGUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Kaixo");
+		lblNewLabel.setBounds(159, 69, 45, 13);
+		frame.getContentPane().add(lblNewLabel);
 	}
-
 }

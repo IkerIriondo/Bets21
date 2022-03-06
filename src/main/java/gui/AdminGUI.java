@@ -63,6 +63,8 @@ public class AdminGUI extends JFrame{
 		JButton gerSortuButton = new JButton("Gertaera Sortu");
 		gerSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				GertaeraSortuGUI ger = new GertaeraSortuGUI();
 			}
 		});
 		gerSortuButton.setBounds(76, 78, 126, 21);
