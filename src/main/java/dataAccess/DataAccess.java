@@ -159,12 +159,13 @@ public class DataAccess  {
 			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","new Date()","proba@gmail.com", "User1","1234");
 			db.persist(user);
 			
-			db.getTransaction().commit();
+			//db.getTransaction().commit();
 			System.out.println("Db initialized");
 		}
 		catch (Exception e){
 			e.printStackTrace();
 		}
+		db.getTransaction().commit();
 	}
 	
 	/**
