@@ -8,7 +8,7 @@ import javax.swing.UIManager;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import org.graalvm.compiler.hotspot.replacements.Log;
+
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
