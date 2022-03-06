@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
+import domain.Admin;
 import domain.Erabiltzailea;
 import domain.User;
 
@@ -113,6 +114,11 @@ public class LoginGUI extends Frame {
 					System.out.println("Correctly logged in");
 					FindQuestionsGUI f = new FindQuestionsGUI();
 					f.setVisible(true);
+				}else if (user.getClass()==Admin.class) {
+					frame.setVisible(false);
+					System.out.println("Logged as admin");
+					AdminGUI a = new AdminGUI();
+					a.setVisible(true);
 				}
 				
 			}

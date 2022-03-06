@@ -17,6 +17,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
+import domain.Admin;
 import domain.Erabiltzailea;
 import domain.Event;
 import domain.Question;
@@ -151,7 +152,8 @@ public class DataAccess  {
 			db.persist(ev20);			
 			
 			//ADMINISTRATZAILEAK
-			
+			Admin admin = new Admin("Ibai", "Heras", "new Date()", "admin@gmail.com", "admin1", "1234");
+			db.persist(admin);
 			
 			//ERABILTZAILEAK
 			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","new Date()","proba@gmail.com", "User1","1234");
