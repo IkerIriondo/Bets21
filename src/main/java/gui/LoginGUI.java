@@ -118,7 +118,6 @@ public class LoginGUI extends Frame {
 					frame.setVisible(false);
 					System.out.println("Logged as admin");
 					AdminGUI a = new AdminGUI();
-					a.setVisible(true);
 				}
 				
 			}
