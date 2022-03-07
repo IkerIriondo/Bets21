@@ -27,9 +27,9 @@ public class ApplicationLauncher {
 		
 		System.out.println("Locale: "+Locale.getDefault());
 		
-		MainGUI a=new MainGUI();
+		MainGUI a = new MainGUI();
 		//a.setVisible(true);
-		LoginGUI b=new LoginGUI();
+		LoginGUI b = new LoginGUI();
 	
 
 		try {
