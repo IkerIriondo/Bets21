@@ -131,6 +131,7 @@ public class RegisterGUI extends Frame {
 				String username = usernameField.getText();
 				String password = PasswordField.getText();
 				String passConfirm = confirmPasswordField.getText();
+				
 				if(!password.contentEquals(passConfirm)) {
 					System.out.println("Pasahitzak ezberdinak dira");
 				}else if(!izena.isBlank() && !abizena.isBlank() && !jaioData.isBlank() && !email.isBlank()&& !username.isBlank() && !password.isBlank()){

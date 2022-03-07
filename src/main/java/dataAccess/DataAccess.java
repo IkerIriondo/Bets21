@@ -295,6 +295,33 @@ public boolean existQuestion(Event event, String question) {
 		}
 		
 	}
+
+	public boolean gertaeraSortu(String deskribapena, String zenb, Date data) {
+		
+		if(!zenb.isBlank()) {
+			int zenbakia = Integer.parseInt(zenb);
+			if(db.find(Event.class, zenb) == null) {
+				db.getTransaction().begin();
+				Event event = new Event(zenbakia,deskribapena,data);
+				db.persist(event);
+				db.getTransaction().commit();
+				System.out.println("Gertaera ondo sortu da");
+				return true;
+			}else {
+				System.out.println("Dagoeneko badago gertaera bat zenbaki horrekin");
+				return false;
+			}
+		}else {
+			db.getTransaction().begin();
+			Event event = new Event(deskribapena,data);
+			db.persist(event);
+			db.getTransaction().commit();
+			System.out.println("Gertaera ondo sortu da");
+			return true;
+		}
+		
+		
+	}
 	
 	
 	
