@@ -65,11 +65,6 @@ public interface BLFacade  {
 	@WebMethod public boolean register(String text, String text2, String text3, String text4, String text5, String text6);
 
 
-	@WebMethod public boolean gertaeraSortu(String deskribapena, String zenb, Date data);
+	@WebMethod public Event gertaeraSortu(String deskribapena, String zenb, Date data);
 
-
-	
-	
-	
-	
 }

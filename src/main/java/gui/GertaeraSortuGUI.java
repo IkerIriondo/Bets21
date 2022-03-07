@@ -18,6 +18,7 @@ import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -118,17 +119,31 @@ public class GertaeraSortuGUI extends Frame{
 		gertSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Date data = jCalendar.getDate();
+				Date data = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
 				String zenb = gertZenbField.getText();
 				String deskribapena = gertaeraField.getText();
 				
+				String gaur = LocalDate.now().toString();
+				System.out.println(gaur);
+				String[] gaurkoa = gaur.split("-");
+				int urtea = Integer.parseInt(gaurkoa[0]);
+				int hil = Integer.parseInt(gaurkoa[1]);
+				int eg = Integer.parseInt(gaurkoa[2]);
+				Date gauregun = new Date(urtea,hil,eg);
+				
 				BLFacade facade = MainGUI.getBusinessLogic();
 				
-				if(!deskribapena.isBlank()) {
-					facade.gertaeraSortu(deskribapena,zenb,data);
+				if(!data.before(gauregun)) {
+					if(!deskribapena.isBlank()) {
+						facade.gertaeraSortu(deskribapena,zenb,data);
+					}else {
+						System.out.println("Sartu deskribapen zuzen bat");
+					}
 				}else {
-					System.out.println("Sartu deskribapen zuzen bat");
+					System.out.println("Hautatutako data iraganekoa da");
 				}
+				
+				
 			}
 		});
 		gertSortuButton.setBounds(141, 227, 154, 23);

@@ -296,7 +296,7 @@ public boolean existQuestion(Event event, String question) {
 		
 	}
 
-	public boolean gertaeraSortu(String deskribapena, String zenb, Date data) {
+	public Event gertaeraSortu(String deskribapena, String zenb, Date data) {
 		
 		if(!zenb.isBlank()) {
 			int zenbakia = Integer.parseInt(zenb);
@@ -306,10 +306,10 @@ public boolean existQuestion(Event event, String question) {
 				db.persist(event);
 				db.getTransaction().commit();
 				System.out.println("Gertaera ondo sortu da");
-				return true;
+				return event;
 			}else {
 				System.out.println("Dagoeneko badago gertaera bat zenbaki horrekin");
-				return false;
+				return null;
 			}
 		}else {
 			db.getTransaction().begin();
@@ -317,7 +317,7 @@ public boolean existQuestion(Event event, String question) {
 			db.persist(event);
 			db.getTransaction().commit();
 			System.out.println("Gertaera ondo sortu da");
-			return true;
+			return event;
 		}
 		
 		

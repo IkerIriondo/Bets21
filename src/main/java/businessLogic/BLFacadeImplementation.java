@@ -146,11 +146,11 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public boolean gertaeraSortu(String deskribapena, String zenb, Date data) {
+	public Event gertaeraSortu(String deskribapena, String zenb, Date data) {
 		dbManager.open(false);
-		boolean b = dbManager.gertaeraSortu(deskribapena,zenb,data);
+		Event e = dbManager.gertaeraSortu(deskribapena,zenb,data);
 		dbManager.close();
-		return b;
+		return e;
 	}
 
 }
