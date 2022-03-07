@@ -281,5 +281,6 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 
 	private void jButtonClose_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
+		AdminGUI a = new AdminGUI();
 	}
 }

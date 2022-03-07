@@ -3,10 +3,14 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
+import domain.Event;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 public class AdminGUI extends JFrame{
@@ -73,6 +77,9 @@ public class AdminGUI extends JFrame{
 		JButton galSortuButton = new JButton("Galdera Sortu");
 		galSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				CreateQuestionGUI c = new CreateQuestionGUI(new Vector<Event>());
+				c.setVisible(true);
 			}
 		});
 		galSortuButton.setBounds(239, 78, 126, 21);
@@ -81,6 +88,8 @@ public class AdminGUI extends JFrame{
 		JButton kuotaIpiniButton = new JButton("Kuota Ipini");
 		kuotaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				KuotaIpiniGUI k = new KuotaIpiniGUI();
 			}
 		});
 		kuotaIpiniButton.setBounds(76, 172, 126, 21);
@@ -89,6 +98,9 @@ public class AdminGUI extends JFrame{
 		JButton galKonButton = new JButton("Galderak Kontsultatu");
 		galKonButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				FindQuestionsGUI f = new FindQuestionsGUI();
+				f.setVisible(true);
 			}
 		});
 		galKonButton.setBounds(239, 172, 126, 21);
