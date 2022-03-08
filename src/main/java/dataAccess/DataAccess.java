@@ -334,8 +334,4 @@ public boolean existQuestion(Event event, String question) {
 		System.out.println("Kuota ondo sortu da");
 		return k;
 	}
-	
-	
-	
-	
 }
