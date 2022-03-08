@@ -23,6 +23,7 @@ public class FindQuestionsGUI extends JFrame {
 	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Events")); 
 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
+	private JButton atzeraAdminButton = new JButton(/*ResourceBundle.getBundle("Etiquetas").getString("Atzera")*/);
 
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
@@ -222,6 +223,17 @@ public class FindQuestionsGUI extends JFrame {
 
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
+		atzeraAdminButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.atzeraAdminButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		
+		//atzeraAdminButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		atzeraAdminButton.setVisible(false);
+		atzeraAdminButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				atzeraAdminButton_actionPerformed(e);
+			}
+		});
+		atzeraAdminButton.setBounds(534, 419, 104, 30);
+		getContentPane().add(atzeraAdminButton);
 
 	}
 
@@ -229,5 +241,13 @@ public class FindQuestionsGUI extends JFrame {
 		this.setVisible(false);
 		LoginGUI l = new LoginGUI();
 	}
-
+	
+	private void atzeraAdminButton_actionPerformed(ActionEvent e) {
+		this.setVisible(false);
+		AdminGUI a = new AdminGUI();
+	}
+	
+	public JButton getAtzeraAdminButton() {
+		return atzeraAdminButton;
+	}
 }

@@ -101,6 +101,7 @@ public class AdminGUI extends JFrame{
 				frame.setVisible(false);
 				FindQuestionsGUI f = new FindQuestionsGUI();
 				f.setVisible(true);
+				f.getAtzeraAdminButton().setVisible(true);
 			}
 		});
 		galKonButton.setBounds(239, 172, 126, 21);
