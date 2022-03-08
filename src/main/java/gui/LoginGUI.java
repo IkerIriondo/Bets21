@@ -29,6 +29,16 @@ public class LoginGUI extends Frame {
 	private JFrame frame;
 	private JTextField emailField;
 	private JPasswordField passField;
+	
+	private JLabel infoLabel;
+	public JLabel getInfoLabel() {
+		return infoLabel;
+	}
+
+	public void setInfoLabel(JLabel infoLabel) {
+		this.infoLabel = infoLabel;
+	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -96,6 +106,14 @@ public class LoginGUI extends Frame {
 		passField.setBounds(230, 76, 134, 21);
 		frame.getContentPane().add(passField);
 		
+		infoLabel = new JLabel();
+		infoLabel.setBounds(62, 166, 321, 14);
+		frame.getContentPane().add(infoLabel);
+		
+		JLabel info2Label = new JLabel("");
+		info2Label.setBounds(62, 186, 302, 14);
+		frame.getContentPane().add(info2Label);
+		
 		JButton hasiButton = new JButton("Saioa hasi");
 		
 		hasiButton.addActionListener(new ActionListener() {
@@ -107,7 +125,8 @@ public class LoginGUI extends Frame {
 				
 				if (user==null){
 					
-					System.out.println("User not found");
+					infoLabel.setText("Ez da erabiltzailerik aurkitu edo");
+					info2Label.setText(" sartutako pasahitza ez da zuzena");
 					
 				}else if (user.getClass()==Erabiltzailea.class) {
 					frame.setVisible(false);
@@ -150,5 +169,9 @@ public class LoginGUI extends Frame {
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		registerButton.setBounds(62, 130, 158, 34);
 		frame.getContentPane().add(registerButton);
+		
+		
+		
+		
 	}
 }

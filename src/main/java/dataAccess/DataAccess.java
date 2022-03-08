@@ -25,6 +25,8 @@ import domain.Question;
 import domain.User;
 import exceptions.QuestionAlreadyExist;
 
+
+
 /**
  * It implements the data access to the objectDb database
  */
@@ -278,7 +280,7 @@ public boolean existQuestion(Event event, String question) {
 
 	public User isLogin(String email, String password) {
 		User user = db.find(User.class, email);
-		if (user==null || !user.isCorrectPassword(password))return null;
+		if (user==null || !user.isCorrectPassword(password)) return null;
 		else return user;
 	}
 
@@ -291,10 +293,9 @@ public boolean existQuestion(Event event, String question) {
 			System.out.println("Erabiltzailea sortuta");
 			return true;
 		}else {
-			System.out.println("Dagoeneko badago erabiltzaile bat email horrekin");
+			//System.out.println("Dagoeneko badago erabiltzaile bat email horrekin");
 			return false;
 		}
-		
 	}
 
 	public Event gertaeraSortu(String deskribapena, String zenb, Date data) {

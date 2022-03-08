@@ -115,6 +115,10 @@ public class GertaeraSortuGUI extends Frame{
 		frame.getContentPane().add(gertZenbField);
 		gertZenbField.setColumns(10);
 		
+		JLabel infoLabel = new JLabel("");
+		infoLabel.setBounds(107, 202, 232, 14);
+		frame.getContentPane().add(infoLabel);
+		
 		JButton gertSortuButton = new JButton("Gertaera sortu");
 		gertSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,9 +141,11 @@ public class GertaeraSortuGUI extends Frame{
 						facade.gertaeraSortu(deskribapena,zenb,data);
 					}else {
 						System.out.println("Sartu deskribapen zuzen bat");
+						infoLabel.setText("Sartu deskribapen zuzen bat");
 					}
 				}else {
 					System.out.println("Hautatutako data iraganekoa da");
+					infoLabel.setText("Hautatutako data iraganekoa da");
 				}
 				
 				
@@ -147,5 +153,7 @@ public class GertaeraSortuGUI extends Frame{
 		});
 		gertSortuButton.setBounds(141, 227, 154, 23);
 		frame.getContentPane().add(gertSortuButton);
+		
+		
 	}
 }

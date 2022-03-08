@@ -36,6 +36,7 @@ public class RegisterGUI extends Frame {
 	private JPasswordField PasswordField;
 	private JPasswordField confirmPasswordField;
 	private JButton atzeraButton;
+	private JLabel infoLabel;
 
 	/**
 	 * Launch the application.
@@ -114,6 +115,10 @@ public class RegisterGUI extends Frame {
 		lblPassword.setBounds(57, 135, 123, 17);
 		frame.getContentPane().add(lblPassword);
 		
+		infoLabel = new JLabel("");
+		infoLabel.setBounds(57, 188, 315, 14);
+		frame.getContentPane().add(infoLabel);
+		
 		JLabel lblConfirmPassword = new JLabel("Confirm Password:");
 		lblConfirmPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblConfirmPassword.setBounds(57, 160, 123, 17);
@@ -150,21 +155,27 @@ public class RegisterGUI extends Frame {
 							if (ema) {
 								frame.setVisible(false);
 								LoginGUI l = new LoginGUI();
+							}else {
+								infoLabel.setText("Dagoeneko badago erabiltzaile bat email hori duena");
+								System.out.println("Dagoeneko badago erabiltzaile bat email hori duena");
 							}
 						}else {
-							System.out.println("Adingabea zara");
+							infoLabel.setText("Adingabekoa zara");
+							System.out.println("Adingabekoa zara");
 						}
 					}else {
+						infoLabel.setText("Sartutako data ez da zuzena");
 						System.out.println("Sartutako data ez da zuzena");
 					}
 				}else {
+					infoLabel.setText("Sartu ondo datuak");
 					System.out.println("Sartu ondo datuak");
 				}
 				
 			}
 		});
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		registerButton.setBounds(178, 200, 158, 34);
+		registerButton.setBounds(175, 216, 158, 34);
 		frame.getContentPane().add(registerButton);
 		
 		izenaField = new JTextField();
@@ -223,6 +234,8 @@ public class RegisterGUI extends Frame {
 		});
 		atzeraButton.setBounds(28, 227, 89, 23);
 		frame.getContentPane().add(atzeraButton);
+		
+		
 		
 		
 	}

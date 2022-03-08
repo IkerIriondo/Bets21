@@ -52,6 +52,7 @@ public class KuotaIpiniGUI extends JFrame {
 	private JTextField erantzunField;
 	private JTextField kuotaField;
 	private JTextField galdZenbField;
+	private final JLabel infoLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public KuotaIpiniGUI()
 	{
@@ -270,14 +271,15 @@ public class KuotaIpiniGUI extends JFrame {
 		JButton kuotaSortuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		kuotaSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int galdZenb = Integer.parseInt(galdZenbField.getText());
-				String kuoMota = erantzunField.getText();
 				try {
+					int galdZenb = Integer.parseInt(galdZenbField.getText());
+					String kuoMota = erantzunField.getText();
 					float kuota = Integer.parseInt(kuotaField.getText());
 					BLFacade facade = MainGUI.getBusinessLogic();
 					facade.kuotaIpini(galdZenb,kuota,kuoMota);
 				}catch(NumberFormatException e2){
 					System.out.println("Sartu kuota egoki bat");
+					infoLabel.setText("Sartu kuota egoki bat");
 				}
 				
 			}
@@ -296,6 +298,8 @@ public class KuotaIpiniGUI extends JFrame {
 		galdZenbField.setBounds(498, 255, 140, 20);
 		getContentPane().add(galdZenbField);
 		galdZenbField.setColumns(10);
+		infoLabel.setBounds(267, 377, 248, 14);
+		getContentPane().add(infoLabel);
 
 	}
 	
