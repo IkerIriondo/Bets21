@@ -124,12 +124,11 @@ public class GertaeraSortuGUI extends Frame{
 				String deskribapena = gertaeraField.getText();
 				
 				String gaur = LocalDate.now().toString();
-				System.out.println(gaur);
 				String[] gaurkoa = gaur.split("-");
 				int urtea = Integer.parseInt(gaurkoa[0]);
-				int hil = Integer.parseInt(gaurkoa[1]);
+				int hil = Integer.parseInt(gaurkoa[1]) -1;
 				int eg = Integer.parseInt(gaurkoa[2]);
-				Date gauregun = new Date(urtea,hil,eg);
+				Date gauregun = UtilDate.newDate(urtea,hil,eg);
 				
 				BLFacade facade = MainGUI.getBusinessLogic();
 				
