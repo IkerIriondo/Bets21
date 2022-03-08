@@ -270,6 +270,15 @@ public class KuotaIpiniGUI extends JFrame {
 		JButton kuotaSortuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		kuotaSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int galdZenb = Integer.parseInt(galdZenbField.getText());
+				String kuoMota = erantzunField.getText();
+				try {
+					float kuota = Integer.parseInt(kuotaField.getText());
+					BLFacade facade = MainGUI.getBusinessLogic();
+					facade.kuotaIpini(galdZenb,kuota,kuoMota);
+				}catch(NumberFormatException e2){
+					System.out.println("Sartu kuota egoki bat");
+				}
 				
 			}
 		});

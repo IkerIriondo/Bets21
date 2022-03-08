@@ -20,6 +20,7 @@ import configuration.UtilDate;
 import domain.Admin;
 import domain.Erabiltzailea;
 import domain.Event;
+import domain.Kuota;
 import domain.Question;
 import domain.User;
 import exceptions.QuestionAlreadyExist;
@@ -321,6 +322,17 @@ public boolean existQuestion(Event event, String question) {
 		}
 		
 		
+	}
+
+	public Kuota kuotaIpini(int galdZenb, float kuota, String kuoMota) {
+		db.getTransaction().begin();
+		Question q = db.find(Question.class, galdZenb);
+		Kuota k = new Kuota(galdZenb,kuota,kuoMota);
+		q.addKuota(k);
+		db.persist(k);
+		db.getTransaction().commit();
+		System.out.println("Kuota ondo sortu da");
+		return k;
 	}
 	
 	

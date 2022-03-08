@@ -11,6 +11,7 @@ import java.util.Date;
 import domain.Question;
 import domain.User;
 import domain.Event;
+import domain.Kuota;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -66,5 +67,8 @@ public interface BLFacade  {
 
 
 	@WebMethod public Event gertaeraSortu(String deskribapena, String zenb, Date data);
+
+
+	@WebMethod public Kuota kuotaIpini(int galdZenb, float kuota, String kuoMota);
 
 }
