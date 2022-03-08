@@ -244,3 +244,167 @@ Type domain.Erabiltzailea is not enhanced.
 [2022-03-08 10:27:32 #13 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-03-08 10:42:39 #1 store] 
+Database 'C:\Users\Iker\Desktop\proiektua\src\main\resources\bets.temp' is opened by 9772@DESKTOP-8L6O8HK
+
+[2022-03-08 10:42:40 #2 type.registry] 
+New type domain.Question
+
+[2022-03-08 10:42:40 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-03-08 10:42:40 #4 type.registry] 
+New type domain.Event
+
+[2022-03-08 10:42:40 #5 type] 
+Type domain.Event is not enhanced.
+
+[2022-03-08 10:42:40 #6 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-03-08 10:42:40 #7 type.registry] 
+New type domain.User
+
+[2022-03-08 10:42:40 #8 type.registry] 
+New type domain.Admin
+
+[2022-03-08 10:42:40 #9 type] 
+Type domain.User is not enhanced.
+
+[2022-03-08 10:42:40 #10 type] 
+Type domain.Admin is not enhanced.
+
+[2022-03-08 10:42:40 #11 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-03-08 10:42:40 #12 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-03-08 10:42:40 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-03-08 10:44:03 #1 store] 
+Database 'C:\Users\Iker\Desktop\proiektua\src\main\resources\bets.temp' is opened by 9812@DESKTOP-8L6O8HK
+
+[2022-03-08 10:44:04 #2 type.registry] 
+New type domain.Question
+
+[2022-03-08 10:44:04 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-03-08 10:44:04 #4 type.registry] 
+New type domain.Event
+
+[2022-03-08 10:44:04 #5 type] 
+Type domain.Event is not enhanced.
+
+[2022-03-08 10:44:04 #6 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-03-08 10:44:04 #7 type.registry] 
+New type domain.User
+
+[2022-03-08 10:44:04 #8 type.registry] 
+New type domain.Admin
+
+[2022-03-08 10:44:04 #9 type] 
+Type domain.User is not enhanced.
+
+[2022-03-08 10:44:04 #10 type] 
+Type domain.Admin is not enhanced.
+
+[2022-03-08 10:44:04 #11 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-03-08 10:44:04 #12 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-03-08 10:44:04 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-03-08 10:46:14 #1 store] 
+Database 'C:\Users\Iker\Desktop\proiektua\src\main\resources\bets.temp' is opened by 8768@DESKTOP-8L6O8HK
+
+[2022-03-08 10:46:14 #2 type.registry] 
+New type domain.Question
+
+[2022-03-08 10:46:14 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-03-08 10:46:14 #4 type.registry] 
+New type domain.Event
+
+[2022-03-08 10:46:14 #5 type] 
+Type domain.Event is not enhanced.
+
+[2022-03-08 10:46:15 #6 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-03-08 10:46:15 #7 type.registry] 
+New type domain.User
+
+[2022-03-08 10:46:15 #8 type.registry] 
+New type domain.Admin
+
+[2022-03-08 10:46:15 #9 type] 
+Type domain.User is not enhanced.
+
+[2022-03-08 10:46:15 #10 type] 
+Type domain.Admin is not enhanced.
+
+[2022-03-08 10:46:15 #11 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-03-08 10:46:15 #12 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-03-08 10:46:15 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-03-08 10:46:57 #1 store] 
+Database 'C:\Users\Iker\Desktop\proiektua\src\main\resources\bets.temp' is opened by 10220@DESKTOP-8L6O8HK
+
+[2022-03-08 10:46:58 #2 type.registry] 
+New type domain.Question
+
+[2022-03-08 10:46:58 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-03-08 10:46:58 #4 type.registry] 
+New type domain.Event
+
+[2022-03-08 10:46:58 #5 type] 
+Type domain.Event is not enhanced.
+
+[2022-03-08 10:46:58 #6 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-03-08 10:46:58 #7 type.registry] 
+New type domain.User
+
+[2022-03-08 10:46:58 #8 type.registry] 
+New type domain.Admin
+
+[2022-03-08 10:46:58 #9 type] 
+Type domain.User is not enhanced.
+
+[2022-03-08 10:46:58 #10 type] 
+Type domain.Admin is not enhanced.
+
+[2022-03-08 10:46:58 #11 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-03-08 10:46:58 #12 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-03-08 10:46:58 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
