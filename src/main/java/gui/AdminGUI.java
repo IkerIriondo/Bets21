@@ -90,6 +90,7 @@ public class AdminGUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
 				KuotaIpiniGUI k = new KuotaIpiniGUI();
+				k.setVisible(true);
 			}
 		});
 		kuotaIpiniButton.setBounds(76, 172, 126, 21);
