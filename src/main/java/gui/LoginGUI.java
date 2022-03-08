@@ -29,15 +29,8 @@ public class LoginGUI extends Frame {
 	private JFrame frame;
 	private JTextField emailField;
 	private JPasswordField passField;
-	
 	private JLabel infoLabel;
-	public JLabel getInfoLabel() {
-		return infoLabel;
-	}
-
-	public void setInfoLabel(JLabel infoLabel) {
-		this.infoLabel = infoLabel;
-	}
+	
 
 	/**
 	 * Launch the application.
