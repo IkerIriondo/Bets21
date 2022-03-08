@@ -51,12 +51,25 @@ public class KuotaIpiniGUI extends JFrame {
 	};
 	private JTextField erantzunField;
 	private JTextField kuotaField;
+	private JTextField galdZenbField;
 
 	public KuotaIpiniGUI()
 	{
 		try
 		{
 			jbInit();
+			addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+					try {
+						//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						System.out.println("Error: "+e1.toString()+" , probably problems with Business Logic or Database");
+					}
+					System.exit(1);
+				}
+			});
 		}
 		catch(Exception e)
 		{
@@ -200,6 +213,14 @@ public class KuotaIpiniGUI extends JFrame {
 		tableEvents.setModel(tableModelEvents);
 		tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);
+		tableQueries.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					int i=tableQueries.getSelectedRow();
+					Integer q = (Integer)tableModelQueries.getValueAt(i, 0);
+					galdZenbField.setText(q.toString());
+			}
+		});
 
 
 		scrollPaneQueries.setViewportView(tableQueries);
@@ -218,6 +239,7 @@ public class KuotaIpiniGUI extends JFrame {
 		atzeraAdminButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atzeraAdminButton_actionPerformed(e);
+				
 			}
 		});
 		atzeraAdminButton.setBounds(40, 416, 104, 30);
@@ -225,13 +247,13 @@ public class KuotaIpiniGUI extends JFrame {
 		
 		erantzunField = new JTextField();
 		//erantzunField.setText(ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.textField.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		erantzunField.setBounds(498, 256, 140, 20);
+		erantzunField.setBounds(498, 280, 140, 20);
 		getContentPane().add(erantzunField);
 		erantzunField.setColumns(10);
 		
 		JLabel erantzunLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
 		erantzunLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.erantzunLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		erantzunLabel.setBounds(358, 259, 130, 14);
+		erantzunLabel.setBounds(358, 283, 130, 14);
 		getContentPane().add(erantzunLabel);
 		
 		JLabel kuotaLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.lblNewLabel_1.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
@@ -253,6 +275,18 @@ public class KuotaIpiniGUI extends JFrame {
 		});
 		kuotaSortuButton.setBounds(294, 416, 104, 30);
 		getContentPane().add(kuotaSortuButton);
+		
+		JLabel galdZenbLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
+		galdZenbLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.galdZenbLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		galdZenbLabel.setBounds(358, 258, 94, 14);
+		getContentPane().add(galdZenbLabel);
+		
+		galdZenbField = new JTextField();
+		galdZenbField.setEditable(false);
+		//galdZenbField.setText(ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.textField.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		galdZenbField.setBounds(498, 255, 140, 20);
+		getContentPane().add(galdZenbField);
+		galdZenbField.setColumns(10);
 
 	}
 	

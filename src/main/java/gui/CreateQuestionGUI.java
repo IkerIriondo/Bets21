@@ -47,6 +47,18 @@ public class CreateQuestionGUI extends JFrame {
 	public CreateQuestionGUI(Vector<domain.Event> v) {
 		try {
 			jbInit(v);
+			addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+					try {
+						//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						System.out.println("Error: "+e1.toString()+" , probably problems with Business Logic or Database");
+					}
+					System.exit(1);
+				}
+			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
