@@ -748,3 +748,103 @@ Type domain.Erabiltzailea is not enhanced.
 [2022-03-09 20:41:49 #16 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-03-09 20:42:51 #1 store] 
+Database 'C:\Users\ibaih\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 384668@DESKTOP-1QBPJUI
+
+[2022-03-09 20:42:51 #2 type.registry] 
+New type domain.Question
+
+[2022-03-09 20:42:51 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-03-09 20:42:51 #4 type.registry] 
+New type domain.Kuota
+
+[2022-03-09 20:42:51 #5 type.registry] 
+New type java.util.Vector<domain.Kuota>
+
+[2022-03-09 20:42:51 #6 type.registry] 
+New type domain.Event
+
+[2022-03-09 20:42:51 #7 type] 
+Type domain.Kuota is not enhanced.
+
+[2022-03-09 20:42:51 #8 type] 
+Type domain.Event is not enhanced.
+
+[2022-03-09 20:42:51 #9 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-03-09 20:42:51 #10 type.registry] 
+New type domain.User
+
+[2022-03-09 20:42:51 #11 type.registry] 
+New type domain.Admin
+
+[2022-03-09 20:42:51 #12 type] 
+Type domain.User is not enhanced.
+
+[2022-03-09 20:42:51 #13 type] 
+Type domain.Admin is not enhanced.
+
+[2022-03-09 20:42:51 #14 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-03-09 20:42:51 #15 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-03-09 20:42:51 #16 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-03-09 20:47:51 #1 store] 
+Database 'C:\Users\ibaih\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 393992@DESKTOP-1QBPJUI
+
+[2022-03-09 20:47:51 #2 type.registry] 
+New type domain.Question
+
+[2022-03-09 20:47:51 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-03-09 20:47:51 #4 type.registry] 
+New type domain.Kuota
+
+[2022-03-09 20:47:51 #5 type.registry] 
+New type java.util.Vector<domain.Kuota>
+
+[2022-03-09 20:47:51 #6 type.registry] 
+New type domain.Event
+
+[2022-03-09 20:47:51 #7 type] 
+Type domain.Kuota is not enhanced.
+
+[2022-03-09 20:47:51 #8 type] 
+Type domain.Event is not enhanced.
+
+[2022-03-09 20:47:51 #9 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-03-09 20:47:51 #10 type.registry] 
+New type domain.User
+
+[2022-03-09 20:47:51 #11 type.registry] 
+New type domain.Admin
+
+[2022-03-09 20:47:51 #12 type] 
+Type domain.User is not enhanced.
+
+[2022-03-09 20:47:51 #13 type] 
+Type domain.Admin is not enhanced.
+
+[2022-03-09 20:47:51 #14 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-03-09 20:47:51 #15 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-03-09 20:47:51 #16 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
