@@ -139,6 +139,7 @@ public class RegisterGUI extends Frame {
 				
 				if(!password.contentEquals(passConfirm)) {
 					System.out.println("Pasahitzak ezberdinak dira");
+					infoLabel.setText("Pasahitzak ezberdinak dira");
 				}else if(!izena.isBlank() && !abizena.isBlank() && !jaioData.isBlank() && !email.isBlank()&& !username.isBlank() && !password.isBlank()){
 					String[] osagaiak = jaioData.split("/");
 					String urtea = osagaiak[0];

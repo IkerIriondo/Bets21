@@ -100,7 +100,7 @@ public class LoginGUI extends Frame {
 		frame.getContentPane().add(passField);
 		
 		infoLabel = new JLabel();
-		infoLabel.setBounds(62, 166, 321, 14);
+		infoLabel.setBounds(47, 175, 346, 14);
 		frame.getContentPane().add(infoLabel);
 		
 		JLabel info2Label = new JLabel("");
@@ -145,11 +145,12 @@ public class LoginGUI extends Frame {
 				frame.setVisible(false);
 				FindQuestionsGUI f = new FindQuestionsGUI();
 				f.setVisible(true);
+				f.getCloseButton().setText("Atzera");
 				
 			}
 		});
 		jarraituButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		jarraituButton.setBounds(10, 214, 169, 23);
+		jarraituButton.setBounds(10, 214, 198, 23);
 		frame.getContentPane().add(jarraituButton);
 		
 		JButton registerButton = new JButton("ERREGISTRATU");

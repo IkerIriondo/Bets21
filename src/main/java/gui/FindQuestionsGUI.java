@@ -22,7 +22,7 @@ public class FindQuestionsGUI extends JFrame {
 	private final JLabel jLabelQueries = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Queries")); 
 	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Events")); 
 
-	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
+	private JButton jButtonClose = new JButton();
 	private JButton atzeraAdminButton = new JButton(/*ResourceBundle.getBundle("Etiquetas").getString("Atzera")*/);
 
 	// Code for JCalendar
@@ -91,6 +91,7 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
+		jButtonClose.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.jButtonClose.text")); //$NON-NLS-1$ //$NON-NLS-2$
 
 		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));
 
@@ -261,5 +262,9 @@ public class FindQuestionsGUI extends JFrame {
 	
 	public JButton getAtzeraAdminButton() {
 		return atzeraAdminButton;
+	}
+	
+	public JButton getCloseButton() {
+		return jButtonClose;
 	}
 }

@@ -155,11 +155,11 @@ public class DataAccess  {
 			db.persist(ev20);			
 			
 			//ADMINISTRATZAILEAK
-			Admin admin = new Admin("Ibai", "Heras", "new Date()", "admin@gmail.com", "admin1", "1234");
+			Admin admin = new Admin("Ibai", "Heras", "2002/12/10", "admin@gmail.com", "admin1", "1234");
 			db.persist(admin);
 			
 			//ERABILTZAILEAK
-			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","new Date()","proba@gmail.com", "User1","1234");
+			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","2002/01/05","proba@gmail.com", "User1","1234");
 			db.persist(user);
 			
 			//db.getTransaction().commit();

@@ -100,7 +100,7 @@ public class CreateQuestionGUI extends JFrame {
 		jLabelMsg.setForeground(Color.red);
 		// jLabelMsg.setSize(new Dimension(305, 20));
 
-		jLabelError.setBounds(new Rectangle(175, 240, 305, 20));
+		jLabelError.setBounds(new Rectangle(175, 240, 354, 20));
 		jLabelError.setForeground(Color.red);
 
 		this.getContentPane().add(jLabelMsg, null);

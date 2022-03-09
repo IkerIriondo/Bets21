@@ -82,7 +82,7 @@ public class AdminGUI extends JFrame{
 				c.setVisible(true);
 			}
 		});
-		galSortuButton.setBounds(239, 78, 126, 21);
+		galSortuButton.setBounds(254, 78, 126, 21);
 		frame.getContentPane().add(galSortuButton);
 		
 		JButton kuotaIpiniButton = new JButton("Kuota Ipini");
@@ -105,7 +105,7 @@ public class AdminGUI extends JFrame{
 				f.getAtzeraAdminButton().setVisible(true);
 			}
 		});
-		galKonButton.setBounds(239, 172, 126, 21);
+		galKonButton.setBounds(239, 172, 153, 21);
 		frame.getContentPane().add(galKonButton);
 		
 		JButton itxiButton = new JButton("Saioa Itxi");
@@ -115,7 +115,7 @@ public class AdminGUI extends JFrame{
 				LoginGUI l = new LoginGUI();
 			}
 		});
-		itxiButton.setBounds(341, 10, 85, 21);
+		itxiButton.setBounds(329, 10, 97, 28);
 		frame.getContentPane().add(itxiButton);
 	}
 

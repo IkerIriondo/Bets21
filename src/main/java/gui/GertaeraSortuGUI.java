@@ -88,7 +88,7 @@ public class GertaeraSortuGUI extends Frame{
 				AdminGUI a = new AdminGUI();
 			}
 		});
-		atzeraButton.setBounds(307, 11, 89, 23);
+		atzeraButton.setBounds(307, 11, 100, 23);
 		frame.getContentPane().add(atzeraButton);
 		
 		JCalendar jCalendar = new JCalendar();
@@ -116,7 +116,7 @@ public class GertaeraSortuGUI extends Frame{
 		gertZenbField.setColumns(10);
 		
 		JLabel infoLabel = new JLabel("");
-		infoLabel.setBounds(107, 202, 232, 14);
+		infoLabel.setBounds(67, 202, 312, 14);
 		frame.getContentPane().add(infoLabel);
 		
 		JButton gertSortuButton = new JButton("Gertaera sortu");
@@ -138,7 +138,13 @@ public class GertaeraSortuGUI extends Frame{
 				
 				if(!data.before(gauregun)) {
 					if(!deskribapena.isBlank()) {
-						facade.gertaeraSortu(deskribapena,zenb,data);
+						try {
+							facade.gertaeraSortu(deskribapena,zenb,data);
+						infoLabel.setText("Gertaera ondo sortu da");
+						} catch (Exception e2) {
+							infoLabel.setText("Dagoeneko badago gertaera bat zenbaki horrekin");
+						}
+						
 					}else {
 						System.out.println("Sartu deskribapen zuzen bat");
 						infoLabel.setText("Sartu deskribapen zuzen bat");
