@@ -145,10 +145,11 @@ public class RegisterGUI extends Frame {
 					String urtea = osagaiak[0];
 					String hilabete = osagaiak[1];
 					String egun = osagaiak[2];
+					try {
 					int u = Integer.parseInt(urtea);
 					int h = Integer.parseInt(hilabete);
 					int eg = Integer.parseInt(egun);
-
+					
 					if(dataZuzena(jaioData)) {
 						Period adina = Period.between(LocalDate.of(u, h, eg), LocalDate.now());
 						if(adina.getYears() >= 18) {
@@ -167,6 +168,10 @@ public class RegisterGUI extends Frame {
 					}else {
 						infoLabel.setText("Sartutako data ez da zuzena");
 						System.out.println("Sartutako data ez da zuzena");
+					}
+					} catch (Exception e2) {
+						System.out.println("Sartutako data ez da zuzena");
+						infoLabel.setText("Sartutako data ez da zuzena");
 					}
 				}else {
 					infoLabel.setText("Sartu ondo datuak");
