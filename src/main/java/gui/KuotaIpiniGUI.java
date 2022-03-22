@@ -4,7 +4,7 @@ import businessLogic.BLFacade;
 import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
-import domain.Question;
+import domain.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -54,10 +54,10 @@ public class KuotaIpiniGUI extends JFrame {
 	private JTextField galdZenbField;
 	private final JLabel infoLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
 
-	public KuotaIpiniGUI()
-	{
-		try
-		{
+	private User user;
+	
+	public KuotaIpiniGUI(User user){
+		try{
 			jbInit();
 			addWindowListener(new WindowAdapter() {
 				@Override
@@ -76,6 +76,7 @@ public class KuotaIpiniGUI extends JFrame {
 		{
 			e.printStackTrace();
 		}
+		this.user = user;
 	}
 
 	
@@ -238,9 +239,9 @@ public class KuotaIpiniGUI extends JFrame {
 		//atzeraAdminButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		atzeraAdminButton.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				atzeraAdminButton_actionPerformed(e);
-				
+				atzeraAdminButtonActionPerformed(e,user);
 			}
 		});
 		atzeraAdminButton.setBounds(40, 416, 104, 30);
@@ -296,7 +297,7 @@ public class KuotaIpiniGUI extends JFrame {
 		
 		JLabel galdZenbLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
 		galdZenbLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("KuotaIpiniGUI.galdZenbLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		galdZenbLabel.setBounds(358, 258, 94, 14);
+		galdZenbLabel.setBounds(358, 258, 130, 14);
 		getContentPane().add(galdZenbLabel);
 		
 		galdZenbField = new JTextField();
@@ -309,9 +310,11 @@ public class KuotaIpiniGUI extends JFrame {
 		getContentPane().add(infoLabel);
 
 	}
-	
-	private void atzeraAdminButton_actionPerformed(ActionEvent e) {
+
+
+	private void atzeraAdminButtonActionPerformed(ActionEvent e, User user2) {
 		this.setVisible(false);
-		AdminGUI a = new AdminGUI();
+		new AdminGUI(user);
 	}
+	
 }

@@ -1,32 +1,44 @@
 package domain;
 
 import java.util.Date;
-import dataAccess.*;
+import java.util.Vector;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public abstract class User {
 
-	String izena;
-	String abizena;
-	String jaioDate;
+	private String izena;
+	private String abizena;
+	private Date jaioData;
 	@Id
-	String email;
-	String username;
-	String password;
+	private String email;
+	private String username;
+	private String password;
+	private float dirua;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private Vector<Mugimendua> mugimenduak;
 	
 	
-	
+	@SuppressWarnings("deprecation")
 	public User(String izena, String abizena, String jaioDate, String email, String username, String password) {
 		super();
 		this.izena = izena;
 		this.abizena = abizena;
-		this.jaioDate = jaioDate;
+		String[] data = jaioDate.split("/");
+		int urtea = Integer.parseInt(data[0]);
+		int hil = Integer.parseInt(data[1]);
+		int eg = Integer.parseInt(data[2]);
+		Date jaioData =  new Date(urtea-1900,hil-1,eg);
+		this.jaioData = jaioData;
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		dirua = 0;
+		mugimenduak = new Vector<Mugimendua>();
+		
 	}
+	
 	public String getIzena() {
 		return izena;
 	}
@@ -39,11 +51,11 @@ public abstract class User {
 	public void setAbizena(String abizena) {
 		this.abizena = abizena;
 	}
-	public String getJaioDate() {
-		return jaioDate;
+	public Date getJaioDate() {
+		return jaioData;
 	}
-	public void setJaioDate(String jaioDate) {
-		this.jaioDate = jaioDate;
+	public void setJaioDate(Date jaioData) {
+		this.jaioData = jaioData;
 	}
 	public String getEmail() {
 		return email;
@@ -67,4 +79,26 @@ public abstract class User {
 		return this.getPassword().contentEquals(password);
 	}
 	
+	public float getDirua() {
+		return dirua;
+	}
+
+	public void setDirua(float dirua) {
+		this.dirua = dirua;
+	}
+
+	public void diruaGehitu(float diru) {
+		String des  = diru + " € sartu duzu kontuan";;
+		dirua = dirua + diru;
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1, des,this);
+		mugimenduak.add(mug);
+	}
+
+	public Vector<Mugimendua> getMugimenduak() {
+		return mugimenduak;
+	}
+
+	public void setMugimenduak(Vector<Mugimendua> mugimenduak) {
+		this.mugimenduak = mugimenduak;
+	}
 }

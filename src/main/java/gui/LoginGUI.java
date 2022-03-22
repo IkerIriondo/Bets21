@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,21 +8,19 @@ import java.awt.Frame;
 
 import javax.swing.JTextField;
 
-import businessLogic.BLFacade;
-import businessLogic.BLFacadeImplementation;
+import businessLogic.*;
 import domain.Admin;
 import domain.Erabiltzailea;
 import domain.User;
 
-import javax.swing.JRadioButton;
 import javax.swing.JButton;
-import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
+@SuppressWarnings("serial")
 public class LoginGUI extends Frame {
 
 	private JFrame frame;
@@ -31,11 +28,12 @@ public class LoginGUI extends Frame {
 	private JPasswordField passField;
 	private JLabel infoLabel;
 	
+	User user;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -46,7 +44,7 @@ public class LoginGUI extends Frame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -110,11 +108,12 @@ public class LoginGUI extends Frame {
 		JButton hasiButton = new JButton("Saioa hasi");
 		
 		hasiButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				
 				BLFacade facade = MainGUI.getBusinessLogic();
 				
-				User user = facade.isLogin(emailField.getText(), passField.getText());
+				user = facade.isLogin(emailField.getText(), passField.getText());
 				
 				if (user==null){
 					
@@ -124,12 +123,11 @@ public class LoginGUI extends Frame {
 				}else if (user.getClass()==Erabiltzailea.class) {
 					frame.setVisible(false);
 					System.out.println("Correctly logged in");
-					FindQuestionsGUI f = new FindQuestionsGUI();
-					f.setVisible(true);
+					new ErregistratuaGUI(user);
 				}else if (user.getClass()==Admin.class) {
 					frame.setVisible(false);
 					System.out.println("Logged as admin");
-					AdminGUI a = new AdminGUI();
+					new AdminGUI(user);
 				}
 				
 			}
@@ -143,10 +141,8 @@ public class LoginGUI extends Frame {
 			public void actionPerformed(ActionEvent e) {
 				
 				frame.setVisible(false);
-				FindQuestionsGUI f = new FindQuestionsGUI();
+				FindQuestionsGUI f = new FindQuestionsGUI(null);
 				f.setVisible(true);
-				f.getCloseButton().setText("Atzera");
-				
 			}
 		});
 		jarraituButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -157,7 +153,7 @@ public class LoginGUI extends Frame {
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				RegisterGUI r = new RegisterGUI();
+				new RegisterGUI();
 			}
 		});
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));

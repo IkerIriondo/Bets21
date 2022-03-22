@@ -34,9 +34,6 @@ public class ObjectdbManagerServer extends JDialog {
     //For mac 
     //private String objectDbpath="src//main//resources//objectdb.jar";
 
- 	
-
-
 	public static void main(String[] args) {
 		try {
 			

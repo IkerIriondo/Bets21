@@ -13,14 +13,11 @@ import businessLogic.BLFacade;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 
 public class MainGUI extends JFrame {
@@ -113,7 +110,7 @@ public class MainGUI extends JFrame {
 			jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new CreateQuestionGUI(new Vector<Event>());
+					JFrame a = new CreateQuestionGUI(new Vector<Event>(),null);
 					a.setVisible(true);
 				}
 			});
@@ -132,7 +129,7 @@ public class MainGUI extends JFrame {
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new FindQuestionsGUI();
+					JFrame a = new FindQuestionsGUI(null);
 
 					a.setVisible(true);
 				}

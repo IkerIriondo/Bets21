@@ -15,6 +15,7 @@ import java.beans.PropertyChangeListener;
 import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Event;
+import domain.User;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -44,7 +45,9 @@ public class CreateQuestionGUI extends JFrame {
 	
 	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
 
-	public CreateQuestionGUI(Vector<domain.Event> v) {
+	private User user;
+	
+	public CreateQuestionGUI(Vector<domain.Event> v, User user) {
 		try {
 			jbInit(v);
 			addWindowListener(new WindowAdapter() {
@@ -62,6 +65,7 @@ public class CreateQuestionGUI extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		this.user = user;
 	}
 
 	private void jbInit(Vector<domain.Event> v) throws Exception {
@@ -92,7 +96,7 @@ public class CreateQuestionGUI extends JFrame {
 		jButtonClose.setBounds(new Rectangle(275, 275, 130, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jButtonClose_actionPerformed(e);
+				jButtonClose_action(e,user);
 			}
 		});
 
@@ -202,6 +206,11 @@ public class CreateQuestionGUI extends JFrame {
 	}
 
 	
+private void jButtonClose_action(ActionEvent e, User user) {
+		this.setVisible(false);
+		new AdminGUI(user);
+	}
+
 public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWithEventsCurrentMonth) {
 		// For each day with events in current month, the background color for that day is changed.
 
@@ -291,8 +300,4 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 		}
 	}
 
-	private void jButtonClose_actionPerformed(ActionEvent e) {
-		this.setVisible(false);
-		AdminGUI a = new AdminGUI();
-	}
 }

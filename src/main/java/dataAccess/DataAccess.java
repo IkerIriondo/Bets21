@@ -1,6 +1,6 @@
 package dataAccess;
 
-//hello
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,15 +17,8 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
-import domain.Admin;
-import domain.Erabiltzailea;
-import domain.Event;
-import domain.Kuota;
-import domain.Question;
-import domain.User;
+import domain.*;
 import exceptions.QuestionAlreadyExist;
-
-
 
 /**
  * It implements the data access to the objectDb database
@@ -162,7 +155,6 @@ public class DataAccess  {
 			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","2002/01/05","proba@gmail.com", "User1","1234");
 			db.persist(user);
 			
-			//db.getTransaction().commit();
 			System.out.println("Db initialized");
 		}
 		catch (Exception e){
@@ -284,17 +276,17 @@ public boolean existQuestion(Event event, String question) {
 		else return user;
 	}
 
-	public boolean register(String izena, String abizena, String jaioDat, String email, String username, String password) {
+	public User register(String izena, String abizena, String jaioDat, String email, String username, String password) {
 		if (db.find(User.class, email)==null) {
 			db.getTransaction().begin();
 			Erabiltzailea user = new Erabiltzailea(izena, abizena, jaioDat, email, username, password);
 			db.persist(user);
 			db.getTransaction().commit();
 			System.out.println("Erabiltzailea sortuta");
-			return true;
+			return user;
 		}else {
 			//System.out.println("Dagoeneko badago erabiltzaile bat email horrekin");
-			return false;
+			return null;
 		}
 	}
 
@@ -328,11 +320,19 @@ public boolean existQuestion(Event event, String question) {
 	public Kuota kuotaIpini(int galdZenb, float kuota, String kuoMota) {
 		db.getTransaction().begin();
 		Question q = db.find(Question.class, galdZenb);
-		Kuota k = new Kuota(galdZenb,kuota,kuoMota);
+		Kuota k = new Kuota(q,kuota,kuoMota);
 		q.addKuota(k);
-		db.persist(k);
+		//db.persist(k);
 		db.getTransaction().commit();
 		System.out.println("Kuota ondo sortu da");
 		return k;
 	}
+
+	public User diruaSartu(User user, float dirua) {
+		db.getTransaction().begin();
+		user.diruaGehitu(dirua);
+		db.getTransaction().commit();
+		return user;
+	}
+
 }

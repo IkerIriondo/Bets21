@@ -2,16 +2,7 @@ package businessLogic;
 
 import java.util.Vector;
 import java.util.Date;
-
-
-
-
-
-//import domain.Booking;
-import domain.Question;
-import domain.User;
-import domain.Event;
-import domain.Kuota;
+import domain.*;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -22,8 +13,7 @@ import javax.jws.WebService;
  * Interface that specifies the business logic.
  */
 @WebService
-public interface BLFacade  {
-	  
+public interface BLFacade  {  
 
 	/**
 	 * This method creates a question for an event, with a question text and the minimum bet
@@ -36,8 +26,7 @@ public interface BLFacade  {
  	 * @throws QuestionAlreadyExist if the same question already exists for the event
 	 */
 	@WebMethod Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist;
-	
-	
+		
 	/**
 	 * This method retrieves the events of a given date 
 	 * 
@@ -62,13 +51,13 @@ public interface BLFacade  {
 
 	@WebMethod public User isLogin(String email, String password);
 
-
-	@WebMethod public boolean register(String text, String text2, String text3, String text4, String text5, String text6);
-
+	@WebMethod public User register(String izena, String abizena, String jaioData, String email, String username, String password);
 
 	@WebMethod public Event gertaeraSortu(String deskribapena, String zenb, Date data);
 
-
 	@WebMethod public Kuota kuotaIpini(int galdZenb, float kuota, String kuoMota);
+
+	@WebMethod public User diruaSartu(User user, float dirua);
+
 
 }

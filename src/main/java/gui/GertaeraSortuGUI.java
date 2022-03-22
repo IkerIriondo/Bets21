@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 import java.awt.Frame;
 
 import javax.swing.JFrame;
@@ -10,34 +9,30 @@ import com.toedter.calendar.JCalendar;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.*;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Vector;
+import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.Rectangle;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class GertaeraSortuGUI extends Frame{
 
 	private JFrame frame;
 	private JTextField gertaeraField;
 	private JTextField gertZenbField;
 
+	private User user;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -48,12 +43,12 @@ public class GertaeraSortuGUI extends Frame{
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
 	 */
-	public GertaeraSortuGUI() {
+	public GertaeraSortuGUI(User user) {
 		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -67,7 +62,7 @@ public class GertaeraSortuGUI extends Frame{
 				System.exit(1);
 			}
 		});
-		
+		this.user = user;
 		initialize();
 		frame.setVisible(true);
 	}
@@ -85,7 +80,7 @@ public class GertaeraSortuGUI extends Frame{
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				AdminGUI a = new AdminGUI();
+				new AdminGUI(user);
 			}
 		});
 		atzeraButton.setBounds(307, 11, 100, 23);

@@ -7,14 +7,9 @@ import java.util.Vector;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
-import domain.Question;
-import domain.User;
-import domain.Event;
-import domain.Kuota;
+import domain.*;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -139,11 +134,11 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public boolean register(String izena, String abizena, String jaioDat, String email, String username, String password) {
+	public User register(String izena, String abizena, String jaioDat, String email, String username, String password) {
 		dbManager.open(false);
-		boolean b = dbManager.register(izena,abizena,jaioDat,email,username,password);
+		User user = dbManager.register(izena,abizena,jaioDat,email,username,password);
 		dbManager.close();
-		return b;
+		return user;
 	}
 
 	@Override
@@ -160,6 +155,15 @@ public class BLFacadeImplementation  implements BLFacade {
 		Kuota k = dbManager.kuotaIpini(galdZenb,kuota,kuoMota);
 		dbManager.close();
 		return k;
+		
+	}
+
+	@Override
+	public User diruaSartu(User user, float dirua) {
+		dbManager.open(false);
+		User u = dbManager.diruaSartu(user,dirua);
+		dbManager.close();
+		return u;
 		
 	}
 

@@ -4,7 +4,7 @@ import businessLogic.BLFacade;
 import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
-import domain.Question;
+import domain.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -21,10 +21,8 @@ public class FindQuestionsGUI extends JFrame {
 	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate"));
 	private final JLabel jLabelQueries = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Queries")); 
 	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Events")); 
-
-	private JButton jButtonClose = new JButton();
-	private JButton atzeraAdminButton = new JButton(/*ResourceBundle.getBundle("Etiquetas").getString("Atzera")*/);
-
+	private JButton atzeraButton = new JButton();
+	
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
 	private Calendar calendarAnt = null;
@@ -52,7 +50,9 @@ public class FindQuestionsGUI extends JFrame {
 
 	};
 
-	public FindQuestionsGUI()
+	private User user;
+
+	public FindQuestionsGUI(User user)
 	{
 		try
 		{
@@ -74,11 +74,11 @@ public class FindQuestionsGUI extends JFrame {
 		{
 			e.printStackTrace();
 		}
+		this.user = user;
 	}
-
 	
-	private void jbInit() throws Exception
-	{
+	
+	private void jbInit() throws Exception{
 
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
@@ -91,19 +91,6 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
-		jButtonClose.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.jButtonClose.text")); //$NON-NLS-1$ //$NON-NLS-2$
-
-		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));
-
-		jButtonClose.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				jButton2_actionPerformed(e);
-			}
-		});
-
-		this.getContentPane().add(jButtonClose, null);
 
 
 		jCalendar1.setBounds(new Rectangle(40, 50, 225, 150));
@@ -113,17 +100,13 @@ public class FindQuestionsGUI extends JFrame {
 		CreateQuestionGUI.paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth);
 
 		// Code for JCalendar
-		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener()
-		{
-			public void propertyChange(PropertyChangeEvent propertychangeevent)
-			{
+		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener(){
+			public void propertyChange(PropertyChangeEvent propertychangeevent){
 
-				if (propertychangeevent.getPropertyName().equals("locale"))
-				{
+				if (propertychangeevent.getPropertyName().equals("locale")){
 					jCalendar1.setLocale((Locale) propertychangeevent.getNewValue());
 				}
-				else if (propertychangeevent.getPropertyName().equals("calendar"))
-				{
+				else if (propertychangeevent.getPropertyName().equals("calendar")){
 					calendarAnt = (Calendar) propertychangeevent.getOldValue();
 					calendarAct = (Calendar) propertychangeevent.getNewValue();
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
@@ -236,35 +219,27 @@ public class FindQuestionsGUI extends JFrame {
 
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
-		atzeraAdminButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.atzeraAdminButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		atzeraButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.atzeraErabilButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		
-		//atzeraAdminButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		atzeraAdminButton.setVisible(false);
-		atzeraAdminButton.addActionListener(new ActionListener() {
+		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				atzeraAdminButton_actionPerformed(e);
+				atzeraButtonActionPerformed(e, user);
 			}
 		});
-		atzeraAdminButton.setBounds(534, 419, 104, 30);
-		getContentPane().add(atzeraAdminButton);
+		atzeraButton.setBounds(40, 419, 98, 30);
+		getContentPane().add(atzeraButton);
 
 	}
-
-	private void jButton2_actionPerformed(ActionEvent e) {
+	
+	private void atzeraButtonActionPerformed(ActionEvent e, User user) {
 		this.setVisible(false);
-		LoginGUI l = new LoginGUI();
+		if(user == null) {
+			new LoginGUI();
+		}else if(user.getClass() == Erabiltzailea.class) {
+			new ErregistratuaGUI(user);
+		}else {
+			new AdminGUI(user);
+		}
 	}
 	
-	private void atzeraAdminButton_actionPerformed(ActionEvent e) {
-		this.setVisible(false);
-		AdminGUI a = new AdminGUI();
-	}
-	
-	public JButton getAtzeraAdminButton() {
-		return atzeraAdminButton;
-	}
-	
-	public JButton getCloseButton() {
-		return jButtonClose;
-	}
 }

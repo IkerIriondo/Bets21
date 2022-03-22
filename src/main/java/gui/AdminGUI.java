@@ -1,10 +1,9 @@
 package gui;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import domain.Event;
+import domain.*;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -13,14 +12,15 @@ import java.awt.event.WindowEvent;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class AdminGUI extends JFrame{
 
 	private JFrame frame;
-
+	private User user;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -31,12 +31,12 @@ public class AdminGUI extends JFrame{
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
 	 */
-	public AdminGUI() {
+	public AdminGUI(User user) {
 		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -50,7 +50,7 @@ public class AdminGUI extends JFrame{
 				System.exit(1);
 			}
 		});
-		
+		this.user = user;
 		initialize();
 		frame.setVisible(true);
 	}
@@ -68,7 +68,7 @@ public class AdminGUI extends JFrame{
 		gerSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				GertaeraSortuGUI ger = new GertaeraSortuGUI();
+				new GertaeraSortuGUI(user);
 			}
 		});
 		gerSortuButton.setBounds(76, 78, 126, 21);
@@ -78,7 +78,7 @@ public class AdminGUI extends JFrame{
 		galSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				CreateQuestionGUI c = new CreateQuestionGUI(new Vector<Event>());
+				CreateQuestionGUI c = new CreateQuestionGUI(new Vector<Event>(), user);
 				c.setVisible(true);
 			}
 		});
@@ -89,7 +89,7 @@ public class AdminGUI extends JFrame{
 		kuotaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				KuotaIpiniGUI k = new KuotaIpiniGUI();
+				KuotaIpiniGUI k = new KuotaIpiniGUI(user);
 				k.setVisible(true);
 			}
 		});
@@ -100,9 +100,8 @@ public class AdminGUI extends JFrame{
 		galKonButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				FindQuestionsGUI f = new FindQuestionsGUI();
+				FindQuestionsGUI f = new FindQuestionsGUI(user);
 				f.setVisible(true);
-				f.getAtzeraAdminButton().setVisible(true);
 			}
 		});
 		galKonButton.setBounds(239, 172, 153, 21);
@@ -112,7 +111,7 @@ public class AdminGUI extends JFrame{
 		itxiButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				LoginGUI l = new LoginGUI();
+				new LoginGUI();
 			}
 		});
 		itxiButton.setBounds(329, 10, 97, 28);

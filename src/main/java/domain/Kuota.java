@@ -5,21 +5,21 @@ import javax.persistence.Entity;
 @Entity
 public class Kuota {
 
-	int galderaZenbaki;
+	Question galdera;
 	float kuota;
 	String erantzunPosiblea;
 	
-	public Kuota(int galdZenb, float kuo, String emaPosiblea) {
-		galderaZenbaki = galdZenb;
+	public Kuota(Question galdera, float kuo, String emaPosiblea) {
+		this.galdera = galdera;
 		kuota = kuo;
 		erantzunPosiblea = emaPosiblea;
 	}
 	
-	public int getGalderaZenbaki() {
-		return galderaZenbaki;
+	public Question getGaldera() {
+		return galdera;
 	}
-	public void setGalderaZenbaki(int galderaZenbaki) {
-		this.galderaZenbaki = galderaZenbaki;
+	public void setGaldera(Question galdera) {
+		this.galdera = galdera;
 	}
 	public float getKuota() {
 		return kuota;

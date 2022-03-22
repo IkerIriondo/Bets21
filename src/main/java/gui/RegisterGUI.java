@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -12,19 +10,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import businessLogic.BLFacade;
+import domain.*;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
-import javax.swing.DropMode;
 import javax.swing.JFormattedTextField;
 
+@SuppressWarnings("serial")
 public class RegisterGUI extends Frame {
 
 	private JFrame frame;
@@ -41,7 +42,7 @@ public class RegisterGUI extends Frame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -52,7 +53,7 @@ public class RegisterGUI extends Frame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -126,9 +127,10 @@ public class RegisterGUI extends Frame {
 		
 		JButton registerButton = new JButton("ERREGISTRATU");
 		registerButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				BLFacade facade = MainGUI.getBusinessLogic();
-				boolean ema;
+				User ema;
 				String izena = izenaField.getText();
 				String abizena = abizenaField.getText();
 				String jaioData = jaioDatField.getText();
@@ -146,29 +148,35 @@ public class RegisterGUI extends Frame {
 					String hilabete = osagaiak[1];
 					String egun = osagaiak[2];
 					try {
-					int u = Integer.parseInt(urtea);
-					int h = Integer.parseInt(hilabete);
-					int eg = Integer.parseInt(egun);
+						int u = Integer.parseInt(urtea);
+						int h = Integer.parseInt(hilabete);
+						int eg = Integer.parseInt(egun);
 					
-					if(dataZuzena(jaioData)) {
-						Period adina = Period.between(LocalDate.of(u, h, eg), LocalDate.now());
-						if(adina.getYears() >= 18) {
-							ema = facade.register(izena,abizena,jaioData,email,username,password);
-							if (ema) {
-								frame.setVisible(false);
-								LoginGUI l = new LoginGUI();
+						if(dataZuzena(jaioData)) {
+							Period adina = Period.between(LocalDate.of(u, h, eg), LocalDate.now());
+							if(adina.getYears() >= 18) {
+								if (emailaBaliozkoa(email)) {
+									ema = facade.register(izena,abizena,jaioData,email,username,password);
+									if (ema != null) {
+										System.out.println("Kontua ondo sortu da");
+										frame.setVisible(false);
+										new ErregistratuaGUI(ema);
+									}else {
+										infoLabel.setText("Dagoeneko badago erabiltzaile bat email hori duena");
+										System.out.println("Dagoeneko badago erabiltzaile bat email hori duena");
+									}
+								}else {
+									System.out.println("Emaila ez da egokia");
+									infoLabel.setText("Emaila ez da egokia");
+								}
 							}else {
-								infoLabel.setText("Dagoeneko badago erabiltzaile bat email hori duena");
-								System.out.println("Dagoeneko badago erabiltzaile bat email hori duena");
+								infoLabel.setText("Adingabekoa zara");
+								System.out.println("Adingabekoa zara");
 							}
 						}else {
-							infoLabel.setText("Adingabekoa zara");
-							System.out.println("Adingabekoa zara");
+							infoLabel.setText("Sartutako data ez da zuzena");
+							System.out.println("Sartutako data ez da zuzena");
 						}
-					}else {
-						infoLabel.setText("Sartutako data ez da zuzena");
-						System.out.println("Sartutako data ez da zuzena");
-					}
 					} catch (Exception e2) {
 						System.out.println("Sartutako data ez da zuzena");
 						infoLabel.setText("Sartutako data ez da zuzena");
@@ -232,17 +240,12 @@ public class RegisterGUI extends Frame {
 		atzeraButton = new JButton("ATZERA");
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				frame.setVisible(false);
-				LoginGUI l = new LoginGUI();
-				
+				new LoginGUI();
 			}
 		});
 		atzeraButton.setBounds(28, 227, 89, 23);
 		frame.getContentPane().add(atzeraButton);
-		
-		
-		
 		
 	}
 	
@@ -255,5 +258,15 @@ public class RegisterGUI extends Frame {
 			return false;
 		}
 		return true;
+	}
+	
+	private boolean emailaBaliozkoa(String email) {
+		Pattern pat = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");   
+		Matcher mat = pat.matcher(email);
+		if(mat.find()) {
+			return true;
+		}else{
+			return false;
+	     }
 	}
 }
