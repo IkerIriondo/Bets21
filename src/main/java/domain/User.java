@@ -18,8 +18,26 @@ public abstract class User {
 	private float dirua;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private Vector<Mugimendua> mugimenduak;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private Vector<Apustua> apustuak;
 	
 	
+	public Date getJaioData() {
+		return jaioData;
+	}
+
+	public void setJaioData(Date jaioData) {
+		this.jaioData = jaioData;
+	}
+
+	public Vector<Apustua> getApustuak() {
+		return apustuak;
+	}
+
+	public void setApustuak(Vector<Apustua> apustuak) {
+		this.apustuak = apustuak;
+	}
+
 	@SuppressWarnings("deprecation")
 	public User(String izena, String abizena, String jaioDate, String email, String username, String password) {
 		super();
@@ -36,6 +54,7 @@ public abstract class User {
 		this.password = password;
 		dirua = 0;
 		mugimenduak = new Vector<Mugimendua>();
+		apustuak = new Vector<Apustua>();
 		
 	}
 	
