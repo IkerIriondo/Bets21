@@ -25,7 +25,7 @@ public class Question implements Serializable {
 	@XmlIDREF
 	private Event event;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private Vector<Kuota> kuotak = new Vector<Kuota>();
+	private Vector<ErantzunPosiblea> kuotak = new Vector<ErantzunPosiblea>();
 
 	public Question(){
 		super();
