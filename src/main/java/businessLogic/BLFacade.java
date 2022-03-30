@@ -55,7 +55,7 @@ public interface BLFacade  {
 
 	@WebMethod public Event gertaeraSortu(String deskribapena, String zenb, Date data);
 
-	@WebMethod public Kuota kuotaIpini(int galdZenb, float kuota, String kuoMota);
+	@WebMethod public ErantzunPosiblea kuotaIpini(int galdZenb, float kuota, String kuoMota);
 
 	@WebMethod public User diruaSartu(User user, float dirua);
 

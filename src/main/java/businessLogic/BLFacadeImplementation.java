@@ -150,9 +150,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public Kuota kuotaIpini(int galdZenb, float kuota, String kuoMota) {
+	public ErantzunPosiblea kuotaIpini(int galdZenb, float kuota, String kuoMota) {
 		dbManager.open(false);
-		Kuota k = dbManager.kuotaIpini(galdZenb,kuota,kuoMota);
+		ErantzunPosiblea k = dbManager.kuotaIpini(galdZenb,kuota,kuoMota);
 		dbManager.close();
 		return k;
 		

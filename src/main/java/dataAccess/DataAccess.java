@@ -317,12 +317,11 @@ public boolean existQuestion(Event event, String question) {
 		
 	}
 
-	public Kuota kuotaIpini(int galdZenb, float kuota, String kuoMota) {
+	public ErantzunPosiblea kuotaIpini(int galdZenb, float kuota, String kuoMota) {
 		db.getTransaction().begin();
 		Question q = db.find(Question.class, galdZenb);
-		Kuota k = new Kuota(q,kuota,kuoMota);
+		ErantzunPosiblea k = new ErantzunPosiblea(q,kuota,kuoMota);
 		q.addKuota(k);
-		//db.persist(k);
 		db.getTransaction().commit();
 		System.out.println("Kuota ondo sortu da");
 		return k;

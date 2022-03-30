@@ -161,15 +161,15 @@ public class Question implements Serializable {
 		return questionNumber+";"+question+";"+Float.toString(betMinimum);
 	}
 
-	public Vector<Kuota> getKuotak() {
+	public Vector<ErantzunPosiblea> getKuotak() {
 		return kuotak;
 	}
 
-	public void setKuotak(Vector<Kuota> kuotak) {
+	public void setKuotak(Vector<ErantzunPosiblea> kuotak) {
 		this.kuotak = kuotak;
 	}
 
-	public void addKuota(Kuota k) {
+	public void addKuota(ErantzunPosiblea k) {
 		kuotak.add(k);
 	}
 
