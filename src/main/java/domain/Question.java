@@ -15,9 +15,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @Entity
 public class Question implements Serializable {
 	
-	@Id 
+	
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@GeneratedValue
+	@Id 
 	private Integer questionNumber;
 	private String question; 
 	private float betMinimum;

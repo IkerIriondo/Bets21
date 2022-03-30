@@ -59,5 +59,9 @@ public interface BLFacade  {
 
 	@WebMethod public User diruaSartu(User user, float dirua);
 
+	@WebMethod public Question bilatuGaldera(int galdZenb);
+
+	@WebMethod public Apustua apustuaEgin(float apostu, User user, ErantzunPosiblea erantzun);
+
 
 }

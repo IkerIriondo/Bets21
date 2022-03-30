@@ -2,7 +2,10 @@ package domain;
 
 import java.util.Vector;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ErantzunPosiblea {
@@ -10,6 +13,7 @@ public class ErantzunPosiblea {
 	Question galdera;
 	float kuota;
 	String erantzunPosiblea;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	Vector<Apustua> apustuak;
 	
 	public Vector<Apustua> getApustuak() {

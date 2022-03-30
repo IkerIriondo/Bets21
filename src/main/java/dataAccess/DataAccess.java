@@ -125,6 +125,8 @@ public class DataAccess  {
 			db.persist(q5);
 			db.persist(q6); 
 	
+			ErantzunPosiblea eran = new ErantzunPosiblea(q1,1,"Bai");
+			q1.addKuota(eran);
 	        
 			db.persist(ev1);
 			db.persist(ev2);
@@ -154,6 +156,7 @@ public class DataAccess  {
 			//ERABILTZAILEAK
 			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","2002/01/05","proba@gmail.com", "User1","1234");
 			db.persist(user);
+			
 			
 			System.out.println("Db initialized");
 		}
@@ -330,8 +333,28 @@ public boolean existQuestion(Event event, String question) {
 	public User diruaSartu(User user, float dirua) {
 		db.getTransaction().begin();
 		user.diruaGehitu(dirua);
+		db.merge(user);
 		db.getTransaction().commit();
 		return user;
+	}
+
+	public Question bilatuGaldera(int galdZenb) {
+		db.getTransaction().begin();
+		Question q = db.find(Question.class, galdZenb);
+		System.out.println("DataAccess: " + q.getQuestion());
+		db.getTransaction().commit();
+		return q;
+	}
+
+	public Apustua apustuaEgin(float apostu, User user, ErantzunPosiblea erantzun) {
+		db.getTransaction().begin();
+		Apustua apustu = new Apustua(apostu,user,erantzun);
+		user.apustuaGehitu(apostu);
+		user.getApustuak().add(apustu);
+		erantzun.getApustuak().add(apustu);
+		db.merge(user);
+		db.getTransaction().commit();
+		return apustu;
 	}
 
 }

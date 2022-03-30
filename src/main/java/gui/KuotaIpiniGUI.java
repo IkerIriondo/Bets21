@@ -278,8 +278,8 @@ public class KuotaIpiniGUI extends JFrame {
 					float kuota = Integer.parseInt(kuotaField.getText());
 					if(!kuoMota.isBlank()){
 						BLFacade facade = MainGUI.getBusinessLogic();
-					facade.kuotaIpini(galdZenb,kuota,kuoMota);
-					infoLabel.setText("Kuota ondo sortu da");
+						facade.kuotaIpini(galdZenb,kuota,kuoMota);
+						infoLabel.setText("Kuota ondo sortu da");
 					}else {
 						System.out.println("Sartu erantzun egoki bat");
 						infoLabel.setText("Sartu erantzun egoki bat");
@@ -306,6 +306,7 @@ public class KuotaIpiniGUI extends JFrame {
 		galdZenbField.setBounds(498, 255, 140, 20);
 		getContentPane().add(galdZenbField);
 		galdZenbField.setColumns(10);
+		
 		infoLabel.setBounds(179, 377, 375, 14);
 		getContentPane().add(infoLabel);
 

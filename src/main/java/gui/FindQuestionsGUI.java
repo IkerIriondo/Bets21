@@ -51,9 +51,13 @@ public class FindQuestionsGUI extends JFrame {
 	};
 
 	private User user;
+	private Question galdera;
+	private final JButton apustuEginButton = new JButton(/*ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.apustuEginButton.text")*/); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
+	private final JLabel infoLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public FindQuestionsGUI(User user)
 	{
+		//getContentPane().setVisible(false);
 		try
 		{
 			jbInit();
@@ -78,6 +82,11 @@ public class FindQuestionsGUI extends JFrame {
 	}
 	
 	
+	public JButton getApustuEginButton() {
+		return apustuEginButton;
+	}
+
+
 	private void jbInit() throws Exception{
 
 		this.getContentPane().setLayout(null);
@@ -228,18 +237,47 @@ public class FindQuestionsGUI extends JFrame {
 		});
 		atzeraButton.setBounds(40, 419, 98, 30);
 		getContentPane().add(atzeraButton);
+		apustuEginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//try {
+					int i = tableQueries.getSelectedRow();
+					int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
+					BLFacade facade = MainGUI.getBusinessLogic();
+					galdera = facade.bilatuGaldera(galdZenb);
+					apostatuButtonActionPerformed(user,galdera);
+					//new ApustuaEginGUI(user,galdZenb);
+					
+				/*}catch(Exception e2) {
+					infoLabel.setText("Aukeratu galdera bat");
+					System.out.println("Aukeratu galdera bat");
+				}*/
+			}
+		});
+		apustuEginButton.setVisible(false);
+		apustuEginButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.apustuEginButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		apustuEginButton.setBounds(261, 423, 89, 23);
+		
+		getContentPane().add(apustuEginButton);
+		infoLabel.setBounds(187, 401, 287, 14);
+		
+		getContentPane().add(infoLabel);
 
 	}
 	
-	private void atzeraButtonActionPerformed(ActionEvent e, User user) {
-		this.setVisible(false);
-		if(user == null) {
-			new LoginGUI();
-		}else if(user.getClass() == Erabiltzailea.class) {
-			new ErregistratuaGUI(user);
-		}else {
-			new AdminGUI(user);
+		private void atzeraButtonActionPerformed(ActionEvent e, User user) {
+			this.setVisible(false);
+			if(user == null) {
+				new LoginGUI();
+			}else if(user.getClass() == Erabiltzailea.class) {
+				new ErregistratuaGUI(user);
+			}else {
+				new AdminGUI(user);
+			}
 		}
-	}
+		
+		private void apostatuButtonActionPerformed(User user,Question galdera) {
+			new ApustuaEginGUI(user,galdera);
+			this.setVisible(false);
+		}
 	
 }

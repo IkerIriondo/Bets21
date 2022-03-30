@@ -167,5 +167,21 @@ public class BLFacadeImplementation  implements BLFacade {
 		
 	}
 
+	@Override
+	public Question bilatuGaldera(int galdZenb) {
+		dbManager.open(false);
+		Question gald = dbManager.bilatuGaldera(galdZenb);
+		dbManager.close();
+		return gald;
+	}
+
+	@Override
+	public Apustua apustuaEgin(float apostu, User user, ErantzunPosiblea erantzun) {
+		dbManager.open(false);
+		Apustua apustu = dbManager.apustuaEgin(apostu,user,erantzun);
+		dbManager.close();
+		return apustu;
+	}
+
 }
 

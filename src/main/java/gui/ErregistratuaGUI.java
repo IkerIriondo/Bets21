@@ -104,5 +104,17 @@ public class ErregistratuaGUI extends Frame{
 		});
 		mugimenduakButton.setBounds(67, 131, 153, 23);
 		frame.getContentPane().add(mugimenduakButton);
+		
+		JButton apustuaEginButton = new JButton("Apustua egin");
+		apustuaEginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				FindQuestionsGUI f = new FindQuestionsGUI(user);
+				f.setVisible(true);
+				f.getApustuEginButton().setVisible(true);
+			}
+		});
+		apustuaEginButton.setBounds(268, 131, 129, 23);
+		frame.getContentPane().add(apustuaEginButton);
 	}
 }

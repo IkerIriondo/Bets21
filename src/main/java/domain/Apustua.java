@@ -1,12 +1,18 @@
 package domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Apustua {
 
 	private float dirua;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private User erabiltzailea;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private ErantzunPosiblea emaitzaPosiblea;
 	
 	public Apustua(float dirua, User erabil, ErantzunPosiblea ema) {

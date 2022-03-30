@@ -120,4 +120,11 @@ public abstract class User {
 	public void setMugimenduak(Vector<Mugimendua> mugimenduak) {
 		this.mugimenduak = mugimenduak;
 	}
+
+	public void apustuaGehitu(float apostu) {
+		dirua = dirua - apostu;
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apostu + "€ gastatu duzu apostatzen",this);
+		mugimenduak.add(mug);
+		
+	}
 }
