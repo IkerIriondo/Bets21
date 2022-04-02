@@ -116,5 +116,15 @@ public class ErregistratuaGUI extends Frame{
 		});
 		apustuaEginButton.setBounds(268, 131, 129, 23);
 		frame.getContentPane().add(apustuaEginButton);
+		
+		JButton apustuaEzabatuButton = new JButton("Apustua Ezabatu");
+		apustuaEzabatuButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ApustuaEzabatuGUI(user);
+				frame.setVisible(false);
+			}
+		});
+		apustuaEzabatuButton.setBounds(67, 165, 153, 23);
+		frame.getContentPane().add(apustuaEzabatuButton);
 	}
 }

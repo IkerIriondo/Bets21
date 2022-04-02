@@ -1,14 +1,12 @@
 package domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Apustua {
 	
+	@Id
 	@GeneratedValue
-	@Id 
 	private int id;
 	private float dirua;
 	private User erabiltzailea;
