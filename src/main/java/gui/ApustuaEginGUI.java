@@ -100,7 +100,7 @@ public class ApustuaEginGUI {
 		JButton apostatuButton = new JButton("Apustua egin");
 		apostatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//try {
+				try {
 					float apostu = Float.parseFloat(diruField.getText());
 					if(apostu >= Float.parseFloat(min)) {
 						if(apostu <= user.getDirua()) {
@@ -117,10 +117,10 @@ public class ApustuaEginGUI {
 						infoLabel.setText("Ez da apustu minimora iristen");
 						System.out.println("Ez da apustu minimora iristen");
 					}
-				/*}catch(Exception e1) {
+				}catch(Exception e1) {
 					infoLabel.setText("Sartu baliozko zenbaki bat");
 					System.out.println("Sartu baliozko zenbaki bat");
-				}*/
+				}
 				
 			}
 		});
