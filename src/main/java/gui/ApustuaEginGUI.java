@@ -42,8 +42,8 @@ public class ApustuaEginGUI {
 	 * Create the application.
 	 */
 	public ApustuaEginGUI(User u, Question gald) {
-		user = u;
-		galdera = gald;
+		this.user = u;
+		this.galdera = gald;
 		initialize();
 		frame.setVisible(true);
 	}
@@ -106,7 +106,7 @@ public class ApustuaEginGUI {
 						if(apostu <= user.getDirua()) {
 							BLFacade facade = MainGUI.getBusinessLogic();
 							int indize = erantzunPosibleComboBox.getSelectedIndex();
-							facade.apustuaEgin(apostu,user,galdera.getKuotak().get(indize));
+							user = facade.apustuaEgin(apostu,user,galdera.getKuotak().get(indize));
 							infoLabel.setText("Ondo sortu da zure apustua");
 							System.out.println("Ondo sortu da zure apustua");
 						}else {

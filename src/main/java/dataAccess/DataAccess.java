@@ -332,10 +332,10 @@ public boolean existQuestion(Event event, String question) {
 
 	public User diruaSartu(User user, float dirua) {
 		db.getTransaction().begin();
-		user.diruaGehitu(dirua);
-		db.merge(user);
+		User u = db.find(User.class, user.getEmail());
+		u.diruaGehitu(dirua);
 		db.getTransaction().commit();
-		return user;
+		return u;
 	}
 
 	public Question bilatuGaldera(int galdZenb) {
@@ -346,15 +346,15 @@ public boolean existQuestion(Event event, String question) {
 		return q;
 	}
 
-	public Apustua apustuaEgin(float apostu, User user, ErantzunPosiblea erantzun) {
+	public User apustuaEgin(float apostu, User user, ErantzunPosiblea erantzun) {
 		db.getTransaction().begin();
+		User u = db.find(User.class, user.getEmail());
+		ErantzunPosiblea e = db.find(ErantzunPosiblea.class, erantzun.getId());
 		Apustua apustu = new Apustua(apostu,user,erantzun);
-		user.apustuaGehitu(apostu);
-		user.getApustuak().add(apustu);
-		erantzun.getApustuak().add(apustu);
-		db.merge(user);
+		u.apustuaGehitu(apustu);
+		e.getApustuak().add(apustu);
 		db.getTransaction().commit();
-		return apustu;
+		return u;
 	}
 
 }

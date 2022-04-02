@@ -125,7 +125,7 @@ public class DiruaSartuGUI extends Frame{
 					}else {
 						BLFacade facade = MainGUI.getBusinessLogic();
 						
-						facade.diruaSartu(user,dirua);
+						user = facade.diruaSartu(user,dirua);
 						System.out.println("Zure kontuko dirua eguneratu da");
 						infoLabel.setText("Zure kontuko dirua eguneratu da");
 					}

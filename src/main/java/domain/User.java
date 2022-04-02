@@ -121,10 +121,12 @@ public abstract class User {
 		this.mugimenduak = mugimenduak;
 	}
 
-	public void apustuaGehitu(float apostu) {
-		dirua = dirua - apostu;
-		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apostu + "€ gastatu duzu apostatzen",this);
+	public void apustuaGehitu(Apustua apostu) {
+		dirua = dirua - apostu.getDirua();
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apostu.getDirua() + "€ gastatu duzu apostatzen",this);
 		mugimenduak.add(mug);
+		apustuak.add(apostu);
+		
 		
 	}
 }

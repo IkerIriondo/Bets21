@@ -10,9 +10,9 @@ import javax.persistence.OneToMany;
 public class Apustua {
 
 	private float dirua;
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	//@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private User erabiltzailea;
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	//@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private ErantzunPosiblea emaitzaPosiblea;
 	
 	public Apustua(float dirua, User erabil, ErantzunPosiblea ema) {

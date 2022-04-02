@@ -176,11 +176,11 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public Apustua apustuaEgin(float apostu, User user, ErantzunPosiblea erantzun) {
+	public User apustuaEgin(float apostu, User user, ErantzunPosiblea erantzun) {
 		dbManager.open(false);
-		Apustua apustu = dbManager.apustuaEgin(apostu,user,erantzun);
+		User u = dbManager.apustuaEgin(apostu,user,erantzun);
 		dbManager.close();
-		return apustu;
+		return u;
 	}
 
 }
