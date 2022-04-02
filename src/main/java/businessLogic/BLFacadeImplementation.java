@@ -183,5 +183,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		return u;
 	}
 
+	@Override
+	public Apustua apustuaLortu(int i) {
+		dbManager.open(false);
+		Apustua apustu = dbManager.apustuaLortu(i);
+		dbManager.close();
+		return apustu;
+	}
+
 }
 

@@ -6,6 +6,9 @@ import domain.*;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -14,7 +17,8 @@ import businessLogic.BLFacade;
 
 import javax.swing.JComboBox;
 
-public class ApustuaEginGUI {
+@SuppressWarnings("serial")
+public class ApustuaEginGUI extends Frame{
 
 	private JFrame frame;
 	private User user;
@@ -46,6 +50,18 @@ public class ApustuaEginGUI {
 		this.galdera = gald;
 		initialize();
 		frame.setVisible(true);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					System.out.println("Error: "+e1.toString()+" , probably problems with Business Logic or Database");
+				}
+				System.exit(1);
+			}
+		});
 	}
 
 	/**

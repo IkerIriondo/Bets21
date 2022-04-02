@@ -36,5 +36,11 @@ public class Apustua {
 	public void setEmaitzaPosiblea(ErantzunPosiblea emaitzaPosiblea) {
 		this.emaitzaPosiblea = emaitzaPosiblea;
 	}
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

@@ -117,6 +117,13 @@ public class DataAccess  {
 				
 			}
 			
+			q1.setEvent(ev1);
+			q2.setEvent(ev1);
+			q3.setEvent(ev11);
+			q4.setEvent(ev11);
+			q5.setEvent(ev17);
+			q6.setEvent(ev17);
+			
 			
 			db.persist(q1);
 			db.persist(q2);
@@ -184,6 +191,7 @@ public class DataAccess  {
 			
 			db.getTransaction().begin();
 			Question q = ev.addQuestion(question, betMinimum);
+			q.setEvent(ev);
 			//db.persist(q);
 			db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions property of Event class
 							// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
@@ -355,6 +363,13 @@ public boolean existQuestion(Event event, String question) {
 		e.getApustuak().add(apustu);
 		db.getTransaction().commit();
 		return u;
+	}
+
+	public Apustua apustuaLortu(int i) {
+		db.getTransaction().begin();
+		Apustua apustu = db.find(Apustua.class, i);
+		db.getTransaction().commit();
+		return apustu;
 	}
 
 }
