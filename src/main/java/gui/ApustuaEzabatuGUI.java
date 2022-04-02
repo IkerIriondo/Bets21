@@ -24,7 +24,9 @@ public class ApustuaEzabatuGUI extends Frame{
 	private JTextField gertaeraField;
 	private JTextField erantzunField;
 	private JTextField zenbatField;
-
+	private JComboBox<Integer> comboBox;
+	private JLabel infoLabel;
+	private Apustua apustu;
 	/**
 	 * Launch the application.
 	 */
@@ -115,19 +117,18 @@ public class ApustuaEzabatuGUI extends Frame{
 		frame.getContentPane().add(zenbatField);
 		zenbatField.setColumns(10);
 		
-		JLabel infoLabel = new JLabel("");
+		infoLabel = new JLabel("");
 		infoLabel.setBounds(137, 190, 199, 14);
 		frame.getContentPane().add(infoLabel);
 		
-		JComboBox<Integer> comboBox = new JComboBox<Integer>();
-		for (Apustua a : user.getApustuak()) {
-			comboBox.addItem(a.getId());
-		}
+		comboBox = new JComboBox<Integer>();
+		comboBoxHasieratu();
+		
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = (int)comboBox.getSelectedItem();
 				BLFacade facade = MainGUI.getBusinessLogic();
-				Apustua apustu = facade.apustuaLortu(i);
+				apustu = facade.apustuaLortu(i);
 				
 				ErantzunPosiblea er = apustu.getEmaitzaPosiblea();
 				erantzunField.setText(er.getErantzunPosiblea());
@@ -148,7 +149,9 @@ public class ApustuaEzabatuGUI extends Frame{
 		JButton ezabatuButton = new JButton("Ezabatu");
 		ezabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				BLFacade facade = MainGUI.getBusinessLogic();
+				user = facade.apustuaEzabatu(apustu);
+				comboBoxHasieratu();
 			}
 		});
 		ezabatuButton.setBounds(164, 215, 89, 23);
@@ -163,5 +166,16 @@ public class ApustuaEzabatuGUI extends Frame{
 		});
 		atzeraButton.setBounds(10, 227, 89, 23);
 		frame.getContentPane().add(atzeraButton);
+	}
+
+	private void comboBoxHasieratu() {
+		if(!user.getApustuak().isEmpty()) {
+			for (Apustua a : user.getApustuak()) {
+				comboBox.addItem(a.getId());
+			}
+		}else {
+			infoLabel.setText("Ez duzu apusturik");
+			System.out.println("Ez duzu apusturik");
+		}
 	}
 }

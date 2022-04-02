@@ -65,5 +65,7 @@ public interface BLFacade  {
 
 	@WebMethod public Apustua apustuaLortu(int i);
 
+	@WebMethod public User apustuaEzabatu(Apustua apustu);
+
 
 }

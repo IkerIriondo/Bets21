@@ -129,4 +129,12 @@ public abstract class User {
 		
 		
 	}
+
+	public void apustuaEzabatu(Apustua apustu) {
+		dirua = dirua + apustu.getDirua();
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apustu.getDirua() + "€ itzuli zaizkizu",this);
+		mugimenduak.add(mug);
+		apustuak.remove(apustu);
+		
+	}
 }

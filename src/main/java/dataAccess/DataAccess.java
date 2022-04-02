@@ -372,4 +372,16 @@ public boolean existQuestion(Event event, String question) {
 		return apustu;
 	}
 
+	public User apustuaEzabatu(Apustua apustu) {
+		db.getTransaction().begin();
+		Apustua a = db.find(Apustua.class, apustu.getId());
+		User u = db.find(User.class, a.getErabiltzailea().getEmail());
+		ErantzunPosiblea er = db.find(ErantzunPosiblea.class, a.getEmaitzaPosiblea().getId());
+		er.getApustuak().remove(a);
+		u.apustuaEzabatu(a);
+		db.remove(a);
+		db.getTransaction().commit();
+		return u;
+	}
+
 }

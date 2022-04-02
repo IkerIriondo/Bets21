@@ -191,5 +191,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		return apustu;
 	}
 
+	@Override
+	public User apustuaEzabatu(Apustua apustu) {
+		dbManager.open(false);
+		User user = dbManager.apustuaEzabatu(apustu);
+		dbManager.close();
+		return user;
+	}
+
 }
 
