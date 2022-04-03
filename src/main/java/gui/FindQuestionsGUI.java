@@ -57,8 +57,11 @@ public class FindQuestionsGUI extends JFrame {
 	private final JButton apustuEginButton = new JButton(/*ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.apustuEginButton.text")*/); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
 	private final JLabel infoLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
 	private final JButton gertaeraEzabatuButton = new JButton();
+	private final JButton emaitzaIpiniButton = new JButton();
 
 	
+
+
 
 
 	public FindQuestionsGUI(User user)
@@ -94,6 +97,10 @@ public class FindQuestionsGUI extends JFrame {
 	
 	public JButton getGertaeraEzabatuButton() {
 		return gertaeraEzabatuButton;
+	}
+
+	public JButton getEmaitzaIpiniButton() {
+		return emaitzaIpiniButton;
 	}
 
 	private void jbInit() throws Exception{
@@ -274,6 +281,20 @@ public class FindQuestionsGUI extends JFrame {
 		gertaeraEzabatuButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.gertaeraEzabatuButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		gertaeraEzabatuButton.setBounds(488, 419, 150, 30);
 		getContentPane().add(gertaeraEzabatuButton);
+		emaitzaIpiniButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				int i = tableQueries.getSelectedRow();
+				int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
+				BLFacade facade = MainGUI.getBusinessLogic();
+				galdera = facade.bilatuGaldera(galdZenb);
+				emaitzaIpiniActionPerformed(user, galdera);
+		}});
+		emaitzaIpiniButton.setVisible(false);
+		emaitzaIpiniButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.emaitzaIpiniButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		emaitzaIpiniButton.setBounds(251, 419, 150, 30);
+		
+		getContentPane().add(emaitzaIpiniButton);
 		gertaeraEzabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -305,4 +326,12 @@ public class FindQuestionsGUI extends JFrame {
 			new ApustuaEginGUI(user,galdera);
 			this.setVisible(false);
 		}
+		
+		private void emaitzaIpiniActionPerformed(User u, Question galdera) {
+				 new EmaitzaIpiniGUI(user, galdera);
+				 this.setVisible(false);
+				 
+			}
+		
+		
 }

@@ -104,7 +104,7 @@ public class AdminGUI extends JFrame{
 				f.setVisible(true);
 			}
 		});
-		galKonButton.setBounds(239, 172, 153, 21);
+		galKonButton.setBounds(244, 127, 153, 21);
 		frame.getContentPane().add(galKonButton);
 		
 		JButton itxiButton = new JButton("Saioa Itxi");
@@ -130,6 +130,19 @@ public class AdminGUI extends JFrame{
 		});
 		gertaeraEzabatuButton.setBounds(76, 127, 126, 21);
 		frame.getContentPane().add(gertaeraEzabatuButton);
+		
+		JButton emaitzaIpiniButton = new JButton("Emaitza Ipini");
+		emaitzaIpiniButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FindQuestionsGUI f = new FindQuestionsGUI(user);
+				f.setVisible(true);
+				f.getEmaitzaIpiniButton().setVisible(true);
+				frame.setVisible(false);
+				
+			}
+		});
+		emaitzaIpiniButton.setBounds(254, 172, 126, 21);
+		frame.getContentPane().add(emaitzaIpiniButton);
 	}
 
 }
