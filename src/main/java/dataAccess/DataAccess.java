@@ -378,7 +378,7 @@ public boolean existQuestion(Event event, String question) {
 		User u = db.find(User.class, a.getErabiltzailea().getEmail());
 		ErantzunPosiblea er = db.find(ErantzunPosiblea.class, a.getEmaitzaPosiblea().getId());
 		er.getApustuak().remove(a);
-		u.apustuaEzabatu(a);
+		u.diruaItzuli(a);
 		db.remove(a);
 		db.getTransaction().commit();
 		return u;
