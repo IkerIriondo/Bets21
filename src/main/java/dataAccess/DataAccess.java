@@ -84,6 +84,9 @@ public class DataAccess  {
 			Event ev19=new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year,month+1,28));
 			Event ev20=new Event(20, "Betis-Real Madrid", UtilDate.newDate(year,month+1,28));
 			
+			
+			
+			
 			Question q1;
 			Question q2;
 			Question q3;
@@ -163,6 +166,17 @@ public class DataAccess  {
 			//ERABILTZAILEAK
 			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","2002/01/05","proba@gmail.com", "User1","1234");
 			db.persist(user);
+			
+			
+			//GUREAK
+			Event e33 = new Event(33, "Kaixo",UtilDate.newDate(2022, 2-1, 13));
+			Question q33 = e33.addQuestion("Zer moduz zaude?", 33);
+			q33.setEvent(e33);
+			ErantzunPosiblea ema = new ErantzunPosiblea(q33,2,"Ondo");
+			q33.addErantzunPosibleak(ema);
+			db.persist(q33);
+			db.persist(e33);
+			
 			
 			
 			System.out.println("Db initialized");

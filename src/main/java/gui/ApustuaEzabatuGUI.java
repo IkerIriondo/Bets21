@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.Year;
 import java.util.Date;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -121,7 +122,7 @@ public class ApustuaEzabatuGUI extends Frame{
 		zenbatField.setColumns(10);
 		
 		infoLabel = new JLabel("");
-		infoLabel.setBounds(137, 190, 199, 14);
+		infoLabel.setBounds(40, 190, 330, 14);
 		frame.getContentPane().add(infoLabel);
 		
 		comboBox = new JComboBox<Integer>();
@@ -152,14 +153,17 @@ public class ApustuaEzabatuGUI extends Frame{
 		JButton ezabatuButton = new JButton("Ezabatu");
 		ezabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Date data = apustu.getEmaitzaPosiblea().getGaldera().getEvent().getEventDate();
-				
-				
-				Date gaur = new Date();
-				
-				BLFacade facade = MainGUI.getBusinessLogic();
-				user = facade.apustuaEzabatu(apustu);
-				comboBoxHasieratu();
+					Date data = apustu.getEmaitzaPosiblea().getGaldera().getEvent().getEventDate();
+					LocalDate g = LocalDate.now();
+					Date gaur = new Date(g.getYear()-1900,g.getMonthValue()-1,g.getDayOfMonth());
+					if(data.compareTo(gaur)>=0) {
+						BLFacade facade = MainGUI.getBusinessLogic();
+						user = facade.apustuaEzabatu(apustu);
+						comboBoxHasieratu();
+					}else {
+						infoLabel.setText("Gertaera hau dagoeneko gertatu da");
+						System.out.println("Gertaera hau dagoeneko gertatu da");
+					}
 			}
 		});
 		ezabatuButton.setBounds(164, 215, 89, 23);
