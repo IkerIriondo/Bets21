@@ -3,6 +3,8 @@ package gui;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 
@@ -118,24 +120,41 @@ public class DiruaSartuGUI extends Frame{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String diru = diruField.getText();
-					float dirua = Float.parseFloat(diru);
-					if(dirua<=0) {
-						infoLabel.setText("Ezin duzu 0 edo zenbaki txikiagorik sartu");
-						System.out.println("Ezin duzu 0 edo zenbaki txikiagorik sartu");
+					if(diruZuzena(diru)) {
+						float dirua = Float.parseFloat(diru);
+						if(dirua<=0) {
+							infoLabel.setText("Ezin duzu 0 edo zenbaki txikiagorik sartu");
+							System.out.println("Ezin duzu 0 edo zenbaki txikiagorik sartu");
+						}else {
+							BLFacade facade = MainGUI.getBusinessLogic();
+							user = facade.diruaSartu(user,dirua);
+							System.out.println("Zure kontuko dirua eguneratu da");
+							infoLabel.setText("Zure kontuko dirua eguneratu da");
+						}
 					}else {
-						BLFacade facade = MainGUI.getBusinessLogic();
-						
-						user = facade.diruaSartu(user,dirua);
-						System.out.println("Zure kontuko dirua eguneratu da");
-						infoLabel.setText("Zure kontuko dirua eguneratu da");
+						System.out.println("Sartu baliozko zenbaki bat");
+						infoLabel.setText("Sartu baliozko zenbaki bat");
 					}
 				}catch(NumberFormatException e1) {
 					infoLabel.setText("Sartu zenbakizko balio bat");
+					System.out.println("Sartu zenbakizko balio bat");
 				}
 			}
+
+			
 		});
 		sartuDiruaButton.setBounds(178, 143, 135, 23);
 		frame.getContentPane().add(sartuDiruaButton);
 		
+	}
+	
+	private boolean diruZuzena(String diru) {
+		Pattern pat = Pattern.compile("^[0-9]+([.][0-9]{1,2}+)?$");
+		Matcher mat = pat.matcher(diru);
+		if(mat.find()) {
+			return true;
+		}else{
+			return false;
+	    }
 	}
 }

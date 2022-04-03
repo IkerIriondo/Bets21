@@ -109,16 +109,19 @@ public class EmaitzaIpiniGUI extends Frame{
 		frame.getContentPane().add(kuotaField);
 		kuotaField.setColumns(10);
 		
-		
+		JLabel infoLabel = new JLabel("");
+		infoLabel.setBounds(42, 116, 351, 14);
+		frame.getContentPane().add(infoLabel);
 		
 		
 		JButton emaitzaIpiniButton = new JButton("Emaitza Ipini");
 		emaitzaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.emaitzaIpini(eran);
+				infoLabel.setText("Emaitza ondo ipini da");
+				System.out.println("Emaitza ondo ipini da");
 			}
 		});
 		emaitzaIpiniButton.setBounds(166, 194, 102, 30);
@@ -131,23 +134,14 @@ public class EmaitzaIpiniGUI extends Frame{
 		galderaField.setColumns(10);
 		galderaField.setText(galdera.getQuestion());
 		
-		JLabel infoLabel = new JLabel("");
-		infoLabel.setBounds(42, 116, 351, 14);
-		frame.getContentPane().add(infoLabel);
-		
-		
 		comboBox = new JComboBox<String>();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				int i = comboBox.getSelectedIndex();
 				eran = galdera.getErantzunPosibleak().get(i);
 				kuotaField.setText(String.valueOf(eran.getKuota()));
-				
 			}
 		});
-		
-		
 		
 		comboBox.setBounds(107, 83, 227, 22);
 		for (ErantzunPosiblea eran : galdera.getErantzunPosibleak()) {

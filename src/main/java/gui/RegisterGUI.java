@@ -267,6 +267,6 @@ public class RegisterGUI extends Frame {
 			return true;
 		}else{
 			return false;
-	     }
+	    }
 	}
 }

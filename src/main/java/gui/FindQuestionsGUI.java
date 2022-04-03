@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 import javax.swing.table.DefaultTableModel;
@@ -254,18 +255,28 @@ public class FindQuestionsGUI extends JFrame {
 		getContentPane().add(atzeraButton);
 		apustuEginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					int i = tableQueries.getSelectedRow();
-					int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
-					BLFacade facade = MainGUI.getBusinessLogic();
-					galdera = facade.bilatuGaldera(galdZenb);
-					apostatuButtonActionPerformed(user,galdera);
-					//new ApustuaEginGUI(user,galdZenb);
-					
-				}catch(Exception e2) {
-					infoLabel.setText("Aukeratu galdera bat");
-					System.out.println("Aukeratu galdera bat");
+				
+				LocalDate g = LocalDate.now();
+				Date gaur = new Date(g.getYear()-1900,g.getMonthValue()-1,g.getDayOfMonth());
+				
+				Date data = jCalendar1.getDate();
+				if(data.compareTo(gaur)>=0) {
+					try {
+						int i = tableQueries.getSelectedRow();
+						int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
+						BLFacade facade = MainGUI.getBusinessLogic();
+						galdera = facade.bilatuGaldera(galdZenb);
+						apostatuButtonActionPerformed(user,galdera);		
+					}catch(Exception e2) {
+						infoLabel.setText("Aukeratu galdera bat");
+						System.out.println("Aukeratu galdera bat");
+					}
+				}else {
+					infoLabel.setText("Data hau iraganekoa da");
+					System.out.println("Data hau iraganekoa da");
 				}
+				
+				
 			}
 		});
 		apustuEginButton.setVisible(false);
@@ -282,13 +293,29 @@ public class FindQuestionsGUI extends JFrame {
 		getContentPane().add(gertaeraEzabatuButton);
 		emaitzaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				int i = tableQueries.getSelectedRow();
-				int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
-				BLFacade facade = MainGUI.getBusinessLogic();
-				galdera = facade.bilatuGaldera(galdZenb);
-				emaitzaIpiniActionPerformed(user, galdera);
-		}});
+				
+				LocalDate g = LocalDate.now();
+				Date gaur = new Date(g.getYear()-1900,g.getMonthValue()-1,g.getDayOfMonth());
+				Date data = jCalendar1.getDate();
+
+				
+				if(data.compareTo(gaur)<=0) {
+					int i = tableQueries.getSelectedRow();
+					int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
+					BLFacade facade = MainGUI.getBusinessLogic();
+					galdera = facade.bilatuGaldera(galdZenb);
+					if(galdera.getResult()==null) {
+						emaitzaIpiniActionPerformed(user, galdera);
+					}else {
+						infoLabel.setText("Galdera honek dagoeneko badu emaitza bat");
+						System.out.println("Galdera honek dagoeneko badu emaitza bat");
+					}
+				}else {
+					infoLabel.setText("Ez dakigu gertaera honen emaitza oraindik");
+					System.out.println("Ez dakigu gertaera honen emaitza oraindik");
+				}
+			}
+		});
 		emaitzaIpiniButton.setVisible(false);
 		emaitzaIpiniButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.emaitzaIpiniButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		emaitzaIpiniButton.setBounds(251, 419, 150, 30);
@@ -301,8 +328,6 @@ public class FindQuestionsGUI extends JFrame {
 				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.gertaeraEzabatu(ev);
-				
-				
 				
 			}
 		});
@@ -328,9 +353,8 @@ public class FindQuestionsGUI extends JFrame {
 		
 		private void emaitzaIpiniActionPerformed(User u, Question galdera) {
 				 new EmaitzaIpiniGUI(user, galdera);
-				 this.setVisible(false);
-				 
-			}
+				 this.setVisible(false);		 
+		}
 		
 		
 }
