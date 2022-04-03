@@ -181,13 +181,20 @@ public class ApustuaEzabatuGUI extends Frame{
 	}
 
 	private void comboBoxHasieratu() {
-		if(!user.getApustuak().isEmpty()) {
-			for (Apustua a : user.getApustuak()) {
-				comboBox.addItem(a.getId());
+		try{
+			comboBox.removeAllItems();
+			if(!user.getApustuak().isEmpty()) {
+			
+				for (Apustua a : user.getApustuak()) {
+					comboBox.addItem(a.getId());
+				}
+			}else {
+				infoLabel.setText("Ez duzu apusturik");
+				System.out.println("Ez duzu apusturik");
 			}
-		}else {
+		}catch(Exception e) {
 			infoLabel.setText("Ez duzu apusturik");
 			System.out.println("Ez duzu apusturik");
 		}
 	}
-}
+}//Klasea

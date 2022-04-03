@@ -98,7 +98,7 @@ public class ApustuaEginGUI extends Frame{
 		frame.getContentPane().add(apustuMinLabel);
 		
 		apustuMinField = new JTextField();
-		apustuMinField.setEnabled(false);
+		apustuMinField.setEditable(false);
 		apustuMinField.setBounds(242, 117, 86, 20);
 		String min = String.valueOf(galdera.getBetMinimum());
 		apustuMinField.setText(min);
@@ -122,9 +122,10 @@ public class ApustuaEginGUI extends Frame{
 						if(apostu <= user.getDirua()) {
 							BLFacade facade = MainGUI.getBusinessLogic();
 							int indize = erantzunPosibleComboBox.getSelectedIndex();
-							user = facade.apustuaEgin(apostu,user,galdera.getErantzunPosibleak().get(indize));
-							infoLabel.setText("Ondo sortu da zure apustua");
-							System.out.println("Ondo sortu da zure apustua");
+							ErantzunPosiblea eran = galdera.getErantzunPosibleak().get(indize);
+							user = facade.apustuaEgin(apostu,user,eran);
+							infoLabel.setText("Apustua egin da");
+							System.out.println("Apustua egin da");
 						}else {
 							infoLabel.setText("Ez daukazu diru nahikoa zure kontuan");
 							System.out.println("Ez daukazu diru nahikoa zure kontuan");

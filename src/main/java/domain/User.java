@@ -122,11 +122,10 @@ public abstract class User {
 	}
 
 	public void apustuaGehitu(Apustua apostu) {
-		dirua = dirua - apostu.getDirua();
-		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apostu.getDirua() + "€ gastatu duzu apostatzen",this);
-		mugimenduak.add(mug);
-		apustuak.add(apostu);
-		
+			dirua = dirua - apostu.getDirua();
+			Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apostu.getDirua() + "€ gastatu duzu apostatzen",this);
+			mugimenduak.add(mug);
+			apustuak.add(apostu);
 		
 	}
 
@@ -144,5 +143,11 @@ public abstract class User {
 		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,zenbatIrabazi + " € irabazi dituzu apustuetatik",this);
 		mugimenduak.add(mug);
 		apustuak.remove(a);
+	}
+
+	public void apustuaEguneratu(float apostu) {
+		dirua = dirua - apostu;
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apostu + " € gehitu diozu apustuan",this);
+		mugimenduak.add(mug);
 	}
 }
