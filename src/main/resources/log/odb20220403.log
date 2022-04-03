@@ -610,3 +610,139 @@ Type domain.Erabiltzailea is not enhanced.
 [2022-04-03 13:43:42 #22 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-04-03 14:09:44 #1 store] 
+Database 'C:\Users\ibaih\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 117924@DESKTOP-1QBPJUI
+
+[2022-04-03 14:09:44 #2 type.registry] 
+New type domain.Question
+
+[2022-04-03 14:09:44 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-04-03 14:09:44 #4 type.registry] 
+New type domain.ErantzunPosiblea
+
+[2022-04-03 14:09:44 #5 type.registry] 
+New type java.util.Vector<domain.ErantzunPosiblea>
+
+[2022-04-03 14:09:44 #6 type.registry] 
+New type domain.Event
+
+[2022-04-03 14:09:44 #7 type] 
+Type domain.ErantzunPosiblea is not enhanced.
+
+[2022-04-03 14:09:44 #8 type.registry] 
+New type domain.Apustua
+
+[2022-04-03 14:09:44 #9 type.registry] 
+New type java.util.Vector<domain.Apustua>
+
+[2022-04-03 14:09:44 #10 type] 
+Type domain.Event is not enhanced.
+
+[2022-04-03 14:09:44 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-04-03 14:09:44 #12 type] 
+Type domain.Apustua is not enhanced.
+
+[2022-04-03 14:09:44 #13 type.registry] 
+New type domain.User
+
+[2022-04-03 14:09:44 #14 type] 
+Type domain.User is not enhanced.
+
+[2022-04-03 14:09:44 #15 type.registry] 
+New type domain.Mugimendua
+
+[2022-04-03 14:09:44 #16 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2022-04-03 14:09:44 #17 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2022-04-03 14:09:44 #18 type.registry] 
+New type domain.Admin
+
+[2022-04-03 14:09:44 #19 type] 
+Type domain.Admin is not enhanced.
+
+[2022-04-03 14:09:44 #20 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-04-03 14:09:44 #21 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-04-03 14:09:44 #22 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-04-03 14:12:08 #1 store] 
+Database 'C:\Users\ibaih\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 118048@DESKTOP-1QBPJUI
+
+[2022-04-03 14:12:08 #2 type.registry] 
+New type domain.Question
+
+[2022-04-03 14:12:08 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-04-03 14:12:08 #4 type.registry] 
+New type domain.ErantzunPosiblea
+
+[2022-04-03 14:12:08 #5 type.registry] 
+New type java.util.Vector<domain.ErantzunPosiblea>
+
+[2022-04-03 14:12:08 #6 type.registry] 
+New type domain.Event
+
+[2022-04-03 14:12:08 #7 type] 
+Type domain.ErantzunPosiblea is not enhanced.
+
+[2022-04-03 14:12:08 #8 type.registry] 
+New type domain.Apustua
+
+[2022-04-03 14:12:08 #9 type.registry] 
+New type java.util.Vector<domain.Apustua>
+
+[2022-04-03 14:12:08 #10 type] 
+Type domain.Event is not enhanced.
+
+[2022-04-03 14:12:08 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-04-03 14:12:08 #12 type] 
+Type domain.Apustua is not enhanced.
+
+[2022-04-03 14:12:08 #13 type.registry] 
+New type domain.User
+
+[2022-04-03 14:12:08 #14 type] 
+Type domain.User is not enhanced.
+
+[2022-04-03 14:12:08 #15 type.registry] 
+New type domain.Mugimendua
+
+[2022-04-03 14:12:08 #16 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2022-04-03 14:12:08 #17 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2022-04-03 14:12:08 #18 type.registry] 
+New type domain.Admin
+
+[2022-04-03 14:12:08 #19 type] 
+Type domain.Admin is not enhanced.
+
+[2022-04-03 14:12:08 #20 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-04-03 14:12:08 #21 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-04-03 14:12:08 #22 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
