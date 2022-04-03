@@ -199,5 +199,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		return user;
 	}
 
+	@Override
+	public void gertaeraEzabatu(Event ev) {
+		dbManager.open(false);
+		dbManager.gertaeraEzabatu(ev);
+		dbManager.close();
+			
+	}
+
 }
 

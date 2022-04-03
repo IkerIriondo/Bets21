@@ -18,7 +18,7 @@ public class ErantzunPosiblea {
 	Question galdera;
 	float kuota;
 	String erantzunPosiblea;
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	Vector<Apustua> apustuak;
 	
 	public Vector<Apustua> getApustuak() {

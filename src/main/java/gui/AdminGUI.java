@@ -116,6 +116,20 @@ public class AdminGUI extends JFrame{
 		});
 		itxiButton.setBounds(329, 10, 97, 28);
 		frame.getContentPane().add(itxiButton);
+		
+		JButton gertaeraEzabatuButton = new JButton("Gertaera Ezabatu");
+		gertaeraEzabatuButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FindQuestionsGUI f = new FindQuestionsGUI(user);
+				f.setVisible(true);
+				f.getGertaeraEzabatuButton().setVisible(true);
+				frame.setVisible(false);
+				
+			}
+		});
+		gertaeraEzabatuButton.setBounds(76, 127, 126, 21);
+		frame.getContentPane().add(gertaeraEzabatuButton);
 	}
 
 }

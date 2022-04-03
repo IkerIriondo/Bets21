@@ -5,6 +5,8 @@ import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
 import domain.*;
+import weblogic.webservice.util.jspgen.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -54,6 +56,10 @@ public class FindQuestionsGUI extends JFrame {
 	private Question galdera;
 	private final JButton apustuEginButton = new JButton(/*ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.apustuEginButton.text")*/); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
 	private final JLabel infoLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
+	private final JButton gertaeraEzabatuButton = new JButton();
+
+	
+
 
 	public FindQuestionsGUI(User user)
 	{
@@ -85,7 +91,10 @@ public class FindQuestionsGUI extends JFrame {
 	public JButton getApustuEginButton() {
 		return apustuEginButton;
 	}
-
+	
+	public JButton getGertaeraEzabatuButton() {
+		return gertaeraEzabatuButton;
+	}
 
 	private void jbInit() throws Exception{
 
@@ -183,7 +192,7 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jCalendar1, null);
 		
 		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));
-		scrollPaneQueries.setBounds(new Rectangle(138, 274, 406, 116));
+		scrollPaneQueries.setBounds(new Rectangle(148, 273, 406, 116));
 
 		tableEvents.addMouseListener(new MouseAdapter() {
 			@Override
@@ -239,7 +248,7 @@ public class FindQuestionsGUI extends JFrame {
 		getContentPane().add(atzeraButton);
 		apustuEginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//try {
+				try {
 					int i = tableQueries.getSelectedRow();
 					int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
 					BLFacade facade = MainGUI.getBusinessLogic();
@@ -247,20 +256,37 @@ public class FindQuestionsGUI extends JFrame {
 					apostatuButtonActionPerformed(user,galdera);
 					//new ApustuaEginGUI(user,galdZenb);
 					
-				/*}catch(Exception e2) {
+				}catch(Exception e2) {
 					infoLabel.setText("Aukeratu galdera bat");
 					System.out.println("Aukeratu galdera bat");
-				}*/
+				}
 			}
 		});
 		apustuEginButton.setVisible(false);
 		apustuEginButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.apustuEginButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		apustuEginButton.setBounds(261, 423, 89, 23);
+		apustuEginButton.setBounds(272, 423, 89, 23);
 		
 		getContentPane().add(apustuEginButton);
 		infoLabel.setBounds(187, 401, 287, 14);
 		
 		getContentPane().add(infoLabel);
+		gertaeraEzabatuButton.setVisible(false);
+		gertaeraEzabatuButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.gertaeraEzabatuButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		gertaeraEzabatuButton.setBounds(488, 419, 150, 30);
+		getContentPane().add(gertaeraEzabatuButton);
+		gertaeraEzabatuButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int i=tableEvents.getSelectedRow();
+				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
+				BLFacade facade = MainGUI.getBusinessLogic();
+				facade.gertaeraEzabatu(ev);
+				
+				
+				
+			}
+		});
+		
 
 	}
 	
@@ -279,5 +305,4 @@ public class FindQuestionsGUI extends JFrame {
 			new ApustuaEginGUI(user,galdera);
 			this.setVisible(false);
 		}
-	
 }
