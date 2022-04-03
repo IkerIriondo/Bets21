@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,12 +9,14 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import domain.ErantzunPosiblea;
 import domain.Question;
 import domain.User;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class EmaitzaIpiniGUI extends Frame{
 
 	private JFrame frame;
@@ -23,6 +24,8 @@ public class EmaitzaIpiniGUI extends Frame{
 	private Question galdera;
 	private JTextField kuotaField;
 	private JTextField galderaField;
+	
+	private JComboBox<String> comboBox;
 
 	/**
 	 * Launch the application.
@@ -85,10 +88,6 @@ public class EmaitzaIpiniGUI extends Frame{
 		atzeraButton.setBounds(10, 227, 89, 23);
 		frame.getContentPane().add(atzeraButton);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(107, 83, 227, 22);
-		frame.getContentPane().add(comboBox);
-		
 		JLabel gladeraLabel = new JLabel("Galdera:");
 		gladeraLabel.setBounds(58, 31, 46, 14);
 		frame.getContentPane().add(gladeraLabel);
@@ -107,6 +106,9 @@ public class EmaitzaIpiniGUI extends Frame{
 		frame.getContentPane().add(kuotaField);
 		kuotaField.setColumns(10);
 		
+		
+		
+		
 		JButton emaitzaIpiniButton = new JButton("Emaitza Ipini");
 		emaitzaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -120,9 +122,33 @@ public class EmaitzaIpiniGUI extends Frame{
 		galderaField.setBounds(114, 28, 261, 20);
 		frame.getContentPane().add(galderaField);
 		galderaField.setColumns(10);
+		galderaField.setText(galdera.getQuestion());
 		
 		JLabel infoLabel = new JLabel("");
 		infoLabel.setBounds(42, 116, 351, 14);
 		frame.getContentPane().add(infoLabel);
+		
+		
+		comboBox = new JComboBox<String>();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int i = comboBox.getSelectedIndex();
+				ErantzunPosiblea eran = galdera.getKuotak().get(i);
+				kuotaField.setText(String.valueOf(eran.getKuota()));
+				
+			}
+		});
+		
+		
+		
+		comboBox.setBounds(107, 83, 227, 22);
+		for (ErantzunPosiblea eran : galdera.getKuotak()) {
+			comboBox.addItem(eran.getErantzunPosiblea());
+		}
+		frame.getContentPane().add(comboBox);
+		
+		
+		
 	}
 }
