@@ -7,6 +7,9 @@ import domain.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -149,6 +152,11 @@ public class ApustuaEzabatuGUI extends Frame{
 		JButton ezabatuButton = new JButton("Ezabatu");
 		ezabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Date data = apustu.getEmaitzaPosiblea().getGaldera().getEvent().getEventDate();
+				
+				
+				Date gaur = new Date();
+				
 				BLFacade facade = MainGUI.getBusinessLogic();
 				user = facade.apustuaEzabatu(apustu);
 				comboBoxHasieratu();

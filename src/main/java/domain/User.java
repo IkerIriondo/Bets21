@@ -16,9 +16,9 @@ public abstract class User {
 	private String username;
 	private String password;
 	private float dirua;
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Vector<Mugimendua> mugimenduak;
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Vector<Apustua> apustuak;
 	
 	
@@ -136,5 +136,13 @@ public abstract class User {
 		mugimenduak.add(mug);
 		apustuak.remove(apustu);
 		
+	}
+
+	public void apustuaIrabazi(Apustua a) {
+		float zenbatIrabazi = (a.getDirua()*a.getEmaitzaPosiblea().getKuota());
+		dirua = dirua + zenbatIrabazi;
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,zenbatIrabazi + " € irabazi dituzu apustuetatik",this);
+		mugimenduak.add(mug);
+		apustuak.remove(a);
 	}
 }

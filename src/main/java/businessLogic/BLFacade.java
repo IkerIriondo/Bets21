@@ -69,5 +69,7 @@ public interface BLFacade  {
 
 	@WebMethod public void gertaeraEzabatu(Event ev);
 
+	@WebMethod public void emaitzaIpini(ErantzunPosiblea eran);
+
 
 }

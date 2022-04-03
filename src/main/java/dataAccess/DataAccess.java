@@ -133,7 +133,7 @@ public class DataAccess  {
 			db.persist(q6); 
 	
 			ErantzunPosiblea eran = new ErantzunPosiblea(q1,1,"Bai");
-			q1.addKuota(eran);
+			q1.addErantzunPosibleak(eran);
 	        
 			db.persist(ev1);
 			db.persist(ev2);
@@ -332,7 +332,7 @@ public boolean existQuestion(Event event, String question) {
 		db.getTransaction().begin();
 		Question q = db.find(Question.class, galdZenb);
 		ErantzunPosiblea k = new ErantzunPosiblea(q,kuota,kuoMota);
-		q.addKuota(k);
+		q.addErantzunPosibleak(k);
 		db.getTransaction().commit();
 		System.out.println("Kuota ondo sortu da");
 		return k;
@@ -388,7 +388,7 @@ public boolean existQuestion(Event event, String question) {
 		db.getTransaction().begin();
 		Event e = db.find(Event.class, ev.getEventNumber());
 		for (Question q : e.getQuestions()) {
-			for (ErantzunPosiblea eran : q.getKuotak()) {
+			for (ErantzunPosiblea eran : q.getErantzunPosibleak()) {
 				for (Apustua a : eran.getApustuak()) {	
 					User u = db.find(User.class, a.getErabiltzailea().getEmail());
 					u.diruaItzuli(a);
@@ -396,6 +396,24 @@ public boolean existQuestion(Event event, String question) {
 			}
 		}
 		db.remove(e);
+		db.getTransaction().commit();
+	}
+
+	public void emaitzaIpini(ErantzunPosiblea eran) {
+		db.getTransaction().begin();
+		ErantzunPosiblea e = db.find(ErantzunPosiblea.class, eran.getId());
+		for (Apustua a : e.getApustuak()) {
+			User u = db.find(User.class, a.getErabiltzailea().getEmail());
+			u.apustuaIrabazi(a);
+		}
+		Question q = db.find(Question.class, e.getGaldera().getQuestionNumber());
+		for (ErantzunPosiblea ema : q.getErantzunPosibleak()) {
+			for (Apustua ap : ema.getApustuak()) {
+				db.remove(ap);
+			}
+			ema.setApustuak(new Vector<Apustua>());
+		}
+		q.setResult(e);
 		db.getTransaction().commit();
 	}
 

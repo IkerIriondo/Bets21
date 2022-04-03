@@ -108,7 +108,7 @@ public class ApustuaEginGUI extends Frame{
 		JComboBox<String> erantzunPosibleComboBox = new JComboBox<String>();
 		erantzunPosibleComboBox.setBounds(125, 65, 203, 22);
 		
-		for (ErantzunPosiblea eran : galdera.getKuotak()) {
+		for (ErantzunPosiblea eran : galdera.getErantzunPosibleak()) {
 			erantzunPosibleComboBox.addItem(eran.getErantzunPosiblea());
 		}
 		frame.getContentPane().add(erantzunPosibleComboBox);
@@ -122,7 +122,7 @@ public class ApustuaEginGUI extends Frame{
 						if(apostu <= user.getDirua()) {
 							BLFacade facade = MainGUI.getBusinessLogic();
 							int indize = erantzunPosibleComboBox.getSelectedIndex();
-							user = facade.apustuaEgin(apostu,user,galdera.getKuotak().get(indize));
+							user = facade.apustuaEgin(apostu,user,galdera.getErantzunPosibleak().get(indize));
 							infoLabel.setText("Ondo sortu da zure apustua");
 							System.out.println("Ondo sortu da zure apustua");
 						}else {

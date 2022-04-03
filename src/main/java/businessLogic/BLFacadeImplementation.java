@@ -207,5 +207,12 @@ public class BLFacadeImplementation  implements BLFacade {
 			
 	}
 
+	@Override
+	public void emaitzaIpini(ErantzunPosiblea eran) {
+		dbManager.open(false);
+		dbManager.emaitzaIpini(eran);
+		dbManager.close();
+	}
+
 }
 

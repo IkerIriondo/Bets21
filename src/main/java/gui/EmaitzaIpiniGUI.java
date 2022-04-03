@@ -16,6 +16,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import businessLogic.BLFacade;
+
 @SuppressWarnings("serial")
 public class EmaitzaIpiniGUI extends Frame{
 
@@ -24,6 +26,7 @@ public class EmaitzaIpiniGUI extends Frame{
 	private Question galdera;
 	private JTextField kuotaField;
 	private JTextField galderaField;
+	private ErantzunPosiblea eran;
 	
 	private JComboBox<String> comboBox;
 
@@ -112,6 +115,10 @@ public class EmaitzaIpiniGUI extends Frame{
 		JButton emaitzaIpiniButton = new JButton("Emaitza Ipini");
 		emaitzaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				BLFacade facade = MainGUI.getBusinessLogic();
+				facade.emaitzaIpini(eran);
 			}
 		});
 		emaitzaIpiniButton.setBounds(166, 194, 102, 30);
@@ -134,7 +141,7 @@ public class EmaitzaIpiniGUI extends Frame{
 			public void actionPerformed(ActionEvent e) {
 				
 				int i = comboBox.getSelectedIndex();
-				ErantzunPosiblea eran = galdera.getKuotak().get(i);
+				eran = galdera.getErantzunPosibleak().get(i);
 				kuotaField.setText(String.valueOf(eran.getKuota()));
 				
 			}
@@ -143,7 +150,7 @@ public class EmaitzaIpiniGUI extends Frame{
 		
 		
 		comboBox.setBounds(107, 83, 227, 22);
-		for (ErantzunPosiblea eran : galdera.getKuotak()) {
+		for (ErantzunPosiblea eran : galdera.getErantzunPosibleak()) {
 			comboBox.addItem(eran.getErantzunPosiblea());
 		}
 		frame.getContentPane().add(comboBox);
