@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 
@@ -64,7 +65,7 @@ public class AdminGUI extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton gerSortuButton = new JButton("Gertaera Sortu");
+		JButton gerSortuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent"));
 		gerSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -74,7 +75,7 @@ public class AdminGUI extends JFrame{
 		gerSortuButton.setBounds(76, 78, 126, 21);
 		frame.getContentPane().add(gerSortuButton);
 		
-		JButton galSortuButton = new JButton("Galdera Sortu");
+		JButton galSortuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 		galSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -85,7 +86,7 @@ public class AdminGUI extends JFrame{
 		galSortuButton.setBounds(254, 78, 126, 21);
 		frame.getContentPane().add(galSortuButton);
 		
-		JButton kuotaIpiniButton = new JButton("Kuota Ipini");
+		JButton kuotaIpiniButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("KuotaIpini"));
 		kuotaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -96,7 +97,7 @@ public class AdminGUI extends JFrame{
 		kuotaIpiniButton.setBounds(76, 172, 126, 21);
 		frame.getContentPane().add(kuotaIpiniButton);
 		
-		JButton galKonButton = new JButton("Galderak Kontsultatu");
+		JButton galKonButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestion"));
 		galKonButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -107,7 +108,7 @@ public class AdminGUI extends JFrame{
 		galKonButton.setBounds(244, 127, 153, 21);
 		frame.getContentPane().add(galKonButton);
 		
-		JButton itxiButton = new JButton("Saioa Itxi");
+		JButton itxiButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SaioaItxi"));
 		itxiButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -117,7 +118,7 @@ public class AdminGUI extends JFrame{
 		itxiButton.setBounds(329, 10, 97, 28);
 		frame.getContentPane().add(itxiButton);
 		
-		JButton gertaeraEzabatuButton = new JButton("Gertaera Ezabatu");
+		JButton gertaeraEzabatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DeleteEvent"));
 		gertaeraEzabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -131,7 +132,7 @@ public class AdminGUI extends JFrame{
 		gertaeraEzabatuButton.setBounds(76, 127, 126, 21);
 		frame.getContentPane().add(gertaeraEzabatuButton);
 		
-		JButton emaitzaIpiniButton = new JButton("Emaitza Ipini");
+		JButton emaitzaIpiniButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SelectAResult"));
 		emaitzaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FindQuestionsGUI f = new FindQuestionsGUI(user);

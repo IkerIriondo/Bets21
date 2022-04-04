@@ -3,6 +3,7 @@ package gui;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -91,7 +92,7 @@ public class DiruaSartuGUI extends Frame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton atzeraButton = new JButton("Atzera");
+		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -101,7 +102,7 @@ public class DiruaSartuGUI extends Frame{
 		atzeraButton.setBounds(10, 227, 89, 23);
 		frame.getContentPane().add(atzeraButton);
 		
-		JLabel diruLabel = new JLabel("Zenbat diru sartu nahi duzu?");
+		JLabel diruLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("HowMuchMoney"));
 		diruLabel.setBounds(67, 72, 167, 14);
 		frame.getContentPane().add(diruLabel);
 		
@@ -115,7 +116,7 @@ public class DiruaSartuGUI extends Frame{
 		infoLabel.setBounds(67, 118, 286, 14);
 		frame.getContentPane().add(infoLabel);
 		
-		JButton sartuDiruaButton = new JButton("Sartu Dirua");
+		JButton sartuDiruaButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartu"));
 		sartuDiruaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

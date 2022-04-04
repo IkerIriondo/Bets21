@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -73,7 +74,7 @@ public class ApustuaEginGUI extends Frame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton atzeraButton = new JButton("Atzera");
+		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -89,11 +90,11 @@ public class ApustuaEginGUI extends Frame{
 		infoLabel.setBounds(90, 176, 301, 14);
 		frame.getContentPane().add(infoLabel);
 		
-		JLabel aukeratuLabel = new JLabel("Aukeratu erantzun posible bat:");
+		JLabel aukeratuLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectResult"));
 		aukeratuLabel.setBounds(123, 37, 186, 14);
 		frame.getContentPane().add(aukeratuLabel);
 		
-		JLabel apustuMinLabel = new JLabel("Apostu minimoa:");
+		JLabel apustuMinLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MinBet"));
 		apustuMinLabel.setBounds(66, 126, 115, 14);
 		frame.getContentPane().add(apustuMinLabel);
 		
@@ -113,7 +114,7 @@ public class ApustuaEginGUI extends Frame{
 		}
 		frame.getContentPane().add(erantzunPosibleComboBox);
 		
-		JButton apostatuButton = new JButton("Apustua egin");
+		JButton apostatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MakeABet"));
 		apostatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -124,18 +125,18 @@ public class ApustuaEginGUI extends Frame{
 							int indize = erantzunPosibleComboBox.getSelectedIndex();
 							ErantzunPosiblea eran = galdera.getErantzunPosibleak().get(indize);
 							user = facade.apustuaEgin(apostu,user,eran);
-							infoLabel.setText("Apustua egin da");
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("BetMade"));
 							System.out.println("Apustua egin da");
 						}else {
-							infoLabel.setText("Ez daukazu diru nahikoa zure kontuan");
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NotMoneyBet"));
 							System.out.println("Ez daukazu diru nahikoa zure kontuan");
 						}
 					}else {
-						infoLabel.setText("Ez da apustu minimora iristen");
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoMinBet"));
 						System.out.println("Ez da apustu minimora iristen");
 					}
 				}catch(Exception e1) {
-					infoLabel.setText("Sartu baliozko zenbaki bat");
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("Not number"));
 					System.out.println("Sartu baliozko zenbaki bat");
 				}
 				
@@ -144,9 +145,7 @@ public class ApustuaEginGUI extends Frame{
 		apostatuButton.setBounds(148, 201, 161, 23);
 		frame.getContentPane().add(apostatuButton);
 		
-		
-		
-		JLabel zenbatApustuLabel = new JLabel("Zenbat apostatu nahi duzu?");
+		JLabel zenbatApustuLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("HowMuchBet"));
 		zenbatApustuLabel.setBounds(66, 151, 146, 14);
 		frame.getContentPane().add(zenbatApustuLabel);
 		
@@ -154,11 +153,6 @@ public class ApustuaEginGUI extends Frame{
 		diruField.setBounds(242, 148, 86, 20);
 		frame.getContentPane().add(diruField);
 		diruField.setColumns(10);
-		
-		
-		
-		
-		
 		
 	}
 }

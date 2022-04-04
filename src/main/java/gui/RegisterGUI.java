@@ -163,23 +163,23 @@ public class RegisterGUI extends Frame {
 										frame.setVisible(false);
 										new ErregistratuaGUI(ema);
 									}else {
-										infoLabel.setText("Dagoeneko badago erabiltzaile bat email hori duena");
+										infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ThereIs"));
 										System.out.println("Dagoeneko badago erabiltzaile bat email hori duena");
 									}
 								}else {
-									System.out.println("Emaila ez da egokia");
+									System.out.println(ResourceBundle.getBundle("Etiquetas").getString("NotEmail"));
 									infoLabel.setText("Emaila ez da egokia");
 								}
 							}else {
-								infoLabel.setText("Adingabekoa zara");
+								infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("Adingabea"));
 								System.out.println("Adingabekoa zara");
 							}
 						}else {
-							infoLabel.setText("Sartutako data ez da zuzena");
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoData"));
 							System.out.println("Sartutako data ez da zuzena");
 						}
 					} catch (Exception e2) {
-						System.out.println("Sartutako data ez da zuzena");
+						System.out.println(ResourceBundle.getBundle("Etiquetas").getString("NoData"));
 						infoLabel.setText("Sartutako data ez da zuzena");
 					}
 				}else {

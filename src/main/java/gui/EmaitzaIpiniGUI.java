@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -79,7 +80,7 @@ public class EmaitzaIpiniGUI extends Frame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton atzeraButton = new JButton("Atzera");
+		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FindQuestionsGUI f = new FindQuestionsGUI(user);
@@ -91,16 +92,16 @@ public class EmaitzaIpiniGUI extends Frame{
 		atzeraButton.setBounds(10, 227, 89, 23);
 		frame.getContentPane().add(atzeraButton);
 		
-		JLabel gladeraLabel = new JLabel("Galdera:");
+		JLabel gladeraLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Query"));
 		gladeraLabel.setBounds(58, 31, 46, 14);
 		frame.getContentPane().add(gladeraLabel);
 		
-		JLabel aukeratuEmaitzaLabel = new JLabel("Aukeratu emaitza:");
+		JLabel aukeratuEmaitzaLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectResult"));
 		aukeratuEmaitzaLabel.setBounds(107, 64, 89, 14);
 		frame.getContentPane().add(aukeratuEmaitzaLabel);
 		
-		JLabel kuotaLabel = new JLabel("Kuota:");
-		kuotaLabel.setBounds(150, 144, 46, 14);
+		JLabel kuotaLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Kuota"));
+		kuotaLabel.setBounds(107, 144, 89, 14);
 		frame.getContentPane().add(kuotaLabel);
 		
 		kuotaField = new JTextField();

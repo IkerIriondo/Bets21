@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.Year;
 import java.util.Date;
+import java.util.ResourceBundle;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -77,11 +78,11 @@ public class ApustuaEzabatuGUI extends Frame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel aukeratuLabel = new JLabel("Aukeratu zure apustu bat");
+		JLabel aukeratuLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectBet"));
 		aukeratuLabel.setBounds(137, 16, 175, 14);
 		frame.getContentPane().add(aukeratuLabel);
 		
-		JLabel galderaLabel = new JLabel("Galdera:");
+		JLabel galderaLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Query"));
 		galderaLabel.setBounds(30, 106, 144, 14);
 		frame.getContentPane().add(galderaLabel);
 		
@@ -91,7 +92,7 @@ public class ApustuaEzabatuGUI extends Frame{
 		frame.getContentPane().add(galderaField);
 		galderaField.setColumns(10);
 		
-		JLabel gertaeraLabel = new JLabel("Gertaera:");
+		JLabel gertaeraLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Event"));
 		gertaeraLabel.setBounds(30, 84, 144, 14);
 		frame.getContentPane().add(gertaeraLabel);
 		
@@ -101,7 +102,7 @@ public class ApustuaEzabatuGUI extends Frame{
 		frame.getContentPane().add(gertaeraField);
 		gertaeraField.setColumns(10);
 		
-		JLabel erantzunLabel = new JLabel("Zure apustua:");
+		JLabel erantzunLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("YourBet"));
 		erantzunLabel.setBounds(30, 131, 144, 14);
 		frame.getContentPane().add(erantzunLabel);
 		
@@ -111,7 +112,7 @@ public class ApustuaEzabatuGUI extends Frame{
 		frame.getContentPane().add(erantzunField);
 		erantzunField.setColumns(10);
 		
-		JLabel zenbatLabel = new JLabel("Zenbat apostatu duzu:");
+		JLabel zenbatLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ZenbatApostatu"));
 		zenbatLabel.setBounds(30, 156, 144, 14);
 		frame.getContentPane().add(zenbatLabel);
 		
@@ -130,27 +131,32 @@ public class ApustuaEzabatuGUI extends Frame{
 		
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = (int)comboBox.getSelectedItem();
-				BLFacade facade = MainGUI.getBusinessLogic();
-				apustu = facade.apustuaLortu(i);
-				
-				ErantzunPosiblea er = apustu.getEmaitzaPosiblea();
-				erantzunField.setText(er.getErantzunPosiblea());
-				
-				Question q = er.getGaldera();
-				galderaField.setText(q.getQuestion());
-				
-				Event gert = q.getEvent();
-				gertaeraField.setText(gert.getDescription());
-				
-				float zenbat = apustu.getDirua();
-				zenbatField.setText(String.valueOf(zenbat));;
+				try {
+					int i = (int)comboBox.getSelectedItem();
+					BLFacade facade = MainGUI.getBusinessLogic();
+					apustu = facade.apustuaLortu(i);
+					
+					ErantzunPosiblea er = apustu.getEmaitzaPosiblea();
+					erantzunField.setText(er.getErantzunPosiblea());
+					
+					Question q = er.getGaldera();
+					galderaField.setText(q.getQuestion());
+					
+					Event gert = q.getEvent();
+					gertaeraField.setText(gert.getDescription());
+					
+					float zenbat = apustu.getDirua();
+					zenbatField.setText(String.valueOf(zenbat));;
+				}catch(Exception e2) {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoBets"));
+					System.out.println("Ez duzu apusturik");
+				}
 			}
 		});
 		comboBox.setBounds(137, 41, 175, 22);
 		frame.getContentPane().add(comboBox);
 		
-		JButton ezabatuButton = new JButton("Ezabatu");
+		JButton ezabatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Delete"));
 		ezabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					Date data = apustu.getEmaitzaPosiblea().getGaldera().getEvent().getEventDate();
@@ -161,7 +167,7 @@ public class ApustuaEzabatuGUI extends Frame{
 						user = facade.apustuaEzabatu(apustu);
 						comboBoxHasieratu();
 					}else {
-						infoLabel.setText("Gertaera hau dagoeneko gertatu da");
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("HappenedEvent"));
 						System.out.println("Gertaera hau dagoeneko gertatu da");
 					}
 			}
@@ -169,7 +175,7 @@ public class ApustuaEzabatuGUI extends Frame{
 		ezabatuButton.setBounds(164, 215, 89, 23);
 		frame.getContentPane().add(ezabatuButton);
 		
-		JButton atzeraButton = new JButton("Atzera");
+		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ErregistratuaGUI(user);
@@ -184,16 +190,15 @@ public class ApustuaEzabatuGUI extends Frame{
 		try{
 			comboBox.removeAllItems();
 			if(!user.getApustuak().isEmpty()) {
-			
 				for (Apustua a : user.getApustuak()) {
 					comboBox.addItem(a.getId());
 				}
 			}else {
-				infoLabel.setText("Ez duzu apusturik");
+				infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoBets"));
 				System.out.println("Ez duzu apusturik");
 			}
 		}catch(Exception e) {
-			infoLabel.setText("Ez duzu apusturik");
+			infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoBets"));
 			System.out.println("Ez duzu apusturik");
 		}
 	}

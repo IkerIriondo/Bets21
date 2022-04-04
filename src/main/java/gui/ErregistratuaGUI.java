@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
 import domain.*;
@@ -64,7 +65,7 @@ public class ErregistratuaGUI extends Frame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton galderaKontsButton = new JButton("Galderak Kontsultatu");
+		JButton galderaKontsButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestion"));
 		galderaKontsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -75,7 +76,7 @@ public class ErregistratuaGUI extends Frame{
 		galderaKontsButton.setBounds(67, 86, 153, 23);
 		frame.getContentPane().add(galderaKontsButton);
 		
-		JButton sartuDiruaButton = new JButton("Dirua Sartu");
+		JButton sartuDiruaButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartu"));
 		sartuDiruaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -85,7 +86,7 @@ public class ErregistratuaGUI extends Frame{
 		sartuDiruaButton.setBounds(268, 86, 129, 23);
 		frame.getContentPane().add(sartuDiruaButton);
 		
-		JButton saioaItxiButton = new JButton("Saioa Itxi");
+		JButton saioaItxiButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SaioaItxi"));
 		saioaItxiButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -95,7 +96,7 @@ public class ErregistratuaGUI extends Frame{
 		saioaItxiButton.setBounds(10, 227, 89, 23);
 		frame.getContentPane().add(saioaItxiButton);
 		
-		JButton mugimenduakButton = new JButton("Mugimenduak Ikusi");
+		JButton mugimenduakButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MugIkusi"));
 		mugimenduakButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -105,7 +106,7 @@ public class ErregistratuaGUI extends Frame{
 		mugimenduakButton.setBounds(67, 131, 153, 23);
 		frame.getContentPane().add(mugimenduakButton);
 		
-		JButton apustuaEginButton = new JButton("Apustua egin");
+		JButton apustuaEginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Bet"));
 		apustuaEginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -117,7 +118,7 @@ public class ErregistratuaGUI extends Frame{
 		apustuaEginButton.setBounds(268, 131, 129, 23);
 		frame.getContentPane().add(apustuaEginButton);
 		
-		JButton apustuaEzabatuButton = new JButton("Apustua Ezabatu");
+		JButton apustuaEzabatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DeleteBet"));
 		apustuaEzabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ApustuaEzabatuGUI(user);
