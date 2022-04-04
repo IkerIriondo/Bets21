@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -25,7 +26,8 @@ public class MugimenduakIkusiGUI extends Frame{
 	private JTable mugimenduakTable;
 	private DefaultTableModel mugimenduakTableModel;
 	
-	String mugimenduakColumnNames[] = {"Zenb", "Mugimendua"};
+	String mugimenduakColumnNames[] = {ResourceBundle.getBundle("Etiquetas").getString("Zenb"),
+			ResourceBundle.getBundle("Etiquetas").getString("Mug")};
 	
 	User user;
 	
@@ -95,11 +97,12 @@ public class MugimenduakIkusiGUI extends Frame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton atzeraButton = new JButton("Atzera");
+		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new ErregistratuaGUI(user);			}
+				new ErregistratuaGUI(user);			
+			}
 		});
 		atzeraButton.setBounds(165, 212, 89, 23);
 		frame.getContentPane().add(atzeraButton);
@@ -115,7 +118,7 @@ public class MugimenduakIkusiGUI extends Frame{
 		
 		mugimenduakTable.setModel(mugimenduakTableModel);
 		
-		JLabel info1Label = new JLabel("Dirua guztira:");
+		JLabel info1Label = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("TotalMoney"));
 		info1Label.setBounds(94, 182, 115, 14);
 		frame.getContentPane().add(info1Label);
 		
@@ -131,7 +134,7 @@ public class MugimenduakIkusiGUI extends Frame{
 		mugimenduakTable.getColumnModel().getColumn(1).setPreferredWidth(268);
 		
 		if(!user.getMugimenduak().isEmpty()) {
-			Vector<domain.Mugimendua> mugimenduak = user.getMugimenduak();
+			Vector<Mugimendua> mugimenduak = user.getMugimenduak();
 			
 			for (Mugimendua mug : mugimenduak) {
 				Vector<Object> row = new Vector<Object>();
@@ -140,7 +143,7 @@ public class MugimenduakIkusiGUI extends Frame{
 				mugimenduakTableModel.addRow(row);
 			}
 		}else {
-			infoLabel.setText("Kontu honetan ez da mugimendurik egon");
+			infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoMug"));
 		}
 		
 	}

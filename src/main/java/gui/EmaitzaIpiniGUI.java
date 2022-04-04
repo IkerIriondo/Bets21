@@ -121,7 +121,7 @@ public class EmaitzaIpiniGUI extends Frame{
 				
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.emaitzaIpini(eran);
-				infoLabel.setText("Emaitza ondo ipini da");
+				infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("GoodResult"));
 				System.out.println("Emaitza ondo ipini da");
 			}
 		});

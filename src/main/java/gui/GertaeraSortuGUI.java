@@ -76,7 +76,7 @@ public class GertaeraSortuGUI extends Frame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton atzeraButton = new JButton("Atzera");
+		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -97,11 +97,11 @@ public class GertaeraSortuGUI extends Frame{
 		frame.getContentPane().add(gertaeraField);
 		gertaeraField.setColumns(10);
 		
-		JLabel gertaeraLabel = new JLabel("Gertaera:");
+		JLabel gertaeraLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Event")+ ":");
 		gertaeraLabel.setBounds(36, 135, 89, 17);
 		frame.getContentPane().add(gertaeraLabel);
 		
-		JLabel gertZenbLabel = new JLabel("Zenbakia(ez da beharrezkoa)");
+		JLabel gertZenbLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("GertZenb")+":");
 		gertZenbLabel.setBounds(36, 163, 166, 14);
 		frame.getContentPane().add(gertZenbLabel);
 		
@@ -114,7 +114,7 @@ public class GertaeraSortuGUI extends Frame{
 		infoLabel.setBounds(67, 202, 312, 14);
 		frame.getContentPane().add(infoLabel);
 		
-		JButton gertSortuButton = new JButton("Gertaera sortu");
+		JButton gertSortuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent"));
 		gertSortuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
