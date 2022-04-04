@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -86,19 +87,19 @@ public class RegisterGUI extends Frame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblIzena = new JLabel("Izena:");
+		JLabel lblIzena = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Name"));
 		lblIzena.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblIzena.setBounds(57, 10, 123, 17);
+		lblIzena.setBounds(57, 10, 142, 17);
 		frame.getContentPane().add(lblIzena);
 		
-		JLabel lblAbizena = new JLabel("Abizena:");
+		JLabel lblAbizena = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Surname"));
 		lblAbizena.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAbizena.setBounds(57, 35, 123, 17);
+		lblAbizena.setBounds(57, 35, 142, 17);
 		frame.getContentPane().add(lblAbizena);
 		
-		JLabel lblJaiotzedata = new JLabel("Jaiotze-Data:");
+		JLabel lblJaiotzedata = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("BDate"));
 		lblJaiotzedata.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblJaiotzedata.setBounds(57, 60, 123, 17);
+		lblJaiotzedata.setBounds(57, 60, 142, 17);
 		frame.getContentPane().add(lblJaiotzedata);
 		
 		JLabel lblEmail = new JLabel("Email:");
@@ -106,26 +107,26 @@ public class RegisterGUI extends Frame {
 		lblEmail.setBounds(57, 85, 123, 17);
 		frame.getContentPane().add(lblEmail);
 		
-		JLabel lblUsername = new JLabel("Username:");
+		JLabel lblUsername = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("User"));
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblUsername.setBounds(57, 110, 123, 17);
+		lblUsername.setBounds(57, 110, 142, 17);
 		frame.getContentPane().add(lblUsername);
 		
-		JLabel lblPassword = new JLabel("Password:");
+		JLabel lblPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Password"));
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPassword.setBounds(57, 135, 123, 17);
+		lblPassword.setBounds(57, 135, 142, 17);
 		frame.getContentPane().add(lblPassword);
 		
 		infoLabel = new JLabel("");
 		infoLabel.setBounds(57, 188, 315, 14);
 		frame.getContentPane().add(infoLabel);
 		
-		JLabel lblConfirmPassword = new JLabel("Confirm Password:");
+		JLabel lblConfirmPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CPass"));
 		lblConfirmPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblConfirmPassword.setBounds(57, 160, 123, 17);
+		lblConfirmPassword.setBounds(57, 162, 142, 17);
 		frame.getContentPane().add(lblConfirmPassword);
 		
-		JButton registerButton = new JButton("ERREGISTRATU");
+		JButton registerButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 		registerButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
@@ -237,7 +238,7 @@ public class RegisterGUI extends Frame {
 		confirmPasswordField.setBounds(235, 160, 134, 21);
 		frame.getContentPane().add(confirmPasswordField);
 		
-		atzeraButton = new JButton("ATZERA");
+		atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);

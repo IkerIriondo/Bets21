@@ -25,8 +25,6 @@ public class MainGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
-	private JButton jButtonCreateQuery = null;
-	private JButton jButtonQueryQueries = null;
 
     private static BLFacade appFacadeInterface;
 	
@@ -38,10 +36,9 @@ public class MainGUI extends JFrame {
 		appFacadeInterface=afi;
 	}
 	protected JLabel jLabelSelectOption;
-	private JRadioButton rdbtnNewRadioButton;
-	private JRadioButton rdbtnNewRadioButton_1;
-	private JRadioButton rdbtnNewRadioButton_2;
-	private JPanel panel;
+	private JButton rdbtnNewRadioButton;
+	private JButton rdbtnNewRadioButton_1;
+	private JButton rdbtnNewRadioButton_2;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
 	/**
@@ -89,94 +86,73 @@ public class MainGUI extends JFrame {
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
-			jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
+			jContentPane.setLayout(null);
 			jContentPane.add(getLblNewLabel());
-			jContentPane.add(getBoton3());
-			jContentPane.add(getBoton2());
-			jContentPane.add(getPanel());
+			jContentPane.add(getRdbtnNewRadioButton_1());
+			jContentPane.add(getRdbtnNewRadioButton_2());
+			jContentPane.add(getRdbtnNewRadioButton());
+			
+			JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close")); //$NON-NLS-1$ //$NON-NLS-2$
+			atzeraButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new LoginGUI();
+					itxi();
+				}
+
+			});
+			atzeraButton.setBounds(10, 222, 85, 21);
+			jContentPane.add(atzeraButton);
 		}
 		return jContentPane;
-	}
-
-
-	/**
-	 * This method initializes boton1
-	 * 
-	 * @return javax.swing.JButton
-	 */
-	private JButton getBoton2() {
-		if (jButtonCreateQuery == null) {
-			jButtonCreateQuery = new JButton();
-			jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
-			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new CreateQuestionGUI(new Vector<Event>(),null);
-					a.setVisible(true);
-				}
-			});
-		}
-		return jButtonCreateQuery;
-	}
-	
-	/**
-	 * This method initializes boton2
-	 * 
-	 * @return javax.swing.JButton
-	 */
-	private JButton getBoton3() {
-		if (jButtonQueryQueries == null) {
-			jButtonQueryQueries = new JButton();
-			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
-			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new FindQuestionsGUI(null);
-
-					a.setVisible(true);
-				}
-			});
-		}
-		return jButtonQueryQueries;
 	}
 	
 
 	private JLabel getLblNewLabel() {
 		if (jLabelSelectOption == null) {
 			jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
+			jLabelSelectOption.setBounds(0, 0, 481, 63);
 			jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
 			jLabelSelectOption.setForeground(Color.BLACK);
 			jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return jLabelSelectOption;
 	}
-	private JRadioButton getRdbtnNewRadioButton() {
+	private JButton getRdbtnNewRadioButton() {
 		if (rdbtnNewRadioButton == null) {
-			rdbtnNewRadioButton = new JRadioButton("English");
+			rdbtnNewRadioButton = new JButton("English");
 			rdbtnNewRadioButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Locale.setDefault(new Locale("en"));
 					System.out.println("Locale: "+Locale.getDefault());
-					redibujar();				}
+					redibujar();
+				}
 			});
+			rdbtnNewRadioButton.setBounds(175, 182, 144, 32);
 			buttonGroup.add(rdbtnNewRadioButton);
+			redibujar();
 		}
 		return rdbtnNewRadioButton;
 	}
-	private JRadioButton getRdbtnNewRadioButton_1() {
+	private JButton getRdbtnNewRadioButton_1() {
 		if (rdbtnNewRadioButton_1 == null) {
-			rdbtnNewRadioButton_1 = new JRadioButton("Euskara");
+			rdbtnNewRadioButton_1 = new JButton("Euskara");
 			rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
+				public void actionPerformed(ActionEvent e) {
 					Locale.setDefault(new Locale("eus"));
 					System.out.println("Locale: "+Locale.getDefault());
-					redibujar();				}
+					redibujar();
+				}
 			});
+			
+			rdbtnNewRadioButton_1.setBounds(175, 126, 144, 32);
 			buttonGroup.add(rdbtnNewRadioButton_1);
+			redibujar();
 		}
 		return rdbtnNewRadioButton_1;
 	}
-	private JRadioButton getRdbtnNewRadioButton_2() {
+	private JButton getRdbtnNewRadioButton_2() {
 		if (rdbtnNewRadioButton_2 == null) {
-			rdbtnNewRadioButton_2 = new JRadioButton("Castellano");
+			rdbtnNewRadioButton_2 = new JButton("Castellano");
 			rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Locale.setDefault(new Locale("es"));
@@ -184,26 +160,21 @@ public class MainGUI extends JFrame {
 					redibujar();
 				}
 			});
+			rdbtnNewRadioButton_2.setBounds(175, 73, 144, 32);
 			buttonGroup.add(rdbtnNewRadioButton_2);
+			redibujar();
 		}
 		return rdbtnNewRadioButton_2;
-	}
-	private JPanel getPanel() {
-		if (panel == null) {
-			panel = new JPanel();
-			panel.add(getRdbtnNewRadioButton_1());
-			panel.add(getRdbtnNewRadioButton_2());
-			panel.add(getRdbtnNewRadioButton());
-		}
-		return panel;
 	}
 	
 	private void redibujar() {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
-		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
-		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
+	private void itxi() {
+		this.setVisible(false);
+		
+	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 

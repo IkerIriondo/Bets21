@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
@@ -82,7 +83,7 @@ public class LoginGUI extends Frame {
 		lblEmail.setBounds(62, 42, 97, 21);
 		frame.getContentPane().add(lblEmail);
 		
-		JLabel lblPassword = new JLabel("Password:");
+		JLabel lblPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Password"));
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPassword.setBounds(62, 74, 97, 21);
 		frame.getContentPane().add(lblPassword);
@@ -105,7 +106,7 @@ public class LoginGUI extends Frame {
 		info2Label.setBounds(62, 186, 302, 14);
 		frame.getContentPane().add(info2Label);
 		
-		JButton hasiButton = new JButton("Saioa hasi");
+		JButton hasiButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Login"));
 		
 		hasiButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
@@ -117,8 +118,8 @@ public class LoginGUI extends Frame {
 				
 				if (user==null){
 					
-					infoLabel.setText("Ez da erabiltzailerik aurkitu edo");
-					info2Label.setText(" sartutako pasahitza ez da zuzena");
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoUser"));
+					info2Label.setText(ResourceBundle.getBundle("Etiquetas").getString("NoPass"));
 					
 				}else if (user.getClass()==Erabiltzailea.class) {
 					frame.setVisible(false);
@@ -136,7 +137,7 @@ public class LoginGUI extends Frame {
 		hasiButton.setBounds(253, 130, 111, 34);
 		frame.getContentPane().add(hasiButton);
 		
-		JButton jarraituButton = new JButton("Jarraitu saioa hasi gabe");
+		JButton jarraituButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("NoLogin"));
 		jarraituButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -149,7 +150,7 @@ public class LoginGUI extends Frame {
 		jarraituButton.setBounds(10, 214, 198, 23);
 		frame.getContentPane().add(jarraituButton);
 		
-		JButton registerButton = new JButton("ERREGISTRATU");
+		JButton registerButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -159,6 +160,17 @@ public class LoginGUI extends Frame {
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		registerButton.setBounds(62, 130, 158, 34);
 		frame.getContentPane().add(registerButton);
+		
+		JButton hizkuntzaButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Lang"));
+		hizkuntzaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				MainGUI m = new MainGUI();
+				m.setVisible(true);
+			}
+		});
+		hizkuntzaButton.setBounds(274, 216, 152, 21);
+		frame.getContentPane().add(hizkuntzaButton);
 		
 		
 		
