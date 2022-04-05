@@ -4,6 +4,7 @@ package dataAccess;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -444,6 +445,18 @@ public boolean existQuestion(Event event, String question) {
 		}
 		q.setResult(e);
 		db.getTransaction().commit();
+	}
+
+	public List<ApustuContainer> apustuakLortu() {
+		db.getTransaction().begin();
+		List<ApustuContainer> ema = new LinkedList<ApustuContainer>();
+		TypedQuery<Apustua> query = db.createQuery("SELECT a FROM Apustu ap",Apustua.class);   
+		List<Apustua> apustuak = query.getResultList();
+		for (Apustua a : apustuak) {
+			ema.add(new ApustuContainer(a));
+		}
+		db.getTransaction().commit();
+		return ema;
 	}
 
 }

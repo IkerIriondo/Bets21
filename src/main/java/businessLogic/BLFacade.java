@@ -2,6 +2,8 @@ package businessLogic;
 
 import java.util.Vector;
 import java.util.Date;
+import java.util.List;
+
 import domain.*;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -70,6 +72,8 @@ public interface BLFacade  {
 	@WebMethod public void gertaeraEzabatu(Event ev);
 
 	@WebMethod public void emaitzaIpini(ErantzunPosiblea eran);
+
+	@WebMethod public List<ApustuContainer> apustuakLortu();
 
 
 }

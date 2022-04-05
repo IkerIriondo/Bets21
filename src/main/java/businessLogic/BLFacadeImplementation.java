@@ -1,6 +1,7 @@
 package businessLogic;
 
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -212,6 +213,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.open(false);
 		dbManager.emaitzaIpini(eran);
 		dbManager.close();
+	}
+
+	@Override
+	public List<ApustuContainer> apustuakLortu() {
+		dbManager.open(false);
+		List<ApustuContainer> a = dbManager.apustuakLortu();
+		dbManager.close();
+		return a;
 	}
 
 }

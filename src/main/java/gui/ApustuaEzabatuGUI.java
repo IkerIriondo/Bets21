@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.Year;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -134,7 +135,14 @@ public class ApustuaEzabatuGUI extends Frame{
 				try {
 					int i = (int)comboBox.getSelectedItem();
 					BLFacade facade = MainGUI.getBusinessLogic();
-					apustu = facade.apustuaLortu(i);
+					List<ApustuContainer> apustuak = facade.apustuakLortu();
+					
+					for (ApustuContainer a : apustuak) {
+						if(apustu==null && a.getApustu().getId()==i) {
+							System.out.println("Bai");
+							apustu = a.getApustu();
+						}
+					}
 					
 					ErantzunPosiblea er = apustu.getEmaitzaPosiblea();
 					erantzunField.setText(er.getErantzunPosiblea());
