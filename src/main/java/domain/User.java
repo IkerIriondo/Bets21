@@ -1,16 +1,25 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
+@SuppressWarnings("serial")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public abstract class User {
+@XmlSeeAlso ({Erabiltzailea.class, Admin.class})
+public abstract class User implements Serializable{
 
 	private String izena;
 	private String abizena;
 	private Date jaioData;
+	@XmlID
 	@Id
 	private String email;
 	private String username;
@@ -21,6 +30,9 @@ public abstract class User {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Vector<Apustua> apustuak;
 	
+	public User() {
+		super();
+	}
 	
 	public Date getJaioData() {
 		return jaioData;

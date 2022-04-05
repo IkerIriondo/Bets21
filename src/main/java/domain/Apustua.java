@@ -1,16 +1,33 @@
 package domain;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @Entity
-public class Apustua {
-	
+@SuppressWarnings("serial")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Apustua implements Serializable{
+
 	@Id
 	@GeneratedValue
-	private int id;
+	@XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	private Integer id;
 	private float dirua;
+	@XmlIDREF
 	private User erabiltzailea;
+	@XmlIDREF
 	private ErantzunPosiblea emaitzaPosiblea;
+	
+	public Apustua() {
+		super();
+	}
 	
 	public Apustua(float dirua, User erabil, ErantzunPosiblea ema) {
 		this.dirua = dirua;

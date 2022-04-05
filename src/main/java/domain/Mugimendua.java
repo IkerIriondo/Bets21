@@ -1,15 +1,25 @@
 package domain;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlIDREF;
 
 @Entity
-public class Mugimendua {
+@SuppressWarnings("serial")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Mugimendua implements Serializable{
 
 	private int mugZenb;
+	@XmlIDREF
 	private User user;
 	private String deskribapena;
 	
-	
+	public Mugimendua() {
+		super();
+	}
 	public Mugimendua(int zenb, String deskribapena, User user) {
 		mugZenb = zenb;
 		this.deskribapena = deskribapena;

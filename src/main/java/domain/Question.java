@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -19,10 +20,12 @@ public class Question implements Serializable {
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@GeneratedValue
 	@Id 
+	@XmlID
 	private Integer questionNumber;
 	private String question; 
 	private float betMinimum;
-	private ErantzunPosiblea result;  
+	@XmlIDREF
+	private ErantzunPosiblea result;
 	@XmlIDREF
 	private Event event;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
