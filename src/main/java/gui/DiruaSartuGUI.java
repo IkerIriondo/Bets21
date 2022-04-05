@@ -124,20 +124,20 @@ public class DiruaSartuGUI extends Frame{
 					if(diruZuzena(diru)) {
 						float dirua = Float.parseFloat(diru);
 						if(dirua<=0) {
-							infoLabel.setText("Ezin duzu 0 edo zenbaki txikiagorik sartu");
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("Zero"));
 							System.out.println("Ezin duzu 0 edo zenbaki txikiagorik sartu");
 						}else {
 							BLFacade facade = MainGUI.getBusinessLogic();
 							user = facade.diruaSartu(user,dirua);
 							System.out.println("Zure kontuko dirua eguneratu da");
-							infoLabel.setText("Zure kontuko dirua eguneratu da");
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("Refresh"));
 						}
 					}else {
 						System.out.println("Sartu baliozko zenbaki bat");
-						infoLabel.setText("Sartu baliozko zenbaki bat");
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ValidNumber"));
 					}
 				}catch(NumberFormatException e1) {
-					infoLabel.setText("Sartu zenbakizko balio bat");
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ValidNumber"));
 					System.out.println("Sartu zenbakizko balio bat");
 				}
 			}

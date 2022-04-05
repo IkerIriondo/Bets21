@@ -135,26 +135,24 @@ public class GertaeraSortuGUI extends Frame{
 					if(!deskribapena.isBlank()) {
 						try {
 							facade.gertaeraSortu(deskribapena,zenb,data);
-						infoLabel.setText("Gertaera ondo sortu da");
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CorrectEvent"));
 						} catch (Exception e2) {
-							infoLabel.setText("Dagoeneko badago gertaera bat zenbaki horrekin");
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ExistsEvent"));
 						}
 						
 					}else {
 						System.out.println("Sartu deskribapen zuzen bat");
-						infoLabel.setText("Sartu deskribapen zuzen bat");
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("IncorrectDesc"));
 					}
 				}else {
 					System.out.println("Hautatutako data iraganekoa da");
-					infoLabel.setText("Hautatutako data iraganekoa da");
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("PastDate"));
 				}
-				
 				
 			}
 		});
 		gertSortuButton.setBounds(141, 227, 154, 23);
 		frame.getContentPane().add(gertSortuButton);
-		
 		
 	}
 }

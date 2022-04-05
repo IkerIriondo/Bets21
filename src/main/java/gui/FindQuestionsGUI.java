@@ -244,7 +244,7 @@ public class FindQuestionsGUI extends JFrame {
 
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
-		atzeraButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.atzeraErabilButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		atzeraButton.setText(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -268,19 +268,17 @@ public class FindQuestionsGUI extends JFrame {
 						galdera = facade.bilatuGaldera(galdZenb);
 						apostatuButtonActionPerformed(user,galdera);		
 					}catch(Exception e2) {
-						infoLabel.setText("Aukeratu galdera bat");
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectQ"));
 						System.out.println("Aukeratu galdera bat");
 					}
 				}else {
-					infoLabel.setText("Data hau iraganekoa da");
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("PastDate"));
 					System.out.println("Data hau iraganekoa da");
 				}
-				
-				
 			}
 		});
 		apustuEginButton.setVisible(false);
-		apustuEginButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.apustuEginButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		apustuEginButton.setText(ResourceBundle.getBundle("Etiquetas").getString("MakeABet"));
 		apustuEginButton.setBounds(272, 423, 89, 23);
 		
 		getContentPane().add(apustuEginButton);
@@ -288,7 +286,7 @@ public class FindQuestionsGUI extends JFrame {
 		
 		getContentPane().add(infoLabel);
 		gertaeraEzabatuButton.setVisible(false);
-		gertaeraEzabatuButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.gertaeraEzabatuButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		gertaeraEzabatuButton.setText(ResourceBundle.getBundle("Etiquetas").getString("DelEvent"));
 		gertaeraEzabatuButton.setBounds(488, 419, 150, 30);
 		getContentPane().add(gertaeraEzabatuButton);
 		emaitzaIpiniButton.addActionListener(new ActionListener() {
@@ -307,28 +305,26 @@ public class FindQuestionsGUI extends JFrame {
 					if(galdera.getResult()==null) {
 						emaitzaIpiniActionPerformed(user, galdera);
 					}else {
-						infoLabel.setText("Galdera honek dagoeneko badu emaitza bat");
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("HasAnswer"));
 						System.out.println("Galdera honek dagoeneko badu emaitza bat");
 					}
 				}else {
-					infoLabel.setText("Ez dakigu gertaera honen emaitza oraindik");
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoAnswer"));
 					System.out.println("Ez dakigu gertaera honen emaitza oraindik");
 				}
 			}
 		});
 		emaitzaIpiniButton.setVisible(false);
-		emaitzaIpiniButton.setText(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.emaitzaIpiniButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		emaitzaIpiniButton.setText(ResourceBundle.getBundle("Etiquetas").getString("EmaitzaIpini"));
 		emaitzaIpiniButton.setBounds(251, 419, 150, 30);
 		
 		getContentPane().add(emaitzaIpiniButton);
 		gertaeraEzabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				int i=tableEvents.getSelectedRow();
-				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
+				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2);
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.gertaeraEzabatu(ev);
-				
 			}
 		});
 		

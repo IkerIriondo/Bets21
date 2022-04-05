@@ -86,7 +86,7 @@ public class ApustuaEzabatuGUI extends Frame{
 		aukeratuLabel.setBounds(137, 16, 175, 14);
 		frame.getContentPane().add(aukeratuLabel);
 		
-		JLabel galderaLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Query"));
+		JLabel galderaLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Query")+":");
 		galderaLabel.setBounds(30, 106, 144, 14);
 		frame.getContentPane().add(galderaLabel);
 		
@@ -96,7 +96,7 @@ public class ApustuaEzabatuGUI extends Frame{
 		frame.getContentPane().add(galderaField);
 		galderaField.setColumns(10);
 		
-		JLabel gertaeraLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Event"));
+		JLabel gertaeraLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Event")+":");
 		gertaeraLabel.setBounds(30, 84, 144, 14);
 		frame.getContentPane().add(gertaeraLabel);
 		

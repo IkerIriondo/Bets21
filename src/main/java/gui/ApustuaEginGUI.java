@@ -136,7 +136,7 @@ public class ApustuaEginGUI extends Frame{
 						System.out.println("Ez da apustu minimora iristen");
 					}
 				}catch(Exception e1) {
-					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("Not number"));
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ValidNumber"));
 					System.out.println("Sartu baliozko zenbaki bat");
 				}
 				

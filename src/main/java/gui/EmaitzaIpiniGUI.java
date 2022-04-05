@@ -115,7 +115,7 @@ public class EmaitzaIpiniGUI extends Frame{
 		frame.getContentPane().add(infoLabel);
 		
 		
-		JButton emaitzaIpiniButton = new JButton("Emaitza Ipini");
+		JButton emaitzaIpiniButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("EmaitzaIpini"));
 		emaitzaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

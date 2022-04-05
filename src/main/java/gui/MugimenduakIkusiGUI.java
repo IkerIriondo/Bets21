@@ -133,16 +133,20 @@ public class MugimenduakIkusiGUI extends Frame{
 		mugimenduakTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		mugimenduakTable.getColumnModel().getColumn(1).setPreferredWidth(268);
 		
-		if(!user.getMugimenduak().isEmpty()) {
-			Vector<Mugimendua> mugimenduak = user.getMugimenduak();
-			
-			for (Mugimendua mug : mugimenduak) {
-				Vector<Object> row = new Vector<Object>();
-				row.add(mug.getMugZenb());
-				row.add(mug.getDeskribapena());
-				mugimenduakTableModel.addRow(row);
+		try {
+			if(!user.getMugimenduak().isEmpty()) {
+				Vector<Mugimendua> mugimenduak = user.getMugimenduak();
+				
+				for (Mugimendua mug : mugimenduak) {
+					Vector<Object> row = new Vector<Object>();
+					row.add(mug.getMugZenb());
+					row.add(mug.getDeskribapena());
+					mugimenduakTableModel.addRow(row);
+				}
+			}else {
+				infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoMug"));
 			}
-		}else {
+		}catch(Exception e) {
 			infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoMug"));
 		}
 		

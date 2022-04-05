@@ -31,7 +31,7 @@ public class MainGUI extends JFrame {
 	public static BLFacade getBusinessLogic(){
 		return appFacadeInterface;
 	}
-	 
+	
 	public static void setBussinessLogic (BLFacade afi){
 		appFacadeInterface=afi;
 	}
@@ -40,7 +40,7 @@ public class MainGUI extends JFrame {
 	private JButton rdbtnNewRadioButton_1;
 	private JButton rdbtnNewRadioButton_2;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	
+	private JButton atzeraButton;
 	/**
 	 * This is the default constructor
 	 */
@@ -92,7 +92,7 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getRdbtnNewRadioButton_2());
 			jContentPane.add(getRdbtnNewRadioButton());
 			
-			JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close")); //$NON-NLS-1$ //$NON-NLS-2$
+			atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 			atzeraButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new LoginGUI();
@@ -174,7 +174,6 @@ public class MainGUI extends JFrame {
 	
 	private void itxi() {
 		this.setVisible(false);
-		
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 
