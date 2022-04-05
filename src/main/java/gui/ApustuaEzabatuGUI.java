@@ -33,6 +33,9 @@ public class ApustuaEzabatuGUI extends Frame{
 	private JComboBox<Integer> comboBox;
 	private JLabel infoLabel;
 	private Apustua apustu;
+	private ErantzunPosiblea er;
+	private Question galdera;
+	private Event gertaera;
 	/**
 	 * Launch the application.
 	 */
@@ -136,25 +139,26 @@ public class ApustuaEzabatuGUI extends Frame{
 					int i = (int)comboBox.getSelectedItem();
 					BLFacade facade = MainGUI.getBusinessLogic();
 					List<ApustuContainer> apustuak = facade.apustuakLortu();
-					
+					ApustuContainer ac = null;
 					for (ApustuContainer a : apustuak) {
 						if(apustu==null && a.getApustu().getId()==i) {
-							System.out.println("Bai");
-							apustu = a.getApustu();
+							ac = a;
 						}
 					}
+					apustu = ac.getApustu();
 					
-					ErantzunPosiblea er = apustu.getEmaitzaPosiblea();
+					er = ac.getErantzun();
 					erantzunField.setText(er.getErantzunPosiblea());
 					
-					Question q = er.getGaldera();
-					galderaField.setText(q.getQuestion());
+					galdera = ac.getGaldera();
+					galderaField.setText(galdera.getQuestion());
 					
-					Event gert = q.getEvent();
-					gertaeraField.setText(gert.getDescription());
+					gertaera = ac.getGertaera();
+					gertaeraField.setText(gertaera.getDescription());
 					
 					float zenbat = apustu.getDirua();
 					zenbatField.setText(String.valueOf(zenbat));;
+					
 				}catch(Exception e2) {
 					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoBets"));
 					System.out.println("Ez duzu apusturik");
@@ -167,7 +171,7 @@ public class ApustuaEzabatuGUI extends Frame{
 		JButton ezabatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Delete"));
 		ezabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					Date data = apustu.getEmaitzaPosiblea().getGaldera().getEvent().getEventDate();
+					Date data = gertaera.getEventDate();
 					LocalDate g = LocalDate.now();
 					Date gaur = new Date(g.getYear()-1900,g.getMonthValue()-1,g.getDayOfMonth());
 					if(data.compareTo(gaur)>=0) {

@@ -136,7 +136,7 @@ public class DataAccess  {
 			db.persist(q5);
 			db.persist(q6); 
 	
-			ErantzunPosiblea eran = new ErantzunPosiblea(q1,1,"Bai");
+			ErantzunPosiblea eran = new ErantzunPosiblea(q1,1,"Athletic");
 			q1.addErantzunPosibleak(eran);
 	        
 			db.persist(ev1);
@@ -450,7 +450,7 @@ public boolean existQuestion(Event event, String question) {
 	public List<ApustuContainer> apustuakLortu() {
 		db.getTransaction().begin();
 		List<ApustuContainer> ema = new LinkedList<ApustuContainer>();
-		TypedQuery<Apustua> query = db.createQuery("SELECT a FROM Apustu ap",Apustua.class);   
+		TypedQuery<Apustua> query = db.createQuery("SELECT ap FROM Apustua ap",Apustua.class);   
 		List<Apustua> apustuak = query.getResultList();
 		for (Apustua a : apustuak) {
 			ema.add(new ApustuContainer(a));
