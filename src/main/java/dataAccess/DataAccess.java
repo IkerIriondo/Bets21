@@ -166,20 +166,30 @@ public class DataAccess  {
 			
 			//ERABILTZAILEAK
 			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","2002/01/05","proba@gmail.com", "User1","1234");
-			db.persist(user);
+			Erabiltzailea user1 = new Erabiltzailea("Manex","Iriondo","2002/05/01","proba1@gmail.com", "User2","1234");
 			
 			
 			//GUREAK
-			Event e33 = new Event(33, "Kaixo",UtilDate.newDate(2022, 2-1, 13));
-			Question q33 = e33.addQuestion("Zer moduz zaude?", 33);
+			Event e33 = new Event(33, "Erreala Vs Eibar",UtilDate.newDate(2022, 2-1, 13));
+			Question q33 = e33.addQuestion("Zein izango da irabazlea?", 33);
 			q33.setEvent(e33);
-			ErantzunPosiblea ema = new ErantzunPosiblea(q33,2,"Ondo");
+			ErantzunPosiblea ema = new ErantzunPosiblea(q33,2,"Erreala");
+			ErantzunPosiblea ema1 = new ErantzunPosiblea(q33,4,"Eibar");
 			q33.addErantzunPosibleak(ema);
-			db.persist(q33);
+			q33.addErantzunPosibleak(ema1);
+			
+			Apustua a1 = new Apustua(5, user, ema);
+			Apustua a2 = new Apustua(5, user1, ema1);
+			
+			ema.getApustuak().add(a1);
+			ema1.getApustuak().add(a2);
+			
+			user.apustuaGehitu(a1);
+			user1.apustuaGehitu(a2);
+			
+			db.persist(user);
+			db.persist(user1);
 			db.persist(e33);
-			
-			
-			
 			System.out.println("Db initialized");
 		}
 		catch (Exception e){
