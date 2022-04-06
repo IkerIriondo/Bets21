@@ -141,7 +141,7 @@ public class ApustuaEzabatuGUI extends Frame{
 					List<ApustuContainer> apustuak = facade.apustuakLortu();
 					ApustuContainer ac = null;
 					for (ApustuContainer a : apustuak) {
-						if(apustu==null && a.getApustu().getId()==i) {
+						if(a.getApustu().getId()==i) {
 							ac = a;
 						}
 					}

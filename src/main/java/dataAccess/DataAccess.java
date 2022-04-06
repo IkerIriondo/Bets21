@@ -166,7 +166,6 @@ public class DataAccess  {
 			
 			//ERABILTZAILEAK
 			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","2002/01/05","proba@gmail.com", "User1","1234");
-			Erabiltzailea user1 = new Erabiltzailea("Manex","Iriondo","2002/05/01","proba1@gmail.com", "User2","1234");
 			
 			
 			//GUREAK
@@ -179,16 +178,12 @@ public class DataAccess  {
 			q33.addErantzunPosibleak(ema1);
 			
 			Apustua a1 = new Apustua(5, user, ema);
-			Apustua a2 = new Apustua(5, user1, ema1);
 			
-			ema.getApustuak().add(a1);
-			ema1.getApustuak().add(a2);
-			
+			ema.getApustuak().add(a1);			
 			user.apustuaGehitu(a1);
-			user1.apustuaGehitu(a2);
+			user.diruaGehitu(100);
 			
 			db.persist(user);
-			db.persist(user1);
 			db.persist(e33);
 			System.out.println("Db initialized");
 		}
