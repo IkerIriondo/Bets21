@@ -179,9 +179,10 @@ public class DataAccess  {
 			
 			Apustua a1 = new Apustua(5, user, ema);
 			
-			ema.getApustuak().add(a1);			
+			ema.getApustuak().add(a1);	
+			user.diruaGehitu(100);		
 			user.apustuaGehitu(a1);
-			user.diruaGehitu(100);
+			
 			
 			db.persist(user);
 			db.persist(e33);

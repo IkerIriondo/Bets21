@@ -291,7 +291,7 @@ public class FindQuestionsGUI extends JFrame {
 		getContentPane().add(gertaeraEzabatuButton);
 		emaitzaIpiniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+			try {	
 				LocalDate g = LocalDate.now();
 				Date gaur = new Date(g.getYear()-1900,g.getMonthValue()-1,g.getDayOfMonth());
 				Date data = jCalendar1.getDate();
@@ -312,6 +312,7 @@ public class FindQuestionsGUI extends JFrame {
 					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoAnswer"));
 					System.out.println("Ez dakigu gertaera honen emaitza oraindik");
 				}
+			}catch (Exception e1) {}
 			}
 		});
 		emaitzaIpiniButton.setVisible(false);
