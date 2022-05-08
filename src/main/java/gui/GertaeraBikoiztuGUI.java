@@ -119,7 +119,6 @@ public class GertaeraBikoiztuGUI extends JFrame{
 		gertBikoiztuButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				//Date data = jCalendar1.getDate();
 				Date data = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.gertaeraBikoiztu(gertaera,data);
