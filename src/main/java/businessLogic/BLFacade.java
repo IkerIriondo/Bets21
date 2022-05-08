@@ -75,5 +75,6 @@ public interface BLFacade  {
 
 	@WebMethod public List<ApustuContainer> apustuakLortu();
 
+	@WebMethod public Event gertaeraBikoiztu(Event gertaera, Date data);
 
 }

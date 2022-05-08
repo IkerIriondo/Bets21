@@ -94,7 +94,7 @@ public class AdminGUI extends JFrame{
 				k.setVisible(true);
 			}
 		});
-		kuotaIpiniButton.setBounds(76, 172, 126, 21);
+		kuotaIpiniButton.setBounds(76, 142, 126, 21);
 		frame.getContentPane().add(kuotaIpiniButton);
 		
 		JButton galKonButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestion"));
@@ -105,7 +105,7 @@ public class AdminGUI extends JFrame{
 				f.setVisible(true);
 			}
 		});
-		galKonButton.setBounds(244, 127, 153, 21);
+		galKonButton.setBounds(248, 110, 153, 21);
 		frame.getContentPane().add(galKonButton);
 		
 		JButton itxiButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SaioaItxi"));
@@ -129,7 +129,7 @@ public class AdminGUI extends JFrame{
 				
 			}
 		});
-		gertaeraEzabatuButton.setBounds(76, 127, 126, 21);
+		gertaeraEzabatuButton.setBounds(76, 110, 126, 21);
 		frame.getContentPane().add(gertaeraEzabatuButton);
 		
 		JButton emaitzaIpiniButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SelectAResult"));
@@ -142,8 +142,19 @@ public class AdminGUI extends JFrame{
 				
 			}
 		});
-		emaitzaIpiniButton.setBounds(254, 172, 126, 21);
+		emaitzaIpiniButton.setBounds(254, 142, 132, 21);
 		frame.getContentPane().add(emaitzaIpiniButton);
+		
+		JButton gertaeraBikoiztuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BikoGertaera")); 
+		gertaeraBikoiztuButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FindQuestionsGUI f = new FindQuestionsGUI(user);
+				f.setVisible(true);
+				f.getGertBikoiztButton().setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		gertaeraBikoiztuButton.setBounds(76, 174, 126, 23);
+		frame.getContentPane().add(gertaeraBikoiztuButton);
 	}
-
 }

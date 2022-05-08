@@ -5,6 +5,7 @@ import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
 import domain.*;
+import domain.Event;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,10 +59,16 @@ public class FindQuestionsGUI extends JFrame {
 	private final JLabel infoLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
 	private final JButton gertaeraEzabatuButton = new JButton();
 	private final JButton emaitzaIpiniButton = new JButton();
+	private final JButton gertBikoiztButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BikoGertaera")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	
 
 
+
+
+	public JButton getGertBikoiztButton() {
+		return gertBikoiztButton;
+	}
 
 
 	public FindQuestionsGUI(User user)
@@ -254,6 +261,7 @@ public class FindQuestionsGUI extends JFrame {
 		atzeraButton.setBounds(40, 419, 98, 30);
 		getContentPane().add(atzeraButton);
 		apustuEginButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				
 				LocalDate g = LocalDate.now();
@@ -290,6 +298,7 @@ public class FindQuestionsGUI extends JFrame {
 		gertaeraEzabatuButton.setBounds(488, 419, 150, 30);
 		getContentPane().add(gertaeraEzabatuButton);
 		emaitzaIpiniButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 			try {	
 				LocalDate g = LocalDate.now();
@@ -320,15 +329,29 @@ public class FindQuestionsGUI extends JFrame {
 		emaitzaIpiniButton.setBounds(251, 419, 150, 30);
 		
 		getContentPane().add(emaitzaIpiniButton);
+		gertBikoiztButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int i = tableEvents.getSelectedRow();
+					Event gert = (Event)tableModelEvents.getValueAt(i, 2);
+					gertaeraBikoiztuActionPerformed(user,gert);
+				}catch(Exception e1) {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectEvent"));
+				}
+			}
+		});
+		gertBikoiztButton.setVisible(false);
+		gertBikoiztButton.setBounds(347, 423, 89, 23);
+		
+		getContentPane().add(gertBikoiztButton);
 		gertaeraEzabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i=tableEvents.getSelectedRow();
-				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2);
+				int i = tableEvents.getSelectedRow();
+				Event ev=(Event)tableModelEvents.getValueAt(i,2);
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.gertaeraEzabatu(ev);
 			}
 		});
-		
 
 	}
 	
@@ -353,5 +376,9 @@ public class FindQuestionsGUI extends JFrame {
 				 this.setVisible(false);		 
 		}
 		
+		private void gertaeraBikoiztuActionPerformed(User u, Event e) {
+			new GertaeraBikoiztuGUI(u, e);
+			this.setVisible(false);
+		}
 		
 }

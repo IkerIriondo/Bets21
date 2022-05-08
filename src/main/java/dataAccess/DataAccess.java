@@ -465,4 +465,21 @@ public boolean existQuestion(Event event, String question) {
 		return ema;
 	}
 
+	public Event gertaeraBikoiztu(Event g, Date data) {
+		db.getTransaction().begin();
+		Event e = new Event(g.getDescription(),data);
+		for (Question q : g.getQuestions()) {
+			for (ErantzunPosiblea ep : q.getErantzunPosibleak()) {
+				ep.setApustuak(new Vector<Apustua>());
+			}
+			e.addQuestion(q.getQuestion(),q.getBetMinimum());
+		}
+		for (Question q : e.getQuestions()) {
+			q.setEvent(e);
+		}
+		db.persist(e);
+		db.getTransaction().commit();
+		return e;
+	}
+	
 }

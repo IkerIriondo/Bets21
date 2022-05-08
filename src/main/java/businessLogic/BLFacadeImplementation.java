@@ -223,5 +223,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		return a;
 	}
 
+	@Override
+	public Event gertaeraBikoiztu(Event gertaera, Date data) {
+		dbManager.open(false);
+		Event e = dbManager.gertaeraBikoiztu(gertaera,data);
+		dbManager.close();
+		return e;
+	}
+
 }
 

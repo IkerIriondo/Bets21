@@ -135,7 +135,7 @@ public class GertaeraSortuGUI extends Frame{
 					if(!deskribapena.isBlank()) {
 						try {
 							facade.gertaeraSortu(deskribapena,zenb,data);
-						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CorrectEvent"));
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CorrectEvent"));
 						} catch (Exception e2) {
 							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ExistsEvent"));
 						}
