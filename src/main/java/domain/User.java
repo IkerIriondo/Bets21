@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Vector;
 
@@ -9,6 +10,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlSeeAlso;
+
+import configuration.UtilDate;
 
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -29,25 +32,19 @@ public abstract class User implements Serializable{
 	private Vector<Mugimendua> mugimenduak;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Vector<Apustua> apustuak;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Vector<Jarraipena> jarraitzaileak;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Vector<Jarraipena> jarraituak;
+	
+	private boolean baneatua;
+	private Date zenbatDenboraBan;
+	private int zenbatApostu;
+	private float zenbatDiruIrabazi;
+	private int zenbatAposIrabazi;
 	
 	public User() {
 		super();
-	}
-	
-	public Date getJaioData() {
-		return jaioData;
-	}
-
-	public void setJaioData(Date jaioData) {
-		this.jaioData = jaioData;
-	}
-
-	public Vector<Apustua> getApustuak() {
-		return apustuak;
-	}
-
-	public void setApustuak(Vector<Apustua> apustuak) {
-		this.apustuak = apustuak;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -67,45 +64,86 @@ public abstract class User implements Serializable{
 		dirua = 0;
 		mugimenduak = new Vector<Mugimendua>();
 		apustuak = new Vector<Apustua>();
+		jarraitzaileak = new Vector<Jarraipena>();
+		jarraituak = new Vector<Jarraipena>();
+		baneatua = false;
 		
+		String gaur = LocalDate.now().toString();
+		String[] gaurkoa = gaur.split("-");
+		int u = Integer.parseInt(gaurkoa[0]);
+		int h = Integer.parseInt(gaurkoa[1]) -1;
+		int e = Integer.parseInt(gaurkoa[2]);
+		zenbatDenboraBan = UtilDate.newDate(u,h,e);
+		
+		zenbatApostu = 0;
+		zenbatDiruIrabazi = 0;
+		zenbatAposIrabazi = 0;
+	}
+	
+	public Date getJaioData() {
+		return jaioData;
+	}
+
+	public void setJaioData(Date jaioData) {
+		this.jaioData = jaioData;
+	}
+
+	public Vector<Apustua> getApustuak() {
+		return apustuak;
+	}
+
+	public void setApustuak(Vector<Apustua> apustuak) {
+		this.apustuak = apustuak;
 	}
 	
 	public String getIzena() {
 		return izena;
 	}
+	
 	public void setIzena(String izena) {
 		this.izena = izena;
 	}
+	
 	public String getAbizena() {
 		return abizena;
 	}
+	
 	public void setAbizena(String abizena) {
 		this.abizena = abizena;
 	}
+	
 	public Date getJaioDate() {
 		return jaioData;
 	}
+	
 	public void setJaioDate(Date jaioData) {
 		this.jaioData = jaioData;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getUsername() {
 		return username;
 	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	public boolean isCorrectPassword(String password) {
 		return this.getPassword().contentEquals(password);
 	}
@@ -138,7 +176,8 @@ public abstract class User implements Serializable{
 			Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apostu.getDirua() + "€ gastatu duzu apostatzen",this);
 			mugimenduak.add(mug);
 			apustuak.add(apostu);
-		
+			zenbatApostu++;
+			zenbatDiruIrabazi = zenbatDiruIrabazi - apostu.getDirua();
 	}
 
 	public void diruaItzuli(Apustua apustu) {
@@ -146,7 +185,8 @@ public abstract class User implements Serializable{
 		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apustu.getDirua() + "€ itzuli zaizkizu",this);
 		mugimenduak.add(mug);
 		apustuak.remove(apustu);
-		
+		zenbatApostu--;
+		zenbatDiruIrabazi = zenbatDiruIrabazi + apustu.getDirua();
 	}
 
 	public void apustuaIrabazi(Apustua a) {
@@ -155,11 +195,70 @@ public abstract class User implements Serializable{
 		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,zenbatIrabazi + " € irabazi dituzu apustuetatik",this);
 		mugimenduak.add(mug);
 		apustuak.remove(a);
+		zenbatDiruIrabazi = zenbatDiruIrabazi + zenbatIrabazi;
+		zenbatAposIrabazi++;
 	}
 
 	public void apustuaEguneratu(float apostu) {
 		dirua = dirua - apostu;
 		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apostu + " € gehitu diozu apustuan",this);
 		mugimenduak.add(mug);
+		zenbatDiruIrabazi = zenbatDiruIrabazi - apostu;
+	}
+	
+	public Vector<Jarraipena> getJarraitzaileak() {
+		return jarraitzaileak;
+	}
+
+	public void setJarraitzaileak(Vector<Jarraipena> jarraitzaileak) {
+		this.jarraitzaileak = jarraitzaileak;
+	}
+
+	public Vector<Jarraipena> getJarraituak() {
+		return jarraituak;
+	}
+
+	public void setJarraituak(Vector<Jarraipena> jarraituak) {
+		this.jarraituak = jarraituak;
+	}
+
+	public boolean isBaneatua() {
+		return baneatua;
+	}
+
+	public void setBaneatua(boolean baneatua) {
+		this.baneatua = baneatua;
+	}
+
+	public Date getZenbatDenboraBan() {
+		return zenbatDenboraBan;
+	}
+
+	public void setZenbatDenboraBan(Date zenbatDenboraBan) {
+		this.zenbatDenboraBan = zenbatDenboraBan;
+	}
+
+	public int getZenbatApostu() {
+		return zenbatApostu;
+	}
+
+	public void setZenbatApostu(int zenbatApostu) {
+		this.zenbatApostu = zenbatApostu;
+	}
+
+	public float getZenbatDiruIrabazi() {
+		return zenbatDiruIrabazi;
+	}
+
+	public void setZenbatDiruIrabazi(float zenbatDiruIrabazi) {
+		this.zenbatDiruIrabazi = zenbatDiruIrabazi;
+	}
+
+	public int getZenbatAposIrabazi() {
+		return zenbatAposIrabazi;
+	}
+
+	public void setZenbatAposIrabazi(int zenbatAposIrabazi) {
+		this.zenbatAposIrabazi = zenbatAposIrabazi;
 	}
 }

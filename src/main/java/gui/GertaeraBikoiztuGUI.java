@@ -117,7 +117,6 @@ public class GertaeraBikoiztuGUI extends JFrame{
 		
 		JButton gertBikoiztuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BikoGertaera"));
 		gertBikoiztuButton.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				Date data = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
 				BLFacade facade = MainGUI.getBusinessLogic();
@@ -126,7 +125,6 @@ public class GertaeraBikoiztuGUI extends JFrame{
 		});
 		gertBikoiztuButton.setBounds(157, 184, 135, 23);
 		frame.getContentPane().add(gertBikoiztuButton);
-		
 		
 	}
 }

@@ -73,7 +73,7 @@ public class ErregistratuaGUI extends Frame{
 				f.setVisible(true);
 			}
 		});
-		galderaKontsButton.setBounds(67, 86, 153, 23);
+		galderaKontsButton.setBounds(67, 42, 153, 23);
 		frame.getContentPane().add(galderaKontsButton);
 		
 		JButton sartuDiruaButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartu"));
@@ -83,7 +83,7 @@ public class ErregistratuaGUI extends Frame{
 				new DiruaSartuGUI(user);
 			}
 		});
-		sartuDiruaButton.setBounds(268, 86, 129, 23);
+		sartuDiruaButton.setBounds(255, 42, 129, 23);
 		frame.getContentPane().add(sartuDiruaButton);
 		
 		JButton saioaItxiButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SaioaItxi"));
@@ -103,7 +103,7 @@ public class ErregistratuaGUI extends Frame{
 				new MugimenduakIkusiGUI(user);
 			}
 		});
-		mugimenduakButton.setBounds(67, 131, 153, 23);
+		mugimenduakButton.setBounds(67, 76, 153, 23);
 		frame.getContentPane().add(mugimenduakButton);
 		
 		JButton apustuaEginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Bet"));
@@ -115,7 +115,7 @@ public class ErregistratuaGUI extends Frame{
 				f.getApustuEginButton().setVisible(true);
 			}
 		});
-		apustuaEginButton.setBounds(268, 131, 129, 23);
+		apustuaEginButton.setBounds(255, 76, 129, 23);
 		frame.getContentPane().add(apustuaEginButton);
 		
 		JButton apustuaEzabatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DeleteBet"));
@@ -125,7 +125,18 @@ public class ErregistratuaGUI extends Frame{
 				frame.setVisible(false);
 			}
 		});
-		apustuaEzabatuButton.setBounds(67, 165, 153, 23);
+		apustuaEzabatuButton.setBounds(67, 110, 153, 23);
 		frame.getContentPane().add(apustuaEzabatuButton);
+		
+		JButton erabilJarraituButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FollowUser"));
+		erabilJarraituButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ErabiltzaileaJarraituGUI(user);
+				frame.setVisible(false);
+			}
+		});
+		erabilJarraituButton.setBounds(255, 110, 129, 23);
+		frame.getContentPane().add(erabilJarraituButton);
+		
 	}
 }
