@@ -238,7 +238,7 @@ public abstract class User implements Serializable{
 		this.zenbatDenboraBan = zenbatDenboraBan;
 	}
 
-	public int getZenbatApostu() {
+	public Integer getZenbatApostu() {
 		return zenbatApostu;
 	}
 
@@ -246,7 +246,7 @@ public abstract class User implements Serializable{
 		this.zenbatApostu = zenbatApostu;
 	}
 
-	public float getZenbatDiruIrabazi() {
+	public Float getZenbatDiruIrabazi() {
 		return zenbatDiruIrabazi;
 	}
 
@@ -254,11 +254,29 @@ public abstract class User implements Serializable{
 		this.zenbatDiruIrabazi = zenbatDiruIrabazi;
 	}
 
-	public int getZenbatAposIrabazi() {
+	public Integer getZenbatAposIrabazi() {
 		return zenbatAposIrabazi;
 	}
 
 	public void setZenbatAposIrabazi(int zenbatAposIrabazi) {
 		this.zenbatAposIrabazi = zenbatAposIrabazi;
 	}
+
+	public void gehituJarraitua(Jarraipena jarrai) {
+		jarraituak.add(jarrai);
+		dirua = dirua - jarrai.getZenbatDiru();
+	}
+
+	public void gehituJarraitzailea(Jarraipena jarrai) {
+		jarraitzaileak.add(jarrai);	
+	}
+
+	public void ezabatuJarraitzailea(Jarraipena ja) {
+		jarraitzaileak.remove(ja);
+	}
+
+	public void ezabatuJarraituak(Jarraipena ja) {
+		jarraituak.remove(ja);
+	}
+	
 }

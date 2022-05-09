@@ -231,5 +231,21 @@ public class BLFacadeImplementation  implements BLFacade {
 		return e;
 	}
 
+	@Override
+	public List<Erabiltzailea> lortuErabiltzaileZerrenda() {
+		dbManager.open(false);
+		List<Erabiltzailea> erabiltzaileak = dbManager.lortuErabiltzaileak();
+		dbManager.close();
+		return erabiltzaileak;
+	}
+
+	@Override
+	public User jarraituErabiltzailea(User user, Erabiltzailea erabil, float dirua) {
+		dbManager.open(false);
+		User u = dbManager.jarraituErabiltzailea(user,erabil,dirua);
+		dbManager.close();
+		return u;
+	}
+
 }
 

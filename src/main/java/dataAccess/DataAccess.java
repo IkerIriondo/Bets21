@@ -167,6 +167,19 @@ public class DataAccess  {
 			//ERABILTZAILEAK
 			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","2002/01/05","proba@gmail.com", "User1","1234");
 			
+			Erabiltzailea user1 = new Erabiltzailea("Paco","Fiestas","1999/06/25","pacof@gmail.com","paco","1234");
+			user1.setZenbatAposIrabazi(5);
+			user1.setZenbatDiruIrabazi(500);
+			user1.setZenbatApostu(6);
+			
+			Jarraipena jarrai = new Jarraipena(user,user1,50);
+			
+			user1.setDirua(500);
+			user1.gehituJarraitzailea(jarrai);
+			user.gehituJarraitua(jarrai);
+			
+			db.persist(user1);
+			db.persist(jarrai);
 			
 			//GUREAK
 			Event e33 = new Event(33, "Erreala Vs Eibar",UtilDate.newDate(2022, 2-1, 13));
@@ -377,8 +390,10 @@ public boolean existQuestion(Event event, String question) {
 
 	public User apustuaEgin(float apostu, User user, ErantzunPosiblea erantzun) {
 		db.getTransaction().begin();
+		Apustua ap;
 		User u = db.find(User.class, user.getEmail());
 		ErantzunPosiblea e = db.find(ErantzunPosiblea.class, erantzun.getId());
+		List<Jarraipena> ezabatzekoak = new LinkedList<Jarraipena>();
 		boolean aurkitua = false; 
 		int i = 0;
 		while(!aurkitua && i<u.getApustuak().size()) {
@@ -397,7 +412,28 @@ public boolean existQuestion(Event event, String question) {
 			u.apustuaGehitu(apustu);
 			e.getApustuak().add(apustu);
 		}
+		for (Jarraipena j : user.getJarraitzaileak()) {
+			User us = db.find(Erabiltzailea.class, j.getZeinek());
+			Jarraipena ja = db.find(Jarraipena.class, j);
+			float diru = ja.getZenbatDiru();
+			if(diru <= apostu) {
+				ap = new Apustua(diru,us,erantzun);
+				u.ezabatuJarraitzailea(ja);
+				us.ezabatuJarraituak(ja);
+				us.apustuaGehitu(ap);
+				ezabatzekoak.add(ja);
+			}else {
+				ap = new Apustua(apostu,us,erantzun);
+				us.apustuaGehitu(ap);
+				ja.setZenbatDiru(diru - apostu);
+			}
+			e.getApustuak().add(ap);
+		}
+		for (Jarraipena j : ezabatzekoak) {
+			db.remove(j);
+		}
 		db.getTransaction().commit();
+		
 		return u;
 	}
 
@@ -480,6 +516,30 @@ public boolean existQuestion(Event event, String question) {
 		db.persist(e);
 		db.getTransaction().commit();
 		return e;
+	}
+
+	public List<Erabiltzailea> lortuErabiltzaileak() {
+		db.getTransaction().begin();
+		TypedQuery<Erabiltzailea> query = db.createQuery("SELECT e FROM Erabiltzailea e ORDER BY e.zenbatDiruIrabazi DESC",Erabiltzailea.class);
+		List<Erabiltzailea> erabiltzaileak = query.getResultList();
+		db.getTransaction().commit();
+		return erabiltzaileak;
+	}
+
+	public User jarraituErabiltzailea(User user, Erabiltzailea erabil, float dirua) {
+		db.getTransaction().begin();
+		
+		User gu = db.find(Erabiltzailea.class, user);
+		User jarraitua = db.find(Erabiltzailea.class, erabil);
+		
+		Jarraipena jarrai = new Jarraipena(gu, jarraitua, dirua);
+		gu.gehituJarraitua(jarrai);
+		jarraitua.gehituJarraitzailea(jarrai);
+		
+		db.persist(jarrai);
+		
+		db.getTransaction().commit();
+		return null;
 	}
 	
 }

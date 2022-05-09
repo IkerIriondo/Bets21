@@ -117,7 +117,7 @@ public class ApustuaEginGUI extends Frame{
 		JButton apostatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MakeABet"));
 		apostatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
+				//try {
 					float apostu = Float.parseFloat(diruField.getText());
 					if(apostu >= Float.parseFloat(min)) {
 						if(apostu <= user.getDirua()) {
@@ -135,10 +135,10 @@ public class ApustuaEginGUI extends Frame{
 						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoMinBet"));
 						System.out.println("Ez da apustu minimora iristen");
 					}
-				}catch(Exception e1) {
+				/*}catch(Exception e1) {
 					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ValidNumber"));
 					System.out.println("Sartu baliozko zenbaki bat");
-				}
+				}*/
 				
 			}
 		});

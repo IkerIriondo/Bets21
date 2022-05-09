@@ -3,11 +3,16 @@ package domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @SuppressWarnings("serial")
-@Entity
+@Entity 
 public class Jarraipena implements Serializable{
 	
+	@Id
+	@GeneratedValue
+	private int id;
 	private User zeinek;
 	private User zeineri;
 	private float zenbatDiru;
@@ -19,7 +24,7 @@ public class Jarraipena implements Serializable{
 	}
 	
 	public Jarraipena() {
-		
+		super();
 	}
 	
 	public User getZeinek() {
@@ -41,5 +46,11 @@ public class Jarraipena implements Serializable{
 		this.zenbatDiru = zenbatDiru;
 	}
 	
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

@@ -77,4 +77,8 @@ public interface BLFacade  {
 
 	@WebMethod public Event gertaeraBikoiztu(Event gertaera, Date data);
 
+	@WebMethod public List<Erabiltzailea> lortuErabiltzaileZerrenda();
+
+	@WebMethod public User jarraituErabiltzailea(User user, Erabiltzailea erabil, float dirua);
+
 }
