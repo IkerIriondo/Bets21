@@ -198,7 +198,6 @@ public class ErabiltzaileaJarraituGUI extends JFrame{
 		erabilTable = new JTable();
 		erabilScrollPane.setViewportView(erabilTable);
 	
-		erabilScrollPane.setViewportView(erabilTable);
 		erabiltzaileakTableModel = new DefaultTableModel(null, erabiltzaileakColumnNames);
 		erabilTable.setModel(erabiltzaileakTableModel);
 		

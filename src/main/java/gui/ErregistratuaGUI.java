@@ -138,5 +138,15 @@ public class ErregistratuaGUI extends Frame{
 		erabilJarraituButton.setBounds(255, 110, 129, 23);
 		frame.getContentPane().add(erabilJarraituButton);
 		
+		JButton mezuaBidaliButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SendMessage")); //$NON-NLS-1$ //$NON-NLS-2$
+		mezuaBidaliButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ElkarrizketakGUI(user);
+				frame.setVisible(false);
+			}
+		});
+		mezuaBidaliButton.setBounds(67, 144, 153, 23);
+		frame.getContentPane().add(mezuaBidaliButton);
+		
 	}
 }

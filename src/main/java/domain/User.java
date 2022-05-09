@@ -43,6 +43,8 @@ public abstract class User implements Serializable{
 	private float zenbatDiruIrabazi;
 	private int zenbatAposIrabazi;
 	
+	private Vector<Elkarrizketa> elkarrizketak;
+	
 	public User() {
 		super();
 	}
@@ -78,6 +80,8 @@ public abstract class User implements Serializable{
 		zenbatApostu = 0;
 		zenbatDiruIrabazi = 0;
 		zenbatAposIrabazi = 0;
+		
+		elkarrizketak = new Vector<Elkarrizketa>();
 	}
 	
 	public Date getJaioData() {
@@ -277,6 +281,14 @@ public abstract class User implements Serializable{
 
 	public void ezabatuJarraituak(Jarraipena ja) {
 		jarraituak.remove(ja);
+	}
+
+	public Vector<Elkarrizketa> getElkarrizketak() {
+		return elkarrizketak;
+	}
+
+	public void setElkarrizketak(Vector<Elkarrizketa> elkarrizketak) {
+		this.elkarrizketak = elkarrizketak;
 	}
 	
 }
