@@ -539,7 +539,7 @@ public boolean existQuestion(Event event, String question) {
 		db.persist(jarrai);
 		
 		db.getTransaction().commit();
-		return null;
+		return gu;
 	}
 	
 }

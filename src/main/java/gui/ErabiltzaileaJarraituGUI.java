@@ -202,12 +202,11 @@ public class ErabiltzaileaJarraituGUI extends JFrame{
 		erabiltzaileakTableModel = new DefaultTableModel(null, erabiltzaileakColumnNames);
 		erabilTable.setModel(erabiltzaileakTableModel);
 		
-		JLabel zenbatDiruLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErabiltzaileaJarraituGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		JLabel zenbatDiruLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ZenbatDiru")); //$NON-NLS-1$ //$NON-NLS-2$
 		zenbatDiruLabel.setBounds(111, 191, 105, 14);
 		frame.getContentPane().add(zenbatDiruLabel);
 		
 		zenbatDiruField = new JTextField();
-		zenbatDiruField.setText(ResourceBundle.getBundle("Etiquetas").getString("ErabiltzaileaJarraituGUI.textField.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		zenbatDiruField.setBounds(283, 188, 86, 20);
 		frame.getContentPane().add(zenbatDiruField);
 		zenbatDiruField.setColumns(10);
