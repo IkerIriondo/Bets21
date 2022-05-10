@@ -7,15 +7,12 @@ package gui;
 
 import javax.swing.*;
 
-import domain.Event;
 import businessLogic.BLFacade;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 import java.awt.event.*;
 

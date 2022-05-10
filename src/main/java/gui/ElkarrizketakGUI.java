@@ -83,7 +83,7 @@ public class ElkarrizketakGUI extends JFrame{
 				}else {
 					new ErregistratuaGUI(user);
 				}
-				frame.setVisible(rootPaneCheckingEnabled);
+				frame.setVisible(false);
 			}
 		});
 		atzeraButton.setBounds(10, 227, 89, 23);
@@ -103,7 +103,7 @@ public class ElkarrizketakGUI extends JFrame{
 		elkarrizketakTable.getColumnModel().getColumn(0).setPreferredWidth(10);
 		elkarrizketakTable.getColumnModel().getColumn(1).setPreferredWidth(300);
 		
-		JButton mezuaBidaliButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SendMessage")); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton mezuaBidaliButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SendMessage")); 
 		mezuaBidaliButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = elkarrizketakTable.getSelectedRow();
@@ -113,8 +113,18 @@ public class ElkarrizketakGUI extends JFrame{
 				frame.setVisible(false);
 			}
 		});
-		mezuaBidaliButton.setBounds(208, 207, 89, 23);
+		mezuaBidaliButton.setBounds(162, 227, 89, 23);
 		frame.getContentPane().add(mezuaBidaliButton);
+		
+		JButton elkarrizketaBerriaButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("NewChat"));
+		elkarrizketaBerriaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ElkarrizketaBerriaGUI(user);
+				frame.setVisible(false);
+			}
+		});
+		elkarrizketaBerriaButton.setBounds(309, 227, 89, 23);
+		frame.getContentPane().add(elkarrizketaBerriaButton);
 		
 		int i = 1;
 		for (Elkarrizketa elk : elkarrizketak) {

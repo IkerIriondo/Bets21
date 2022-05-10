@@ -12,6 +12,9 @@ import domain.*;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import businessLogic.BLFacade;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -29,7 +32,8 @@ public class MezuakBidaliGUI extends JFrame{
 	private JScrollPane mezuakScrollPane;
 	private DefaultTableModel mezuakTableModel;
 	
-	private String[] mezuakColumnNames = {"Nork", "Mezua"};
+	private String[] mezuakColumnNames = {ResourceBundle.getBundle("Etiquetas").getString("Who"), 
+			ResourceBundle.getBundle("Etiquetas").getString("Message")};
 	private JTextField mezuaField;
 	private JButton bidaliMezuaButton;
 	/**
@@ -110,7 +114,10 @@ public class MezuakBidaliGUI extends JFrame{
 		bidaliMezuaButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SendMessage"));
 		bidaliMezuaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String testua = mezuaField.getText();
+				BLFacade facade = MainGUI.getBusinessLogic();
+				Mezua m = facade.bidaliMezua(bidaltzaile,elkarrizketa,testua);
+				eguneratuMezuakTable(m);
 			}
 		});
 		bidaliMezuaButton.setBounds(349, 227, 89, 23);
@@ -128,4 +135,9 @@ public class MezuakBidaliGUI extends JFrame{
 		
 	}
 
+	private void eguneratuMezuakTable(Mezua m) {
+		Vector<Object> row = new Vector<Object>();
+		row.add(m.getNork());
+		row.add(m.getMezua());
+	}
 }
