@@ -3,12 +3,14 @@ package domain;
 import java.io.Serializable;
 import java.util.Vector;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
 public class Elkarrizketa implements Serializable{
-
+	
+	@Id @GeneratedValue
+	private int id;
 	private User user1;
 	private User user2;
 	private Vector<Mezua> mezuak;
@@ -39,6 +41,9 @@ public class Elkarrizketa implements Serializable{
 	public void setMezuak(Vector<Mezua> mezuak) {
 		this.mezuak = mezuak;
 	}
-	
+
+	public void gehituMezua(Mezua m) {
+		mezuak.add(m);
+	}
 	
 }
