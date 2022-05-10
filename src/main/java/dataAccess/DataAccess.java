@@ -541,5 +541,30 @@ public boolean existQuestion(Event event, String question) {
 		db.getTransaction().commit();
 		return gu;
 	}
+
+	public Mezua bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
+		db.getTransaction().begin();
+		
+		Elkarrizketa elk = db.find(Elkarrizketa.class, elkarrizketa);
+		User u = db.find(User.class, user);
+		
+		Mezua m = new Mezua(elk,u,testua);
+		elk.gehituMezua(m);
+		
+		db.persist(m);
+		db.getTransaction().commit();
+		return null;
+	}
+
+	public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko) {
+		db.getTransaction().begin();
+		
+		TypedQuery<Erabiltzailea> query = db.createQuery("SELECT e FROM Erabiltzailea e LIKE '%bilatzeko%",Erabiltzailea.class);
+
+		List<Erabiltzailea> ema = query.getResultList();
+		
+		db.getTransaction().commit();
+		return ema;
+	}
 	
 }
