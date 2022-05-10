@@ -81,4 +81,8 @@ public interface BLFacade  {
 
 	@WebMethod public User jarraituErabiltzailea(User user, Erabiltzailea erabil, float dirua);
 
+	@WebMethod public Mezua bidaliMezua(User bidaltzaile, Elkarrizketa elkarrizketa, String testua);
+
+	@WebMethod public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko);
+
 }
