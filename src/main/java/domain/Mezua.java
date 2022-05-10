@@ -39,5 +39,4 @@ public class Mezua implements Serializable{
 		this.mezua = mezua;
 	}
 	
-	
 }

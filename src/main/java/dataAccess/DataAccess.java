@@ -168,6 +168,14 @@ public class DataAccess  {
 			Erabiltzailea user = new Erabiltzailea("Iker","Pagola","2002/01/05","proba@gmail.com", "User1","1234");
 			
 			Erabiltzailea user1 = new Erabiltzailea("Paco","Fiestas","1999/06/25","pacof@gmail.com","paco","1234");
+			
+			Elkarrizketa elkar = new Elkarrizketa(user,user1);
+			
+			Mezua m = new Mezua(elkar,user,"Kaixo");
+			elkar.gehituMezua(m);
+			
+			db.persist(elkar);
+			
 			user1.setZenbatAposIrabazi(5);
 			user1.setZenbatDiruIrabazi(500);
 			user1.setZenbatApostu(6);
