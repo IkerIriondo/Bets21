@@ -559,3 +559,98 @@ Type domain.Erabiltzailea is not enhanced.
 [2022-05-10 18:39:51 #31 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-10 19:04:09 #1 store] 
+Database 'C:\Users\Iker\Desktop\proiektua\src\main\resources\bets.temp' is opened by 11004@DESKTOP-8L6O8HK
+
+[2022-05-10 19:04:09 #2 type.registry] 
+New type domain.Question
+
+[2022-05-10 19:04:09 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-05-10 19:04:09 #4 type.registry] 
+New type domain.ErantzunPosiblea
+
+[2022-05-10 19:04:09 #5 type.registry] 
+New type java.util.Vector<domain.ErantzunPosiblea>
+
+[2022-05-10 19:04:09 #6 type.registry] 
+New type domain.Event
+
+[2022-05-10 19:04:09 #7 type] 
+Type domain.ErantzunPosiblea is not enhanced.
+
+[2022-05-10 19:04:09 #8 type.registry] 
+New type domain.Apustua
+
+[2022-05-10 19:04:09 #9 type.registry] 
+New type java.util.Vector<domain.Apustua>
+
+[2022-05-10 19:04:09 #10 type] 
+Type domain.Event is not enhanced.
+
+[2022-05-10 19:04:09 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-05-10 19:04:09 #12 type] 
+Type domain.Apustua is not enhanced.
+
+[2022-05-10 19:04:09 #13 type.registry] 
+New type domain.User
+
+[2022-05-10 19:04:09 #14 type] 
+Type domain.User is not enhanced.
+
+[2022-05-10 19:04:09 #15 type.registry] 
+New type domain.Elkarrizketa
+
+[2022-05-10 19:04:09 #16 type.registry] 
+New type java.util.Vector<domain.Elkarrizketa>
+
+[2022-05-10 19:04:09 #17 type.registry] 
+New type domain.Jarraipena
+
+[2022-05-10 19:04:09 #18 type.registry] 
+New type java.util.Vector<domain.Jarraipena>
+
+[2022-05-10 19:04:09 #19 type.registry] 
+New type domain.Mugimendua
+
+[2022-05-10 19:04:09 #20 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2022-05-10 19:04:09 #21 type] 
+Type domain.Elkarrizketa is not enhanced.
+
+[2022-05-10 19:04:09 #22 type.registry] 
+New type domain.Mezua
+
+[2022-05-10 19:04:09 #23 type.registry] 
+New type java.util.Vector<domain.Mezua>
+
+[2022-05-10 19:04:09 #24 type] 
+Type domain.Jarraipena is not enhanced.
+
+[2022-05-10 19:04:09 #25 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2022-05-10 19:04:09 #26 type] 
+Type domain.Mezua is not enhanced.
+
+[2022-05-10 19:04:09 #27 type.registry] 
+New type domain.Admin
+
+[2022-05-10 19:04:09 #28 type] 
+Type domain.Admin is not enhanced.
+
+[2022-05-10 19:04:09 #29 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-05-10 19:04:09 #30 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-05-10 19:04:10 #31 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
