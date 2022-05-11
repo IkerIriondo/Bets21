@@ -13,6 +13,7 @@ public class Elkarrizketa implements Serializable{
 	private int id;
 	private User user1;
 	private User user2;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Vector<Mezua> mezuak;
 	
 	public Elkarrizketa(User user1, User user2) {
