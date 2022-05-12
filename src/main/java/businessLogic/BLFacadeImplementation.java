@@ -263,5 +263,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		return ema;
 	}
 
+	@Override
+	public User elkarrizketaBerria(User user, User zeinekin) {
+		dbManager.open(false);
+		User u = dbManager.elkarrizketaBerria(user, zeinekin);
+		dbManager.close();
+		return u;
+	}
+
 }
 

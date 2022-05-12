@@ -85,4 +85,6 @@ public interface BLFacade  {
 
 	@WebMethod public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko);
 
+	@WebMethod public User elkarrizketaBerria(User user, User zeinekin);
+
 }

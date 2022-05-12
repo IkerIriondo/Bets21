@@ -169,6 +169,8 @@ public class DataAccess  {
 			
 			Erabiltzailea user1 = new Erabiltzailea("Paco","Fiestas","1999/06/25","pacof@gmail.com","paco","1234");
 			
+			Erabiltzailea user2 = new Erabiltzailea("Bad","Bunny","1994/08/21","bbunny@gmail.com","BadBunny","1234");
+			
 			Elkarrizketa elkar = new Elkarrizketa(user,user1);
 			
 			Mezua m = new Mezua(elkar,user,"Kaixo");
@@ -190,6 +192,7 @@ public class DataAccess  {
 			user.gehituJarraitua(jarrai);
 			
 			db.persist(user1);
+			db.persist(user2);
 			db.persist(jarrai);
 			
 			//GUREAK
@@ -570,12 +573,26 @@ public boolean existQuestion(Event event, String question) {
 	public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko) {
 		db.getTransaction().begin();
 		
-		TypedQuery<Erabiltzailea> query = db.createQuery("SELECT e FROM Erabiltzailea e WHERE e.getUsername() LIKE '%"+bilatzeko+"%",Erabiltzailea.class);
+		TypedQuery<Erabiltzailea> query = db.createQuery("SELECT e FROM Erabiltzailea e WHERE e.getUsername() LIKE '%"+bilatzeko+"%'",Erabiltzailea.class);
 
 		List<Erabiltzailea> ema = query.getResultList();
 		
 		db.getTransaction().commit();
 		return ema;
+	}
+	
+	public User elkarrizketaBerria(User user, User zeinekin) {
+		db.getTransaction().begin();
+		Elkarrizketa elk = new Elkarrizketa(user, zeinekin);
+		
+		User u = db.find(User.class, user);
+		User z = db.find(User.class, zeinekin);
+		
+		u.addElkarrizketa(elk);
+		z.addElkarrizketa(elk);
+		db.getTransaction().commit();
+		
+		return u;
 	}
 	
 }

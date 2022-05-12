@@ -11,11 +11,13 @@ public class Mezua implements Serializable{
 	private Elkarrizketa elkarrizketa;
 	private User nork;
 	private String mezua;
+	private boolean reported;
 	
 	public Mezua(Elkarrizketa elka, User nork, String mezua) {
 		elkarrizketa = elka;
 		this.nork = nork;
 		this.mezua = mezua;
+		reported = false;
 	}
 	
 	public Mezua() {}
@@ -37,6 +39,14 @@ public class Mezua implements Serializable{
 	}
 	public void setMezua(String mezua) {
 		this.mezua = mezua;
+	}
+
+	public boolean isReported() {
+		return reported;
+	}
+
+	public void setReported(boolean reported) {
+		this.reported = reported;
 	}
 	
 }

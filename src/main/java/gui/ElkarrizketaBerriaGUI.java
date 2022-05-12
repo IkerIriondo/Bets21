@@ -5,6 +5,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -28,6 +29,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 	private JFrame frame;
 	private User user;
 	private JTextField bilatuField;
+	private List<Erabiltzailea> erabil;
 	
 	private String[] erabiltzaileakColumnNames = {"Zenb", "Erabiltzailea"};
 	
@@ -96,7 +98,19 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 				String bilatzeko = bilatuField.getText();
 				
 				BLFacade facade = MainGUI.getBusinessLogic();
-				List<Erabiltzailea> erabil = facade.bilatuErabiltzaileak(bilatzeko);
+				erabil = facade.bilatuErabiltzaileak(bilatzeko);
+				
+				elkarrizketakTableModel.setRowCount(0);
+				
+				int i = 1;
+				for (Erabiltzailea era : erabil) {
+						Vector<Object> row = new Vector<Object>();
+						row.add(i);
+						row.add(era.getUsername());
+						i++;
+						elkarrizketakTableModel.addRow(row);		
+				}
+				
 			}
 		});
 		
@@ -122,6 +136,12 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		elkarrizketaBerriaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				BLFacade facade = MainGUI.getBusinessLogic();
+				int i = elkarrizketakTable.getSelectedRow();
+				User zeinekin = erabil.get(i);
+				user = facade.elkarrizketaBerria(user, zeinekin);
+				new MezuakBidaliGUI(user, user.getElkarrizketak().get(user.getElkarrizketak().size()-1));
+				frame.setVisible(false);
 			}
 		});
 		elkarrizketaBerriaButton.setBounds(187, 227, 124, 23);
