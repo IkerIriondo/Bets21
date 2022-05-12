@@ -42,7 +42,7 @@ public abstract class User implements Serializable{
 	private int zenbatApostu;
 	private float zenbatDiruIrabazi;
 	private int zenbatAposIrabazi;
-	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Vector<Elkarrizketa> elkarrizketak;
 	
 	public User() {
@@ -289,6 +289,11 @@ public abstract class User implements Serializable{
 
 	public void setElkarrizketak(Vector<Elkarrizketa> elkarrizketak) {
 		this.elkarrizketak = elkarrizketak;
+	}
+	
+	public void addElkarrizketa(Elkarrizketa elkar) {
+		elkarrizketak.add(elkar);
+		
 	}
 	
 }

@@ -248,9 +248,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public Mezua bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
+	public User bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
 		dbManager.open(false);
-		Mezua m = dbManager.bidaliMezua(user,elkarrizketa,testua);
+		User m = dbManager.bidaliMezua(user,elkarrizketa,testua);
 		dbManager.close();
 		return m;
 	}

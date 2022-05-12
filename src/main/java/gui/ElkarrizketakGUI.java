@@ -127,14 +127,15 @@ public class ElkarrizketakGUI extends JFrame{
 		frame.getContentPane().add(elkarrizketaBerriaButton);
 		
 		int i = 1;
-		for (Elkarrizketa elk : elkarrizketak) {
+		for (Elkarrizketa elk : user.getElkarrizketak()) {
 			Vector<Object> row = new Vector<Object>();
-			if(elk.getUser1().equals(user)) {
-				row.add(elk.getUser2());
-			}else {
-				row.add(elk.getUser1());
-			}
 			row.add(i);
+			if(elk.getUser1().equals(user)) {
+				row.add(elk.getUser2().getUsername());
+			}else {
+				row.add(elk.getUser1().getUsername());
+			}
+			
 			i++;
 			elkarrizketakTableModel.addRow(row);
 		}

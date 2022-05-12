@@ -116,8 +116,9 @@ public class MezuakBidaliGUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String testua = mezuaField.getText();
 				BLFacade facade = MainGUI.getBusinessLogic();
-				Mezua m = facade.bidaliMezua(bidaltzaile,elkarrizketa,testua);
-				eguneratuMezuakTable(m);
+				bidaltzaile = facade.bidaliMezua(bidaltzaile,elkarrizketa,testua);
+				eguneratuMezuakTable(testua);
+				mezuaField.setText("");
 			}
 		});
 		bidaliMezuaButton.setBounds(349, 227, 89, 23);
@@ -128,16 +129,17 @@ public class MezuakBidaliGUI extends JFrame{
 		
 		for(Mezua m: mezuak) {
 			Vector<Object> row = new Vector<Object>();
-			row.add(m.getNork());
+			row.add(m.getNork().getUsername());
 			row.add(m.getMezua());
 			mezuakTableModel.addRow(row);
 		}
 		
 	}
 
-	private void eguneratuMezuakTable(Mezua m) {
+	private void eguneratuMezuakTable(String m) {
 		Vector<Object> row = new Vector<Object>();
-		row.add(m.getNork());
-		row.add(m.getMezua());
+		row.add(bidaltzaile.getUsername());
+		row.add(m);
+		mezuakTableModel.addRow(row);
 	}
 }

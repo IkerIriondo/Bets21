@@ -174,6 +174,9 @@ public class DataAccess  {
 			Mezua m = new Mezua(elkar,user,"Kaixo");
 			elkar.gehituMezua(m);
 			
+			user.addElkarrizketa(elkar);
+			user1.addElkarrizketa(elkar);
+			
 			db.persist(elkar);
 			
 			user1.setZenbatAposIrabazi(5);
@@ -550,7 +553,7 @@ public boolean existQuestion(Event event, String question) {
 		return gu;
 	}
 
-	public Mezua bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
+	public User bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
 		db.getTransaction().begin();
 		
 		Elkarrizketa elk = db.find(Elkarrizketa.class, elkarrizketa);
@@ -561,13 +564,13 @@ public boolean existQuestion(Event event, String question) {
 		
 		db.persist(m);
 		db.getTransaction().commit();
-		return null;
+		return u;
 	}
 
 	public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko) {
 		db.getTransaction().begin();
 		
-		TypedQuery<Erabiltzailea> query = db.createQuery("SELECT e FROM Erabiltzailea e LIKE '%bilatzeko%",Erabiltzailea.class);
+		TypedQuery<Erabiltzailea> query = db.createQuery("SELECT e FROM Erabiltzailea e WHERE e.getUsername() LIKE '%"+bilatzeko+"%",Erabiltzailea.class);
 
 		List<Erabiltzailea> ema = query.getResultList();
 		
