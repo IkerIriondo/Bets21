@@ -174,6 +174,7 @@ public class DataAccess  {
 			Elkarrizketa elkar = new Elkarrizketa(user,user1);
 			
 			Mezua m = new Mezua(elkar,user,"Kaixo");
+			m.setReported(true);
 			elkar.gehituMezua(m);
 			
 			user.addElkarrizketa(elkar);
@@ -593,6 +594,34 @@ public boolean existQuestion(Event event, String question) {
 		db.getTransaction().commit();
 		
 		return u;
+	}
+
+	public void erreportatuMezua(Mezua mezua) {
+		db.getTransaction().begin();
+		
+		Mezua m = db.find(Mezua.class, mezua);
+		
+		m.setReported(true);
+		
+		db.getTransaction().commit();
+	}
+
+	public Mezua mezuaBilatu(Mezua mezua) {
+		db.getTransaction().begin();
+		Mezua m = db.find(Mezua.class, mezua);
+		db.getTransaction().commit();
+		return m;
+	}
+
+	public List<Mezua> lortuErreportatutakoMezuak() {
+		db.getTransaction().begin();
+		
+		TypedQuery<Mezua> query = db.createQuery("SELECT m FROM Mezua m WHERE m.isReported() = true ORDER BY m.getNork().getUsername()",Mezua.class);
+		
+		List<Mezua> mezuak = query.getResultList();
+		
+		db.getTransaction().commit();
+		return mezuak;
 	}
 	
 }

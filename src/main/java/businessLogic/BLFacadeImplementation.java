@@ -271,5 +271,28 @@ public class BLFacadeImplementation  implements BLFacade {
 		return u;
 	}
 
+	@Override
+	public void erreportatuMezua(Mezua mezua) {
+		dbManager.open(false);
+		dbManager.erreportatuMezua(mezua);
+		dbManager.close();
+	}
+
+	@Override
+	public Mezua mezuaBilatu(Mezua mezua) {
+		dbManager.open(false);
+		Mezua m = dbManager.mezuaBilatu(mezua);
+		dbManager.close();
+		return m;
+	}
+
+	@Override
+	public List<Mezua> lortuErreportatutakoMezuak() {
+		dbManager.open(false);
+		List<Mezua> mezuak = dbManager.lortuErreportatutakoMezuak();
+		dbManager.close();
+		return mezuak;
+	}
+
 }
 

@@ -70,7 +70,7 @@ public class MugimenduakIkusiGUI extends Frame{
 		frame.setVisible(true);
 	}
 
-	public MugimenduakIkusiGUI() {
+	/*public MugimenduakIkusiGUI() {
 		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -86,7 +86,7 @@ public class MugimenduakIkusiGUI extends Frame{
 		});
 		initialize();
 		frame.setVisible(true);
-	}
+	}*/
 	
 	/**
 	 * Initialize the contents of the frame.

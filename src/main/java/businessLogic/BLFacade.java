@@ -87,4 +87,10 @@ public interface BLFacade  {
 
 	@WebMethod public User elkarrizketaBerria(User user, User zeinekin);
 
+	@WebMethod public void erreportatuMezua(Mezua mezua);
+
+	@WebMethod public Mezua mezuaBilatu(Mezua mezua);
+
+	@WebMethod public List<Mezua> lortuErreportatutakoMezuak();
+
 }

@@ -83,7 +83,7 @@ public class AdminGUI extends JFrame{
 				c.setVisible(true);
 			}
 		});
-		galSortuButton.setBounds(254, 78, 126, 21);
+		galSortuButton.setBounds(254, 78, 147, 21);
 		frame.getContentPane().add(galSortuButton);
 		
 		JButton kuotaIpiniButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("KuotaIpini"));
@@ -105,7 +105,7 @@ public class AdminGUI extends JFrame{
 				f.setVisible(true);
 			}
 		});
-		galKonButton.setBounds(248, 110, 153, 21);
+		galKonButton.setBounds(254, 110, 147, 21);
 		frame.getContentPane().add(galKonButton);
 		
 		JButton itxiButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SaioaItxi"));
@@ -142,7 +142,7 @@ public class AdminGUI extends JFrame{
 				
 			}
 		});
-		emaitzaIpiniButton.setBounds(254, 142, 132, 21);
+		emaitzaIpiniButton.setBounds(254, 142, 147, 21);
 		frame.getContentPane().add(emaitzaIpiniButton);
 		
 		JButton gertaeraBikoiztuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BikoGertaera")); 
@@ -156,5 +156,15 @@ public class AdminGUI extends JFrame{
 		});
 		gertaeraBikoiztuButton.setBounds(76, 174, 126, 23);
 		frame.getContentPane().add(gertaeraBikoiztuButton);
+		
+		JButton erreporteakIkusiButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SeeReports")); //$NON-NLS-1$ //$NON-NLS-2$
+		erreporteakIkusiButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MezuErreportatuakGUI(user);
+				frame.setVisible(false);
+			}
+		});
+		erreporteakIkusiButton.setBounds(254, 174, 147, 23);
+		frame.getContentPane().add(erreporteakIkusiButton);
 	}
 }

@@ -3,11 +3,15 @@ package domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @SuppressWarnings("serial")
 @Entity
 public class Mezua implements Serializable{
 
+	@Id @GeneratedValue
+	private int id;
 	private Elkarrizketa elkarrizketa;
 	private User nork;
 	private String mezua;
@@ -48,5 +52,12 @@ public class Mezua implements Serializable{
 	public void setReported(boolean reported) {
 		this.reported = reported;
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

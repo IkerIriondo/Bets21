@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class MezuakBidaliGUI extends JFrame{
@@ -80,7 +82,7 @@ public class MezuakBidaliGUI extends JFrame{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 499, 300);
+		frame.setBounds(100, 100, 565, 359);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		frame.getContentPane().setLayout(null);
@@ -92,22 +94,34 @@ public class MezuakBidaliGUI extends JFrame{
 				frame.setVisible(false);
 			}
 		});
-		atzeraButton.setBounds(10, 227, 89, 23);
+		atzeraButton.setBounds(10, 286, 89, 23);
 		frame.getContentPane().add(atzeraButton);
 		
 		mezuakScrollPane = new JScrollPane();
 		
-		mezuakScrollPane.setBounds(10, 11, 450, 185);
+		mezuakScrollPane.setBounds(10, 11, 529, 240);
 		frame.getContentPane().add(mezuakScrollPane);
 		
 		mezuakTable = new JTable();
+		mezuakTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				int i = mezuakTable.getSelectedRow();
+				BLFacade facade = MainGUI.getBusinessLogic();
+				Mezua m = facade.mezuaBilatu(mezuak.get(i));
+				if(!m.isReported() && !m.getNork().getUsername().equals(bidaltzaile.getUsername())) {
+					new ErreportatuMezuaGUI(m);
+				}
+			}
+		});
 		mezuakScrollPane.setViewportView(mezuakTable);
 	
 		mezuakTableModel = new DefaultTableModel(null, mezuakColumnNames);
 		mezuakTable.setModel(mezuakTableModel);	
 		
 		mezuaField = new JTextField();
-		mezuaField.setBounds(151, 227, 150, 20);
+		mezuaField.setBounds(173, 287, 233, 20);
 		frame.getContentPane().add(mezuaField);
 		mezuaField.setColumns(10);
 		
@@ -121,7 +135,7 @@ public class MezuakBidaliGUI extends JFrame{
 				mezuaField.setText("");
 			}
 		});
-		bidaliMezuaButton.setBounds(349, 227, 89, 23);
+		bidaliMezuaButton.setBounds(450, 286, 89, 23);
 		frame.getContentPane().add(bidaliMezuaButton);
 		
 		mezuakTable.getColumnModel().getColumn(0).setPreferredWidth(50);
