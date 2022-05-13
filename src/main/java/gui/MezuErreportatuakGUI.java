@@ -119,7 +119,11 @@ public class MezuErreportatuakGUI extends JFrame{
 		baneatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Ban")); //$NON-NLS-1$ //$NON-NLS-2$
 		baneatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				int i = errepMezuakTable.getSelectedRow();
+				Mezua m = errepMezuak.get(i);
+				User baneatzekoa = m.getNork();
+				new BaneatuErabiltzaileaGUI(user, baneatzekoa, m);
+				frame.setVisible(false);
 			}
 		});
 		baneatuButton.setBounds(280, 329, 89, 23);

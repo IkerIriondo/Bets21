@@ -173,7 +173,5 @@ public class LoginGUI extends Frame {
 		frame.getContentPane().add(hizkuntzaButton);
 		
 		
-		
-		
 	}
 }
