@@ -287,7 +287,7 @@ public class FindQuestionsGUI extends JFrame {
 		});
 		apustuEginButton.setVisible(false);
 		apustuEginButton.setText(ResourceBundle.getBundle("Etiquetas").getString("MakeABet"));
-		apustuEginButton.setBounds(272, 423, 89, 23);
+		apustuEginButton.setBounds(251, 423, 150, 23);
 		
 		getContentPane().add(apustuEginButton);
 		infoLabel.setBounds(187, 401, 287, 14);
@@ -341,15 +341,20 @@ public class FindQuestionsGUI extends JFrame {
 			}
 		});
 		gertBikoiztButton.setVisible(false);
-		gertBikoiztButton.setBounds(347, 423, 89, 23);
+		gertBikoiztButton.setBounds(272, 423, 164, 23);
 		
 		getContentPane().add(gertBikoiztButton);
 		gertaeraEzabatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = tableEvents.getSelectedRow();
-				Event ev=(Event)tableModelEvents.getValueAt(i,2);
-				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.gertaeraEzabatu(ev);
+				try {
+					int i = tableEvents.getSelectedRow();
+					Event ev=(Event)tableModelEvents.getValueAt(i,2);
+					BLFacade facade = MainGUI.getBusinessLogic();
+					facade.gertaeraEzabatu(ev);
+				} catch (Exception e2) {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectEvent"));
+				}
+				
 			}
 		});
 

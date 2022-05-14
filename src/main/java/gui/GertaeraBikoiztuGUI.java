@@ -115,12 +115,39 @@ public class GertaeraBikoiztuGUI extends JFrame{
 		jCalendar.setBounds(26, 11, 184, 120);
 		frame.getContentPane().add(jCalendar);
 		
+		JLabel infoLabel = new JLabel();
+		infoLabel.setBounds(26, 148, 398, 14);
+		frame.getContentPane().add(infoLabel);
+		
 		JButton gertBikoiztuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BikoGertaera"));
 		gertBikoiztuButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				Date data = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
-				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.gertaeraBikoiztu(gertaera,data);
+				Date aukeratutakoa = jCalendar.getDate();
+				Date gertaerakoa = gertaera.getEventDate();
+				Date gaur = new Date();
+				gaur.setHours(0);
+				gaur.setMinutes(0);
+				gaur.setSeconds(0);
+				
+				aukeratutakoa.setHours(0);
+				aukeratutakoa.setMinutes(0);
+				aukeratutakoa.setSeconds(0);
+				
+				
+				System.out.println(gertaerakoa.toString());
+				System.out.println(aukeratutakoa.toString());
+				if(aukeratutakoa.before(gaur)) {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("PastDate"));
+				}else if(aukeratutakoa.toString().contentEquals(gertaerakoa.toString())){
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("SameDate"));
+				}else {
+					Date data = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
+					BLFacade facade = MainGUI.getBusinessLogic();
+					facade.gertaeraBikoiztu(gertaera,data);
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("DuplicateEvent"));
+				}
+				
 			}
 		});
 		gertBikoiztuButton.setBounds(157, 184, 135, 23);
