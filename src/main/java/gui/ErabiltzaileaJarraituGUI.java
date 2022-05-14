@@ -5,6 +5,8 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 
@@ -88,6 +90,11 @@ public class ErabiltzaileaJarraituGUI extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		
+		JLabel infoLabel = new JLabel();
+		infoLabel.setBounds(102, 176, 292, 14);
+		frame.getContentPane().add(infoLabel);
+		
 		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,8 +104,6 @@ public class ErabiltzaileaJarraituGUI extends JFrame{
 		});
 		atzeraButton.setBounds(10, 322, 138, 23);
 		frame.getContentPane().add(atzeraButton);
-		
-		
 		
 		JLabel zenbatDiruIrabazLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("IrabazDiruTotala")); 
 		zenbatDiruIrabazLabel.setBounds(242, 90, 127, 14);
@@ -153,12 +158,33 @@ public class ErabiltzaileaJarraituGUI extends JFrame{
 		JButton jarraituButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Follow")); 
 		jarraituButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = erabilTable.getSelectedRow();
-				Erabiltzailea erabil = erabiltzaileak.get(i);
-				
-				BLFacade facade = MainGUI.getBusinessLogic();
-				float dirua = Float.parseFloat(zenbatDiruField.getText());
-				user = facade.jarraituErabiltzailea(user,erabil,dirua);
+				try {
+					int i = erabilTable.getSelectedRow();
+					Erabiltzailea erabil = erabiltzaileak.get(i);
+					if(!zenbatDiruField.getText().isBlank()) {
+						if(diruZuzena(zenbatDiruField.getText())) {
+							float dirua = Float.parseFloat(zenbatDiruField.getText());
+							if(dirua>0) {
+								float zenbat = user.getDirua();
+								if(zenbat>dirua) {
+									BLFacade facade = MainGUI.getBusinessLogic();
+									user = facade.jarraituErabiltzailea(user,erabil,dirua);
+								}else {
+									infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NotMoneyBet"));
+								}
+							}else {
+								infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("Zero"));;
+							}
+							
+						}else {
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ValidNumber"));
+						}
+					}else {
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ValidNumber"));
+					}
+				}catch(Exception e1) {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectUser"));
+				}
 			}
 		});
 		jarraituButton.setBounds(311, 260, 138, 23);
@@ -202,11 +228,11 @@ public class ErabiltzaileaJarraituGUI extends JFrame{
 		erabilTable.setModel(erabiltzaileakTableModel);
 		
 		JLabel zenbatDiruLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ZenbatDiru")); //$NON-NLS-1$ //$NON-NLS-2$
-		zenbatDiruLabel.setBounds(111, 191, 105, 14);
+		zenbatDiruLabel.setBounds(101, 212, 105, 14);
 		frame.getContentPane().add(zenbatDiruLabel);
 		
 		zenbatDiruField = new JTextField();
-		zenbatDiruField.setBounds(283, 188, 86, 20);
+		zenbatDiruField.setBounds(287, 209, 86, 20);
 		frame.getContentPane().add(zenbatDiruField);
 		zenbatDiruField.setColumns(10);
 		
@@ -225,5 +251,15 @@ public class ErabiltzaileaJarraituGUI extends JFrame{
 			erabiltzaileakTableModel.addRow(row);
 		}
 		
+	}
+	
+	private boolean diruZuzena(String diru) {
+		Pattern pat = Pattern.compile("^[0-9]+([.][0-9]{1,2}+)?$");
+		Matcher mat = pat.matcher(diru);
+		if(mat.find()) {
+			return true;
+		}else{
+			return false;
+	    }
 	}
 }
