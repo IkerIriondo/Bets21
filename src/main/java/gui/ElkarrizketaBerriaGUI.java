@@ -35,7 +35,8 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 	private List<Erabiltzailea> erabil;
 	private List<String> emailak;
 	
-	private String[] erabiltzaileakColumnNames = {"Zenb", "Erabiltzailea"};
+	private String[] erabiltzaileakColumnNames = {ResourceBundle.getBundle("Etiquetas").getString("Zenb"), 
+			ResourceBundle.getBundle("Etiquetas").getString("Username")};
 	
 	private JTable elkarrizketakTable;
 	private DefaultTableModel elkarrizketakTableModel;
@@ -168,9 +169,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 					new MezuakBidaliGUI(user, user.getElkarrizketak().lastElement()/*user.getElkarrizketak().get(user.getElkarrizketak().size())*/);
 					frame.setVisible(false);
 				} catch (Exception e2) {
-					
 					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoSelectedChat"));
-					
 				}
 				
 			}

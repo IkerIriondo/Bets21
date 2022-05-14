@@ -145,7 +145,7 @@ public class BaneatuErabiltzaileaGUI extends JFrame{
 				noizArte.setMinutes(0);
 				noizArte.setSeconds(0);
 				
-				if(gaur.compareTo(noizArte)<0) {
+				if(gaur.compareTo(noizArte)<0 && !gaur.toString().contentEquals(noizArte.toString())) {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					facade.baneatuErabiltzailea(baneatzekoa,noizArte);
 					new MezuErreportatuakGUI(gu);
