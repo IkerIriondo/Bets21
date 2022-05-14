@@ -63,12 +63,12 @@ public class ErreportatuMezuaGUI extends JFrame{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 271, 177);
+		frame.setBounds(100, 100, 287, 182);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel mezuErrepLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ReportMessage"));
-		mezuErrepLabel.setBounds(30, 66, 195, 14);
+		mezuErrepLabel.setBounds(20, 66, 230, 14);
 		frame.getContentPane().add(mezuErrepLabel);
 		
 		JButton baiErrepButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Yes"));
@@ -88,13 +88,13 @@ public class ErreportatuMezuaGUI extends JFrame{
 				frame.setVisible(false);
 			}
 		});
-		ezErrepButton.setBounds(140, 104, 89, 23);
+		ezErrepButton.setBounds(161, 104, 89, 23);
 		frame.getContentPane().add(ezErrepButton);
 		
 		mezuaField = new JTextField();
 		mezuaField.setEditable(false);
 		mezuaField.setText(mezua.getMezua());
-		mezuaField.setBounds(20, 25, 209, 20);
+		mezuaField.setBounds(20, 25, 230, 20);
 		frame.getContentPane().add(mezuaField);
 		mezuaField.setColumns(10);
 		

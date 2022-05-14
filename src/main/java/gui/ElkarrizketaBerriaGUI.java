@@ -3,6 +3,7 @@ package gui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -22,6 +23,8 @@ import businessLogic.BLFacade;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class ElkarrizketaBerriaGUI extends JFrame{
@@ -30,6 +33,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 	private User user;
 	private JTextField bilatuField;
 	private List<Erabiltzailea> erabil;
+	private List<String> emailak;
 	
 	private String[] erabiltzaileakColumnNames = {"Zenb", "Erabiltzailea"};
 	
@@ -67,6 +71,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 				System.exit(1);
 			}
 		});
+		emailak = new LinkedList<String>();
 		this.user = user;
 		initialize();
 		frame.setVisible(true);
@@ -81,6 +86,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		
 		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,6 +96,16 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		});
 		atzeraButton.setBounds(10, 227, 89, 23);
 		frame.getContentPane().add(atzeraButton);
+		
+		for (Elkarrizketa e : user.getElkarrizketak()) {
+			
+			if (e.getUser1()==user) {
+				emailak.add(e.getUser2().getEmail());
+			}else {
+				emailak.add(e.getUser1().getEmail());
+			}
+			
+		}
 		
 		bilatuField = new JTextField();
 		bilatuField.addKeyListener(new KeyAdapter() {
@@ -105,11 +121,13 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 				int i = 1;
 				for (Erabiltzailea era : erabil) {
 					if(!user.getEmail().contentEquals(era.getEmail())) {
-						Vector<Object> row = new Vector<Object>();
-						row.add(i);
-						row.add(era.getUsername());
-						i++;
-						elkarrizketakTableModel.addRow(row);
+						if(!emailak.contains(era.getEmail())) {
+							Vector<Object> row = new Vector<Object>();
+							row.add(i);
+							row.add(era.getUsername());
+							i++;
+							elkarrizketakTableModel.addRow(row);	
+						}						
 					}		
 				}
 				
@@ -122,7 +140,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		
 		JScrollPane elkarrizketakScrollPane = new JScrollPane();
 		
-		elkarrizketakScrollPane.setBounds(10, 40, 414, 176);
+		elkarrizketakScrollPane.setBounds(10, 40, 414, 165);
 		frame.getContentPane().add(elkarrizketakScrollPane);
 		
 		elkarrizketakTable = new JTable();
@@ -134,19 +152,30 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		elkarrizketakTable.getColumnModel().getColumn(0).setPreferredWidth(10);
 		elkarrizketakTable.getColumnModel().getColumn(1).setPreferredWidth(300);
 		
+		JLabel infoLabel = new JLabel(); 
+		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		infoLabel.setBounds(56, 211, 323, 14);
+		frame.getContentPane().add(infoLabel);
+		
 		JButton elkarrizketaBerriaButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("NewChat")); //$NON-NLS-1$ //$NON-NLS-2$
 		elkarrizketaBerriaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					BLFacade facade = MainGUI.getBusinessLogic();
+					int i = elkarrizketakTable.getSelectedRow();
+					User zeinekin = erabil.get(i);
+					user = facade.elkarrizketaBerria(user, zeinekin);
+					new MezuakBidaliGUI(user, user.getElkarrizketak().get(user.getElkarrizketak().size()-1));
+					frame.setVisible(false);
+				} catch (Exception e2) {
+					
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoSelectedChat"));
+					
+				}
 				
-				BLFacade facade = MainGUI.getBusinessLogic();
-				int i = elkarrizketakTable.getSelectedRow();
-				User zeinekin = erabil.get(i);
-				user = facade.elkarrizketaBerria(user, zeinekin);
-				new MezuakBidaliGUI(user, user.getElkarrizketak().get(user.getElkarrizketak().size()-1));
-				frame.setVisible(false);
 			}
 		});
-		elkarrizketaBerriaButton.setBounds(187, 227, 124, 23);
+		elkarrizketaBerriaButton.setBounds(154, 227, 124, 23);
 		frame.getContentPane().add(elkarrizketaBerriaButton);
 		
 	}

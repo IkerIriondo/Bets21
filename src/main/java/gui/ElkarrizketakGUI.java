@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class ElkarrizketakGUI extends JFrame{
@@ -103,17 +105,27 @@ public class ElkarrizketakGUI extends JFrame{
 		elkarrizketakTable.getColumnModel().getColumn(0).setPreferredWidth(10);
 		elkarrizketakTable.getColumnModel().getColumn(1).setPreferredWidth(300);
 		
+		JLabel infoLabel = new JLabel(); 
+		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		infoLabel.setBounds(57, 202, 353, 14);
+		frame.getContentPane().add(infoLabel);
+		
 		JButton mezuaBidaliButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SendMessage")); 
 		mezuaBidaliButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = elkarrizketakTable.getSelectedRow();
+				try {
+					int i = elkarrizketakTable.getSelectedRow();
 				Elkarrizketa elkarrizketa = elkarrizketak.get(i);
 				
 				new MezuakBidaliGUI(user,elkarrizketa);
 				frame.setVisible(false);
+				} catch (Exception e2) {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoSelectedChat"));
+				}
+				
 			}
 		});
-		mezuaBidaliButton.setBounds(162, 227, 89, 23);
+		mezuaBidaliButton.setBounds(162, 227, 150, 23);
 		frame.getContentPane().add(mezuaBidaliButton);
 		
 		JButton elkarrizketaBerriaButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("NewChat"));
@@ -123,8 +135,9 @@ public class ElkarrizketakGUI extends JFrame{
 				frame.setVisible(false);
 			}
 		});
-		elkarrizketaBerriaButton.setBounds(309, 227, 89, 23);
+		elkarrizketaBerriaButton.setBounds(371, 227, 89, 23);
 		frame.getContentPane().add(elkarrizketaBerriaButton);
+		
 		
 		int i = 1;
 		for (Elkarrizketa elk : user.getElkarrizketak()) {

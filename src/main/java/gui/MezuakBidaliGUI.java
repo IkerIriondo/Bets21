@@ -129,10 +129,12 @@ public class MezuakBidaliGUI extends JFrame{
 		bidaliMezuaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String testua = mezuaField.getText();
-				BLFacade facade = MainGUI.getBusinessLogic();
-				bidaltzaile = facade.bidaliMezua(bidaltzaile,elkarrizketa,testua);
-				eguneratuMezuakTable(testua);
-				mezuaField.setText("");
+				if(!testua.isBlank()) {
+					BLFacade facade = MainGUI.getBusinessLogic();
+					bidaltzaile = facade.bidaliMezua(bidaltzaile,elkarrizketa,testua);
+					eguneratuMezuakTable(testua);
+					mezuaField.setText("");
+				}
 			}
 		});
 		bidaliMezuaButton.setBounds(450, 286, 89, 23);
