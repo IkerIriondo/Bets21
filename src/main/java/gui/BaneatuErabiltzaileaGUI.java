@@ -1,7 +1,5 @@
 package gui;
 
-
-import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Date;
@@ -18,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class BaneatuErabiltzaileaGUI extends JFrame{
@@ -122,6 +121,11 @@ public class BaneatuErabiltzaileaGUI extends JFrame{
 		frame.getContentPane().add(dataField);
 		dataField.setColumns(10);
 		
+		JLabel infoLabel = new JLabel();
+		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		infoLabel.setBounds(122, 199, 226, 14);
+		frame.getContentPane().add(infoLabel);
+		
 		int year = baneatzekoa.getZenbatDenboraBan().getYear() +1900;
 		int hil = baneatzekoa.getZenbatDenboraBan().getMonth() +1;
 		int day = baneatzekoa.getZenbatDenboraBan().getDate();
@@ -132,14 +136,27 @@ public class BaneatuErabiltzaileaGUI extends JFrame{
 		baneatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Date noizArte = jCalendar.getDate();
+				Date gaur = new Date();
+				gaur.setHours(0);
+				gaur.setMinutes(0);
+				gaur.setSeconds(0);
 				
-				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.baneatuErabiltzailea(baneatzekoa,noizArte);
-				new MezuErreportatuakGUI(gu);
-				frame.setVisible(false);
+				noizArte.setHours(0);
+				noizArte.setMinutes(0);
+				noizArte.setSeconds(0);
+				
+				if(gaur.compareTo(noizArte)<0) {
+					BLFacade facade = MainGUI.getBusinessLogic();
+					facade.baneatuErabiltzailea(baneatzekoa,noizArte);
+					new MezuErreportatuakGUI(gu);
+					frame.setVisible(false);
+				}else {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("PastDate"));
+				}
 			}
 		});
-		baneatuButton.setBounds(195, 215, 89, 23);
+		baneatuButton.setBounds(198, 227, 89, 23);
 		frame.getContentPane().add(baneatuButton);
+		
 	}
 }

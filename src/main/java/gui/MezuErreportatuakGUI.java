@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 
 import domain.*;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

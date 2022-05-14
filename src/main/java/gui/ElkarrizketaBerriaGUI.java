@@ -163,9 +163,9 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 				try {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					int i = elkarrizketakTable.getSelectedRow();
-					User zeinekin = erabil.get(i);
+					User zeinekin = erabil.get(i+1);
 					user = facade.elkarrizketaBerria(user, zeinekin);
-					new MezuakBidaliGUI(user, user.getElkarrizketak().get(user.getElkarrizketak().size()-1));
+					new MezuakBidaliGUI(user, user.getElkarrizketak().lastElement()/*user.getElkarrizketak().get(user.getElkarrizketak().size())*/);
 					frame.setVisible(false);
 				} catch (Exception e2) {
 					
