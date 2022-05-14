@@ -20,6 +20,7 @@ import businessLogic.BLFacade;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class MezuErreportatuakGUI extends JFrame{
@@ -34,6 +35,7 @@ public class MezuErreportatuakGUI extends JFrame{
 	
 	private String[] zutabeak = {"Username", "Mezua"};
 	private JButton baneatuButton;
+	private JLabel infoLabel;
 	
 	/**
 	 * Launch the application.
@@ -116,14 +118,24 @@ public class MezuErreportatuakGUI extends JFrame{
 			errepMezuakTableModel.addRow(row);
 		}
 		
+		infoLabel = new JLabel();
+		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		infoLabel.setBounds(95, 292, 416, 14);
+		frame.getContentPane().add(infoLabel);
+		
 		baneatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Ban")); //$NON-NLS-1$ //$NON-NLS-2$
 		baneatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = errepMezuakTable.getSelectedRow();
-				Mezua m = errepMezuak.get(i);
-				User baneatzekoa = m.getNork();
-				new BaneatuErabiltzaileaGUI(user, baneatzekoa, m);
-				frame.setVisible(false);
+				try {
+					int i = errepMezuakTable.getSelectedRow();
+					Mezua m = errepMezuak.get(i);
+					User baneatzekoa = m.getNork();
+					new BaneatuErabiltzaileaGUI(user, baneatzekoa, m);
+					frame.setVisible(false);
+				} catch (Exception e2) {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoSelectedMessege"));
+				}
+				
 			}
 		});
 		baneatuButton.setBounds(280, 329, 89, 23);

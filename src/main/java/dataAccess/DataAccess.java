@@ -632,6 +632,15 @@ public boolean existQuestion(Event event, String question) {
 		nor.setBaneatua(true);
 		nor.setZenbatDenboraBan(noizArte);
 		
+		TypedQuery<Mezua> query = db.createQuery("SELECT m FROM Mezua m WHERE m.isReported() = true",Mezua.class);
+		List<Mezua> mezuak = query.getResultList();
+		
+		for (Mezua mezua : mezuak) {
+			if(mezua.getNork()==nor) {
+				mezua.setReported(false);
+			}
+		}
+		
 		db.getTransaction().commit();
 	}
 
