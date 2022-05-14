@@ -5,11 +5,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import domain.*;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class ApustuAnitzakGUI {
+@SuppressWarnings("serial")
+public class ApustuAnitzakGUI extends JFrame{
 
 	private JFrame frame;
 	private JTextField KuotaField;
@@ -17,7 +24,7 @@ public class ApustuAnitzakGUI {
 	private JTable elkarrizketakTable;
 	private DefaultTableModel elkarrizketakTableModel;
 	private String[] elkarrizketakColumnNames = {"Galdera","Erantzun Posiblea"};
-
+	private User user;
 	/**
 	 * Launch the application.
 	 */
@@ -37,8 +44,23 @@ public class ApustuAnitzakGUI {
 	/**
 	 * Create the application.
 	 */
-	public ApustuAnitzakGUI() {
+	public ApustuAnitzakGUI(User user) {
+		super();
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					System.out.println("Error: "+e1.toString()+" , probably problems with Business Logic or Database");
+				}
+				System.exit(1);
+			}
+		});
+		this.user = user;
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**

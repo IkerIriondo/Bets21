@@ -55,17 +55,13 @@ public class FindQuestionsGUI extends JFrame {
 
 	private User user;
 	private Question galdera;
-	private final JButton apustuEginButton = new JButton(/*ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.apustuEginButton.text")*/); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
-	private final JLabel infoLabel = new JLabel(/*ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.lblNewLabel.text")*/); //$NON-NLS-1$ //$NON-NLS-2$
+	private final JButton apustuEginButton = new JButton();
+	private final JLabel infoLabel = new JLabel();
 	private final JButton gertaeraEzabatuButton = new JButton();
 	private final JButton emaitzaIpiniButton = new JButton();
 	private final JButton gertBikoiztButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BikoGertaera")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	
-
-
-
-
 	public JButton getGertBikoiztButton() {
 		return gertBikoiztButton;
 	}
@@ -212,7 +208,7 @@ public class FindQuestionsGUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int i=tableEvents.getSelectedRow();
-				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
+				Event ev=(Event)tableModelEvents.getValueAt(i,2); // obtain ev object
 				Vector<Question> queries=ev.getQuestions();
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
@@ -260,6 +256,7 @@ public class FindQuestionsGUI extends JFrame {
 		});
 		atzeraButton.setBounds(40, 419, 98, 30);
 		getContentPane().add(atzeraButton);
+		
 		apustuEginButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {

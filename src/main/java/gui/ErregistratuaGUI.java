@@ -109,10 +109,8 @@ public class ErregistratuaGUI extends Frame{
 		JButton apustuaEginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Bet"));
 		apustuaEginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new ApustuMotaGUI(user);
 				frame.setVisible(false);
-				FindQuestionsGUI f = new FindQuestionsGUI(user);
-				f.setVisible(true);
-				f.getApustuEginButton().setVisible(true);
 			}
 		});
 		apustuaEginButton.setBounds(255, 76, 129, 23);
