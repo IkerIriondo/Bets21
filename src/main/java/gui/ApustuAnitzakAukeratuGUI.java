@@ -35,7 +35,6 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate"));
 	private final JLabel jLabelQueries = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Queries")); 
 	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Events")); 
-	private JButton atzeraButton = new JButton();
 	
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
@@ -45,6 +44,8 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 	private JScrollPane scrollPaneQueries = new JScrollPane();
 	
 	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
+	private JComboBox<String> erantzunPosibleComboBox = new JComboBox<String>();
+	private ApustuAnitzakGUI apustuAnitzak;
 
 	private JTable tableEvents= new JTable();
 	private JTable tableQueries = new JTable();
@@ -63,6 +64,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 			ResourceBundle.getBundle("Etiquetas").getString("Query")
 
 	};
+	private final JButton apustuaGehituButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("addBet"));
 	/**
 	 * Launch the application.
 	 */
@@ -82,7 +84,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public ApustuAnitzakAukeratuGUI(User user) {
+	public ApustuAnitzakAukeratuGUI(User user, ApustuAnitzakGUI a) {
 		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -96,6 +98,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 				System.exit(1);
 			}
 		});
+		this.apustuAnitzak=a;
 		this.user = user;
 		initialize();
 		frame.setVisible(true);
@@ -200,7 +203,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 
 		frame.getContentPane().add(jCalendar1);
 		
-		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));
+		scrollPaneEvents.setBounds(new Rectangle(292, 50, 367, 150));
 		scrollPaneQueries.setBounds(new Rectangle(40, 240, 406, 116));
 
 		tableEvents.addMouseListener(new MouseAdapter() {
@@ -229,6 +232,26 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 			}
 		});
 
+		
+		erantzunPosibleComboBox.setBounds(456, 243, 203, 22);
+		
+		
+		frame.getContentPane().add(erantzunPosibleComboBox);
+		
+		tableQueries.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				erantzunPosibleComboBox.removeAllItems();
+				int i = tableQueries.getSelectedRow();
+				int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
+				BLFacade facade = MainGUI.getBusinessLogic();
+				Question galdera = facade.bilatuGaldera(galdZenb);
+				for (ErantzunPosiblea eran : galdera.getErantzunPosibleak()) {
+					erantzunPosibleComboBox.addItem(eran.getErantzunPosiblea());
+				}
+			}
+		});
+		
 		scrollPaneEvents.setViewportView(tableEvents);
 		tableModelEvents = new DefaultTableModel(null, columnNamesEvents);
 
@@ -246,16 +269,35 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 
 		frame.getContentPane().add(scrollPaneEvents);
 		frame.getContentPane().add(scrollPaneQueries);
-		atzeraButton.setText(ResourceBundle.getBundle("Etiquetas").getString("Close"));
-		
-		atzeraButton.addActionListener(new ActionListener() {
+		apustuaGehituButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ApustuMotaGUI(user);
-				frame.setVisible(false);
+				int indize = erantzunPosibleComboBox.getSelectedIndex();
+				int i = tableQueries.getSelectedRow();
+				int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
+				BLFacade facade = MainGUI.getBusinessLogic();
+				Question galdera = facade.bilatuGaldera(galdZenb);
+				ErantzunPosiblea er = galdera.getErantzunPosibleak().get(indize);
+				
+				Vector<Object> row = new Vector<Object>();
+				row.add(galdera.getQuestionNumber());
+				row.add(er.getErantzunPosiblea());
+				apustuAnitzak.getErantzunakTableModel().addRow(row);
+				float kuota = Float.parseFloat(apustuAnitzak.getKuotaField().getText())*er.getKuota();
+				apustuAnitzak.getKuotaField().setText(String.valueOf(kuota));
+				
 			}
 		});
-		atzeraButton.setBounds(10, 391, 140, 25);
-		frame.getContentPane().add(atzeraButton);
+		apustuaGehituButton.setBounds(456, 391, 203, 47);
+		
+		frame.getContentPane().add(apustuaGehituButton);
+		
+		JLabel erantzunPosibleakLabel = new JLabel(); 
+		erantzunPosibleakLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("PossibleAnswer")); 
+		erantzunPosibleakLabel.setBounds(456, 215, 203, 14);
+		frame.getContentPane().add(erantzunPosibleakLabel);
 	}
 
+	public void close() {
+		frame.setVisible(false);
+	}
 }

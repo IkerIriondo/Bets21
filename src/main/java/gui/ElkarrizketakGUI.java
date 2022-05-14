@@ -28,7 +28,8 @@ public class ElkarrizketakGUI extends JFrame{
 	private JTable elkarrizketakTable;
 	
 	private DefaultTableModel elkarrizketakTableModel;
-	private String[] elkarrizketakColumnNames = {"Zenb","Elkarrizketak"};
+	private String[] elkarrizketakColumnNames = {ResourceBundle.getBundle("Etiquetas").getString("Zenb"), 
+			ResourceBundle.getBundle("Etiquetas").getString("Chats")};
 	/**
 	 * Launch the application.
 	 */

@@ -81,7 +81,8 @@ public class ApustuMotaGUI extends JFrame{
 		JButton apustuAnitzaEginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MultipleBet"));
 		apustuAnitzaEginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new ApustuAnitzakGUI(user);
+				frame.setVisible(false);
 			}
 		});
 		apustuAnitzaEginButton.setBounds(143, 135, 132, 30);
