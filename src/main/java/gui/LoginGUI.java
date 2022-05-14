@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
@@ -122,9 +123,26 @@ public class LoginGUI extends Frame {
 					info2Label.setText(ResourceBundle.getBundle("Etiquetas").getString("NoPass"));
 					
 				}else if (user.getClass()==Erabiltzailea.class) {
-					frame.setVisible(false);
-					System.out.println("Correctly logged in");
-					new ErregistratuaGUI(user);
+					if(user.isBaneatua()) {
+						Date gaur = new Date();
+						Date noizDesban = user.getZenbatDenboraBan();
+						if(gaur.before(noizDesban)) {
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("Banned"));
+							int year = noizDesban.getYear()+1900;
+							int month = noizDesban.getMonth()+1;
+							int day = noizDesban.getDate();
+							info2Label.setText(year +"/"+ month +"/"+ day);
+						}else {
+							BLFacade facade1 = MainGUI.getBusinessLogic();
+							user = facade1.desbaneatuErabiltzailea(user);
+							new ErregistratuaGUI(user);
+							frame.setVisible(false);
+						}
+					}else {
+						frame.setVisible(false);
+						System.out.println("Correctly logged in");
+						new ErregistratuaGUI(user);
+					}
 				}else if (user.getClass()==Admin.class) {
 					frame.setVisible(false);
 					System.out.println("Logged as admin");

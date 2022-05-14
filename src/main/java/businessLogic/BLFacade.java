@@ -93,4 +93,8 @@ public interface BLFacade  {
 
 	@WebMethod public List<Mezua> lortuErreportatutakoMezuak();
 
+	@WebMethod public void baneatuErabiltzailea(User baneatzekoa, Date noizArte);
+
+	@WebMethod public User desbaneatuErabiltzailea(User user);
+
 }

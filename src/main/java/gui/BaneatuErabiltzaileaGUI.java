@@ -4,12 +4,14 @@ package gui;
 import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 
 import com.toedter.calendar.JCalendar;
 
+import businessLogic.BLFacade;
 import domain.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -126,15 +128,18 @@ public class BaneatuErabiltzaileaGUI extends JFrame{
 		
 		dataField.setText(year + "/" + hil + "/" + day);
 		
-		JButton baneatuButton = new JButton("New button");
+		JButton baneatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Ban"));
 		baneatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Date noizArte = jCalendar.getDate();
 				
+				BLFacade facade = MainGUI.getBusinessLogic();
+				facade.baneatuErabiltzailea(baneatzekoa,noizArte);
+				new MezuErreportatuakGUI(gu);
+				frame.setVisible(false);
 			}
 		});
 		baneatuButton.setBounds(195, 215, 89, 23);
 		frame.getContentPane().add(baneatuButton);
-		
-		
 	}
 }

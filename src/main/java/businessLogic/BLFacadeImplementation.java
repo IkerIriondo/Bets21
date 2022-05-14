@@ -294,5 +294,20 @@ public class BLFacadeImplementation  implements BLFacade {
 		return mezuak;
 	}
 
+	@Override
+	public void baneatuErabiltzailea(User baneatzekoa, Date noizArte) {
+		dbManager.open(false);
+		dbManager.baneatuErabiltzailea(baneatzekoa, noizArte);
+		dbManager.close();
+	}
+
+	@Override
+	public User desbaneatuErabiltzailea(User user) {
+		dbManager.open(false);
+		User u = dbManager.desbaneatuErabiltzailea(user);
+		dbManager.close();
+		return u;
+	}
+
 }
 

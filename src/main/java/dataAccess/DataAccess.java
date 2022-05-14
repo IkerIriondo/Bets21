@@ -623,5 +623,27 @@ public boolean existQuestion(Event event, String question) {
 		db.getTransaction().commit();
 		return mezuak;
 	}
+
+	public void baneatuErabiltzailea(User baneatzekoa, Date noizArte) {
+		db.getTransaction().begin();
+		
+		User nor = db.find(Erabiltzailea.class, baneatzekoa);
+		
+		nor.setBaneatua(true);
+		nor.setZenbatDenboraBan(noizArte);
+		
+		db.getTransaction().commit();
+	}
+
+	public User desbaneatuErabiltzailea(User user) {
+		db.getTransaction().begin();
+		
+		User u = db.find(Erabiltzailea.class, user);
+		
+		u.setBaneatua(false);
+		
+		db.getTransaction().commit();
+		return u;
+	}
 	
 }
