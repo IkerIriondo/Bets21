@@ -104,11 +104,13 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 				
 				int i = 1;
 				for (Erabiltzailea era : erabil) {
+					if(!user.getEmail().contentEquals(era.getEmail())) {
 						Vector<Object> row = new Vector<Object>();
 						row.add(i);
 						row.add(era.getUsername());
 						i++;
-						elkarrizketakTableModel.addRow(row);		
+						elkarrizketakTableModel.addRow(row);
+					}		
 				}
 				
 			}
