@@ -143,7 +143,7 @@ public class ElkarrizketakGUI extends JFrame{
 		for (Elkarrizketa elk : user.getElkarrizketak()) {
 			Vector<Object> row = new Vector<Object>();
 			row.add(i);
-			if(elk.getUser1().equals(user)) {
+			if(elk.getUser1().getUsername()==user.getUsername()) {
 				row.add(elk.getUser2().getUsername());
 			}else {
 				row.add(elk.getUser1().getUsername());

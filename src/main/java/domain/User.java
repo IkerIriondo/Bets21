@@ -295,5 +295,10 @@ public abstract class User implements Serializable{
 		elkarrizketak.add(elkar);
 		
 	}
+
+	public void elkarrizketaEzabatu(Elkarrizketa e) {
+		elkarrizketak.remove(e);
+		
+	}
 	
 }

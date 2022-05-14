@@ -81,7 +81,7 @@ public interface BLFacade  {
 
 	@WebMethod public User jarraituErabiltzailea(User user, Erabiltzailea erabil, float dirua);
 
-	@WebMethod public User bidaliMezua(User bidaltzaile, Elkarrizketa elkarrizketa, String testua);
+	@WebMethod public Elkarrizketa bidaliMezua(User bidaltzaile, Elkarrizketa elkarrizketa, String testua);
 
 	@WebMethod public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko);
 
@@ -96,5 +96,7 @@ public interface BLFacade  {
 	@WebMethod public void baneatuErabiltzailea(User baneatzekoa, Date noizArte);
 
 	@WebMethod public User desbaneatuErabiltzailea(User user);
+
+	@WebMethod public User elkarrizketaEzabatu(Elkarrizketa elkarrizketa, User bidaltzaile);
 
 }

@@ -90,8 +90,16 @@ public class MezuakBidaliGUI extends JFrame{
 		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(elkarrizketa.getMezuak().size()==0) {
+					
+					BLFacade facade = MainGUI.getBusinessLogic();
+					bidaltzaile = facade.elkarrizketaEzabatu(elkarrizketa, bidaltzaile);
+					
+				}
 				new ElkarrizketakGUI(bidaltzaile);
 				frame.setVisible(false);
+				
+				
 			}
 		});
 		atzeraButton.setBounds(10, 286, 89, 23);
@@ -131,7 +139,12 @@ public class MezuakBidaliGUI extends JFrame{
 				String testua = mezuaField.getText();
 				if(!testua.isBlank()) {
 					BLFacade facade = MainGUI.getBusinessLogic();
-					bidaltzaile = facade.bidaliMezua(bidaltzaile,elkarrizketa,testua);
+					elkarrizketa = facade.bidaliMezua(bidaltzaile,elkarrizketa,testua);
+					if(elkarrizketa.getUser1().getEmail().contentEquals(bidaltzaile.getEmail())) {
+						bidaltzaile = elkarrizketa.getUser1();
+					}else {
+						bidaltzaile = elkarrizketa.getUser2();
+					}
 					eguneratuMezuakTable(testua);
 					mezuaField.setText("");
 				}

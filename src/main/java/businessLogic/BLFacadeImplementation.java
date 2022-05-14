@@ -248,9 +248,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public User bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
+	public Elkarrizketa bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
 		dbManager.open(false);
-		User m = dbManager.bidaliMezua(user,elkarrizketa,testua);
+		Elkarrizketa m = dbManager.bidaliMezua(user,elkarrizketa,testua);
 		dbManager.close();
 		return m;
 	}
@@ -305,6 +305,14 @@ public class BLFacadeImplementation  implements BLFacade {
 	public User desbaneatuErabiltzailea(User user) {
 		dbManager.open(false);
 		User u = dbManager.desbaneatuErabiltzailea(user);
+		dbManager.close();
+		return u;
+	}
+
+	@Override
+	public User elkarrizketaEzabatu(Elkarrizketa elkarrizketa, User bidaltzaile) {
+		dbManager.open(false);
+		User u = dbManager.elkarrizketaEzabatu(elkarrizketa, bidaltzaile);
 		dbManager.close();
 		return u;
 	}

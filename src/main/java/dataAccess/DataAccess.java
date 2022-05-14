@@ -557,7 +557,7 @@ public boolean existQuestion(Event event, String question) {
 		return gu;
 	}
 
-	public User bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
+	public Elkarrizketa bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
 		db.getTransaction().begin();
 		
 		Elkarrizketa elk = db.find(Elkarrizketa.class, elkarrizketa);
@@ -568,7 +568,7 @@ public boolean existQuestion(Event event, String question) {
 		
 		db.persist(m);
 		db.getTransaction().commit();
-		return u;
+		return elk;
 	}
 
 	public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko) {
@@ -642,6 +642,24 @@ public boolean existQuestion(Event event, String question) {
 		
 		u.setBaneatua(false);
 		
+		db.getTransaction().commit();
+		return u;
+	}
+
+	public User elkarrizketaEzabatu(Elkarrizketa elkarrizketa, User bidaltzaile) {
+		db.getTransaction().begin();
+		User u2;
+		if(bidaltzaile==elkarrizketa.getUser1()) {
+			 u2 = elkarrizketa.getUser2();
+		}else {
+			 u2 = elkarrizketa.getUser1();
+		}
+		Elkarrizketa e = db.find(Elkarrizketa.class, elkarrizketa);
+		User u = db.find(Erabiltzailea.class, bidaltzaile);
+		User u1 = db.find(Erabiltzailea.class, u2);
+		u.elkarrizketaEzabatu(e);
+		u1.elkarrizketaEzabatu(e);
+		db.remove(e);
 		db.getTransaction().commit();
 		return u;
 	}
