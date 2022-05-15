@@ -128,8 +128,12 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 							row.add(era.getUsername());
 							i++;
 							elkarrizketakTableModel.addRow(row);	
-						}						
-					}		
+						}else {
+							erabil.remove(era);
+						}
+					}else {
+						erabil.remove(era);
+					}
 				}
 				
 			}
