@@ -66,6 +66,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 
 	};
 	private final JButton apustuaGehituButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("addBet"));
+	private final JLabel infoLabel=new JLabel();
 	/**
 	 * Launch the application.
 	 */
@@ -123,7 +124,13 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 		frame.getContentPane().add(jLabelQueries);
 		frame.getContentPane().add(jLabelEvents);
 
-
+		JLabel erantzunPosibleakLabel = new JLabel(); 
+		erantzunPosibleakLabel.setBounds(456, 215, 203, 14);
+		frame.getContentPane().add(erantzunPosibleakLabel);
+		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		infoLabel.setBounds(40, 391, 406, 14);
+		
+		
 		jCalendar1.setBounds(new Rectangle(40, 50, 225, 150));
 
 		BLFacade facade = MainGUI.getBusinessLogic();
@@ -272,6 +279,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 		frame.getContentPane().add(scrollPaneQueries);
 		apustuaGehituButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				infoLabel.setText("");
 				
 				int indize = erantzunPosibleComboBox.getSelectedIndex();
 				int i = tableQueries.getSelectedRow();
@@ -280,19 +288,35 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 				Question galdera = facade.bilatuGaldera(galdZenb);
 				ErantzunPosiblea er = galdera.getErantzunPosibleak().get(indize);
 				
-				if(!galdZbn.contains(galdZenb)) {
-					galdZbn.add(galdZenb);
+				Date gaur = new Date();
+				gaur.setHours(0);
+				gaur.setMinutes(0);
+				gaur.setSeconds(0);
+				
+				Date aukeratua = jCalendar1.getDate();
+				
+				aukeratua.setHours(0);
+				aukeratua.setMinutes(0);
+				aukeratua.setSeconds(0);
+				
+				if(gaur.compareTo(aukeratua)<0) {
+	
+					if(!galdZbn.contains(galdZenb)) {
+						galdZbn.add(galdZenb);
 					
-					Vector<Object> row = new Vector<Object>();
-					row.add(galdera.getQuestionNumber());
-					row.add(er.getErantzunPosiblea());
-					apustuAnitzak.getErantzunakTableModel().addRow(row);
+						Vector<Object> row = new Vector<Object>();
+						row.add(galdera.getQuestionNumber());
+						row.add(er.getErantzunPosiblea());
+						apustuAnitzak.getErantzunakTableModel().addRow(row);
+					
+						float kuota = Float.parseFloat(apustuAnitzak.getKuotaField().getText())*er.getKuota();
+						apustuAnitzak.getKuotaField().setText(String.valueOf(kuota));
 				
-					float kuota = Float.parseFloat(apustuAnitzak.getKuotaField().getText())*er.getKuota();
-					apustuAnitzak.getKuotaField().setText(String.valueOf(kuota));
-				
-					float apustuMin = Float.parseFloat(apustuAnitzak.getApustuMinField().getText())+galdera.getBetMinimum();
-					apustuAnitzak.getApustuMinField().setText(String.valueOf(apustuMin));
+						float apustuMin = Float.parseFloat(apustuAnitzak.getApustuMinField().getText())+galdera.getBetMinimum();
+						apustuAnitzak.getApustuMinField().setText(String.valueOf(apustuMin));
+					}
+				}else {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("PastDate"));
 				}
 				
 			}
@@ -300,11 +324,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 		apustuaGehituButton.setBounds(456, 391, 203, 47);
 		
 		frame.getContentPane().add(apustuaGehituButton);
-		
-		JLabel erantzunPosibleakLabel = new JLabel(); 
-		erantzunPosibleakLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("PossibleAnswer")); 
-		erantzunPosibleakLabel.setBounds(456, 215, 203, 14);
-		frame.getContentPane().add(erantzunPosibleakLabel);
+		frame.getContentPane().add(infoLabel);
 	}
 
 	public void close() {
