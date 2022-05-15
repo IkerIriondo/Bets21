@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
@@ -97,6 +98,11 @@ public class ApustuAnitzakGUI extends JFrame{
 		apustuMinLabel.setBounds(292, 104, 183, 14);
 		frame.getContentPane().add(apustuMinLabel);
 		
+		JLabel infoLabel = new JLabel(); 
+		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		infoLabel.setBounds(292, 180, 324, 14);
+		frame.getContentPane().add(infoLabel);
+		
 		KuotaField = new JTextField();
 		KuotaField.setText("1"); 
 		KuotaField.setEditable(false);
@@ -139,12 +145,18 @@ public class ApustuAnitzakGUI extends JFrame{
 				float kuota = Float.parseFloat(KuotaField.getText());
 				float betMin = Float.parseFloat(apustuMinField.getText());
 				float dirua = Float.parseFloat(DiruaField.getText());
-				
+				if(dirua>=betMin) {
 				user = facade.apustuAnitzaEgin(erPosibleak,kuota,dirua,user);
-					
+				
+				new ErregistratuaGUI(user);
+				frame.setVisible(false);
+				apustuakAukeratu.close();
+				}else {
+					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoMinBet"));
+				}
 			}
 		});
-		apustuAnitzaEginButton.setBounds(394, 195, 170, 40);
+		apustuAnitzaEginButton.setBounds(391, 211, 170, 40);
 		frame.getContentPane().add(apustuAnitzaEginButton);
 		
 		JScrollPane erantzunakScrollPane = new JScrollPane();
@@ -170,7 +182,6 @@ public class ApustuAnitzakGUI extends JFrame{
 		atzeraButton.setBounds(505, 284, 111, 33);
 		frame.getContentPane().add(atzeraButton);
 		
-		
 		erantzunakTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		erantzunakTable.getColumnModel().getColumn(1).setPreferredWidth(180);
 		
@@ -187,4 +198,5 @@ public class ApustuAnitzakGUI extends JFrame{
 	public JTextField getApustuMinField() {
 		return apustuMinField;
 	}
+	
 }
