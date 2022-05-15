@@ -13,6 +13,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -125,35 +127,58 @@ public class ApustuAnitzakGUI extends JFrame{
 		JButton apustuAnitzaEginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MakeABet"));
 		apustuAnitzaEginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BLFacade facade = MainGUI.getBusinessLogic();
-				
-				for(int i=0; i<erantzunakTableModel.getRowCount();i++) {
-					int zbn =(int)erantzunakTableModel.getValueAt(i, 0);
-					galderak.add(facade.bilatuGaldera(zbn));
-				}
-				int i=0;
-				for (Question eq : galderak) {
-					String er =(String) erantzunakTableModel.getValueAt(i, 1);
-					ErantzunPosiblea era = eq.getErantzuna(er);
-					
-					if(era!=null) 
-					erPosibleak.add(era);
-					
-					i++;
-				}
 				
 				float kuota = Float.parseFloat(KuotaField.getText());
 				float betMin = Float.parseFloat(apustuMinField.getText());
-				float dirua = Float.parseFloat(DiruaField.getText());
-				if(dirua>=betMin) {
-				user = facade.apustuAnitzaEgin(erPosibleak,kuota,dirua,user);
+				String diru = DiruaField.getText();
 				
-				new ErregistratuaGUI(user);
-				frame.setVisible(false);
-				apustuakAukeratu.close();
-				}else {
-					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoMinBet"));
-				}
+					
+				try {
+				if(diruZuzena(diru)) {
+					float dirua = Float.parseFloat(diru);
+					if(dirua<=0) {
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("Zero"));
+						
+					}else {
+						if(user.getDirua()>=dirua) {
+							if(dirua>=betMin) {
+								
+								BLFacade facade = MainGUI.getBusinessLogic();
+								
+								for(int i=0; i<erantzunakTableModel.getRowCount();i++) {
+									int zbn =(int)erantzunakTableModel.getValueAt(i, 0);
+									galderak.add(facade.bilatuGaldera(zbn));
+								}
+								int i=0;
+								for (Question eq : galderak) {
+									String er =(String) erantzunakTableModel.getValueAt(i, 1);
+									ErantzunPosiblea era = eq.getErantzuna(er);
+									
+									if(era!=null) 
+									erPosibleak.add(era);
+									
+									i++;
+								}
+								
+								user = facade.apustuAnitzaEgin(erPosibleak,kuota,dirua,user);
+				
+								new ErregistratuaGUI(user);
+								frame.setVisible(false);
+								apustuakAukeratu.close();
+							}else {
+								infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoMinBet"));
+							}
+						}else {
+							infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NotMoneyBet"));
+						}
+					}
+					}else {
+						infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ValidNumber"));
+					}
+				
+			} catch (Exception e2) {
+				infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ValidNumber"));
+			}
 			}
 		});
 		apustuAnitzaEginButton.setBounds(391, 211, 170, 40);
@@ -199,4 +224,13 @@ public class ApustuAnitzakGUI extends JFrame{
 		return apustuMinField;
 	}
 	
+	private boolean diruZuzena(String diru) {
+		Pattern pat = Pattern.compile("^[0-9]+([.][0-9]{1,2}+)?$");
+		Matcher mat = pat.matcher(diru);
+		if(mat.find()) {
+			return true;
+		}else{
+			return false;
+	    }
+	}
 }
