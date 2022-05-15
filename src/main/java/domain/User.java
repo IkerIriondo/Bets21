@@ -322,5 +322,25 @@ public abstract class User implements Serializable{
 		zenbatApostu++;
 		zenbatDiruIrabazi = zenbatDiruIrabazi - a.getDirua();
 	}
+
+	public void apustuAnitzaIrabazi(ApustuAnitza apa) {
+		float zenbat = apa.getDirua()*apa.getKuota();
+		dirua = dirua + zenbat;
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,zenbat + "€ irabazi duzu apustu anitza irabaziz",this);
+		mugimenduak.add(mug);
+		
+		apustuAnitzak.remove(apa);
+		zenbatDiruIrabazi = zenbatDiruIrabazi + zenbat;
+		zenbatAposIrabazi++;
+	}
+
+	public void apostuAnitzaEzabatu(ApustuAnitza apa) {
+		dirua = dirua + apa.getDirua();
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,apa.getDirua() + "€ itzuli zaizkizu",this);
+		mugimenduak.add(mug);
+		apustuAnitzak.remove(apa);
+		zenbatApostu--;
+		zenbatDiruIrabazi = zenbatDiruIrabazi + apa.getDirua();
+	}
 	
 }

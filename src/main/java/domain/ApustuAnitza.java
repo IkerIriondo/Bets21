@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@SuppressWarnings("serial")
 @Entity
 public class ApustuAnitza implements Serializable {
 
@@ -26,6 +27,14 @@ public class ApustuAnitza implements Serializable {
 	public ApustuAnitza(float kuota, float dirua, User user) {
 		super();
 		this.erPosibleak = new Vector<ErantzunPosiblea>();
+		this.kuota = kuota;
+		this.dirua = dirua;
+		this.user = user;
+	}
+	
+	public ApustuAnitza(Vector<ErantzunPosiblea> emak, float kuota, float dirua, User user) {
+		super();
+		this.erPosibleak = emak;
 		this.kuota = kuota;
 		this.dirua = dirua;
 		this.user = user;

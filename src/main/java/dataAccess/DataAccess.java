@@ -139,6 +139,8 @@ public class DataAccess  {
 			ErantzunPosiblea eran = new ErantzunPosiblea(q1,1,"Athletic");
 			q1.addErantzunPosibleak(eran);
 	        
+			
+			
 			db.persist(ev1);
 			db.persist(ev2);
 			db.persist(ev3);
@@ -189,7 +191,7 @@ public class DataAccess  {
 			Jarraipena jarrai = new Jarraipena(user,user1,50);
 			
 			user1.diruaGehitu(500);
-			user.diruaGehitu(100);		
+			user.diruaGehitu(200);		
 
 			user1.gehituJarraitzailea(jarrai);
 			user.gehituJarraitua(jarrai);
@@ -212,9 +214,37 @@ public class DataAccess  {
 			ema.getApustuak().add(a1);	
 			user.apustuaGehitu(a1);
 			
-			
-			db.persist(user);
 			db.persist(e33);
+			
+			Event e34 = new Event(34, "Erreala vs Athletic", UtilDate.newDate(2022, 2-1, 14));
+			Question q34 = e34.addQuestion("Zeinek irabaziko du?", 34);
+			q34.setEvent(e34);
+			ErantzunPosiblea ema3 = new ErantzunPosiblea(q34,2,"Erreala");
+			ErantzunPosiblea ema4 = new ErantzunPosiblea(q34,4,"Atletic");
+			q34.addErantzunPosibleak(ema3);
+			q34.addErantzunPosibleak(ema4);
+			
+			ApustuAnitza apa = new ApustuAnitza(4, 70, user);
+			apa.addErantzunPosiblea(ema);
+			apa.addErantzunPosiblea(ema3);
+			
+			ema.addApustuAnitza(apa);
+			ema3.addApustuAnitza(apa);
+			user.addApustuAnitza(apa);
+			
+			db.persist(e34);
+			db.persist(user);
+			
+			Event e45 = new Event(45, "Erreala vs Barca", UtilDate.newDate(2022, 6-1, 2));
+			Question q45 = e45.addQuestion("Zeinek irabaziko du?", 45);
+			q45.setEvent(e45);
+			ErantzunPosiblea ema5 = new ErantzunPosiblea(q45, 2, "Erreala");
+			ErantzunPosiblea ema6 = new ErantzunPosiblea(q45, 2, "Barca");
+			q45.addErantzunPosibleak(ema5);
+			q45.addErantzunPosibleak(ema6);
+
+			db.persist(e45);
+			
 			System.out.println("Db initialized");
 		}
 		catch (Exception e){
@@ -481,6 +511,10 @@ public boolean existQuestion(Event event, String question) {
 					User u = db.find(User.class, a.getErabiltzailea().getEmail());
 					u.diruaItzuli(a);
 				}
+				for (ApustuAnitza apa : eran.getApustuAnitzak()) {
+					User u = db.find(User.class, apa.getUser());
+					u.apostuAnitzaEzabatu(apa);
+				}
 			}
 		}
 		db.remove(e);
@@ -496,12 +530,37 @@ public boolean existQuestion(Event event, String question) {
 		}
 		Question q = db.find(Question.class, e.getGaldera().getQuestionNumber());
 		for (ErantzunPosiblea ema : q.getErantzunPosibleak()) {
+			ema.setEmaitzaDu(true);
 			for (Apustua ap : ema.getApustuak()) {
 				db.remove(ap);
 			}
 			ema.setApustuak(new Vector<Apustua>());
 		}
 		q.setResult(e);
+		
+		e.setEmaitzaDu(true);
+		e.setEmaitzaZuzenaDa(true);
+		
+		for (ErantzunPosiblea ep : q.getErantzunPosibleak()) {
+			for (ApustuAnitza apa : ep.getApustuAnitzak()) {
+				boolean denakZuzenak = true;
+				boolean denakEmaitza = true;
+				for (ErantzunPosiblea epa : apa.getErPosibleak()) {
+					denakZuzenak = denakZuzenak && epa.isEmaitzaZuzenaDa();
+					denakEmaitza = denakEmaitza && epa.isEmaitzaDu();
+				}
+				
+				if(denakZuzenak) {
+					User u = db.find(User.class, apa.getUser());
+					u.apustuAnitzaIrabazi(apa);
+					db.remove(apa);
+				}else if(denakEmaitza) {
+					db.remove(apa);
+				}
+				
+			}
+		}
+		
 		db.getTransaction().commit();
 	}
 
@@ -677,7 +736,7 @@ public boolean existQuestion(Event event, String question) {
 	public User apustuAnitzaEgin(Vector<ErantzunPosiblea> erPosibleak, float kuota, float dirua, User user) {
 		db.getTransaction().begin();
 		User u = db.find(Erabiltzailea.class, user);
-		
+		List<Jarraipena> ezabatzekoak = new LinkedList<Jarraipena>();
 		ApustuAnitza a = new ApustuAnitza(kuota, dirua, u);
 		u.addApustuAnitza(a);
 		for (ErantzunPosiblea er : erPosibleak) {
@@ -685,7 +744,29 @@ public boolean existQuestion(Event event, String question) {
 			e.addApustuAnitza(a);
 			a.addErantzunPosiblea(er);
 		}
-		
+		for (Jarraipena j : user.getJarraitzaileak()) {
+			User us = db.find(Erabiltzailea.class, j.getZeinek());
+			Jarraipena ja= db.find(Jarraipena.class, j);
+			float diru = ja.getZenbatDiru();
+			if(diru <= dirua) {
+				a = new ApustuAnitza(erPosibleak, kuota, dirua, us);
+				u.ezabatuJarraitzailea(ja);
+				us.ezabatuJarraituak(ja);
+				us.addApustuAnitza(a);
+				ezabatzekoak.add(ja);
+			}else {
+				a = new ApustuAnitza(erPosibleak, kuota, dirua, us);
+				us.addApustuAnitza(a);
+				ja.setZenbatDiru(diru - dirua);
+			}
+			for (ErantzunPosiblea er : erPosibleak) {
+				ErantzunPosiblea e = db.find(ErantzunPosiblea.class, er);
+				e.addApustuAnitza(a);
+			}
+		}
+		for (Jarraipena j : ezabatzekoak) {
+			db.remove(j);
+		}
 		db.getTransaction().commit();	
 		return u;
 	}
