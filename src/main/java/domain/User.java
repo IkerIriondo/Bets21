@@ -280,6 +280,8 @@ public abstract class User implements Serializable{
 	public void gehituJarraitua(Jarraipena jarrai) {
 		jarraituak.add(jarrai);
 		dirua = dirua - jarrai.getZenbatDiru();
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,jarrai.getZenbatDiru() + "€ gastatu duzu jarraipenean",this);
+		mugimenduak.add(mug);
 	}
 
 	public void gehituJarraitzailea(Jarraipena jarrai) {
@@ -313,7 +315,12 @@ public abstract class User implements Serializable{
 	}
 	
 	public void addApustuAnitza(ApustuAnitza a) {
+		dirua = dirua - a.getDirua();
+		Mugimendua mug = new Mugimendua(mugimenduak.size()+1,a.getDirua() + "€ gastatu duzu apostatzen",this);
+		mugimenduak.add(mug);
 		apustuAnitzak.add(a);
+		zenbatApostu++;
+		zenbatDiruIrabazi = zenbatDiruIrabazi - a.getDirua();
 	}
 	
 }

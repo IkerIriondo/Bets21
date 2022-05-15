@@ -188,7 +188,9 @@ public class DataAccess  {
 			
 			Jarraipena jarrai = new Jarraipena(user,user1,50);
 			
-			user1.setDirua(500);
+			user1.diruaGehitu(500);
+			user.diruaGehitu(100);		
+
 			user1.gehituJarraitzailea(jarrai);
 			user.gehituJarraitua(jarrai);
 			
@@ -208,7 +210,6 @@ public class DataAccess  {
 			Apustua a1 = new Apustua(5, user, ema);
 			
 			ema.getApustuak().add(a1);	
-			user.diruaGehitu(100);		
 			user.apustuaGehitu(a1);
 			
 			

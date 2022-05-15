@@ -2449,3 +2449,419 @@ Type domain.Erabiltzailea is not enhanced.
 [2022-05-15 13:21:23 #34 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-15 13:27:45 #1 store] 
+Database 'C:\Users\ibaih\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 13932@DESKTOP-1QBPJUI
+
+[2022-05-15 13:27:45 #2 type.registry] 
+New type domain.Question
+
+[2022-05-15 13:27:45 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-05-15 13:27:45 #4 type.registry] 
+New type domain.ErantzunPosiblea
+
+[2022-05-15 13:27:45 #5 type.registry] 
+New type java.util.Vector<domain.ErantzunPosiblea>
+
+[2022-05-15 13:27:45 #6 type.registry] 
+New type domain.Event
+
+[2022-05-15 13:27:45 #7 type] 
+Type domain.ErantzunPosiblea is not enhanced.
+
+[2022-05-15 13:27:45 #8 type.registry] 
+New type domain.ApustuAnitza
+
+[2022-05-15 13:27:45 #9 type.registry] 
+New type java.util.Vector<domain.ApustuAnitza>
+
+[2022-05-15 13:27:45 #10 type.registry] 
+New type domain.Apustua
+
+[2022-05-15 13:27:45 #11 type.registry] 
+New type java.util.Vector<domain.Apustua>
+
+[2022-05-15 13:27:45 #12 type] 
+Type domain.Event is not enhanced.
+
+[2022-05-15 13:27:45 #13 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-05-15 13:27:45 #14 type] 
+Type domain.ApustuAnitza is not enhanced.
+
+[2022-05-15 13:27:45 #15 type.registry] 
+New type domain.User
+
+[2022-05-15 13:27:45 #16 type] 
+Type domain.Apustua is not enhanced.
+
+[2022-05-15 13:27:45 #17 type] 
+Type domain.User is not enhanced.
+
+[2022-05-15 13:27:45 #18 type.registry] 
+New type domain.Elkarrizketa
+
+[2022-05-15 13:27:45 #19 type.registry] 
+New type java.util.Vector<domain.Elkarrizketa>
+
+[2022-05-15 13:27:45 #20 type.registry] 
+New type domain.Jarraipena
+
+[2022-05-15 13:27:45 #21 type.registry] 
+New type java.util.Vector<domain.Jarraipena>
+
+[2022-05-15 13:27:45 #22 type.registry] 
+New type domain.Mugimendua
+
+[2022-05-15 13:27:45 #23 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2022-05-15 13:27:45 #24 type] 
+Type domain.Elkarrizketa is not enhanced.
+
+[2022-05-15 13:27:45 #25 type.registry] 
+New type domain.Mezua
+
+[2022-05-15 13:27:45 #26 type.registry] 
+New type java.util.Vector<domain.Mezua>
+
+[2022-05-15 13:27:45 #27 type] 
+Type domain.Jarraipena is not enhanced.
+
+[2022-05-15 13:27:45 #28 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2022-05-15 13:27:45 #29 type] 
+Type domain.Mezua is not enhanced.
+
+[2022-05-15 13:27:45 #30 type.registry] 
+New type domain.Admin
+
+[2022-05-15 13:27:45 #31 type] 
+Type domain.Admin is not enhanced.
+
+[2022-05-15 13:27:45 #32 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-05-15 13:27:45 #33 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-05-15 13:27:45 #34 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-15 13:31:26 #1 store] 
+Database 'C:\Users\ibaih\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 16264@DESKTOP-1QBPJUI
+
+[2022-05-15 13:31:26 #2 type.registry] 
+New type domain.Question
+
+[2022-05-15 13:31:26 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-05-15 13:31:26 #4 type.registry] 
+New type domain.ErantzunPosiblea
+
+[2022-05-15 13:31:26 #5 type.registry] 
+New type java.util.Vector<domain.ErantzunPosiblea>
+
+[2022-05-15 13:31:26 #6 type.registry] 
+New type domain.Event
+
+[2022-05-15 13:31:26 #7 type] 
+Type domain.ErantzunPosiblea is not enhanced.
+
+[2022-05-15 13:31:26 #8 type.registry] 
+New type domain.ApustuAnitza
+
+[2022-05-15 13:31:26 #9 type.registry] 
+New type java.util.Vector<domain.ApustuAnitza>
+
+[2022-05-15 13:31:26 #10 type.registry] 
+New type domain.Apustua
+
+[2022-05-15 13:31:26 #11 type.registry] 
+New type java.util.Vector<domain.Apustua>
+
+[2022-05-15 13:31:26 #12 type] 
+Type domain.Event is not enhanced.
+
+[2022-05-15 13:31:26 #13 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-05-15 13:31:26 #14 type] 
+Type domain.ApustuAnitza is not enhanced.
+
+[2022-05-15 13:31:26 #15 type.registry] 
+New type domain.User
+
+[2022-05-15 13:31:26 #16 type] 
+Type domain.Apustua is not enhanced.
+
+[2022-05-15 13:31:26 #17 type] 
+Type domain.User is not enhanced.
+
+[2022-05-15 13:31:26 #18 type.registry] 
+New type domain.Elkarrizketa
+
+[2022-05-15 13:31:26 #19 type.registry] 
+New type java.util.Vector<domain.Elkarrizketa>
+
+[2022-05-15 13:31:26 #20 type.registry] 
+New type domain.Jarraipena
+
+[2022-05-15 13:31:26 #21 type.registry] 
+New type java.util.Vector<domain.Jarraipena>
+
+[2022-05-15 13:31:26 #22 type.registry] 
+New type domain.Mugimendua
+
+[2022-05-15 13:31:26 #23 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2022-05-15 13:31:26 #24 type] 
+Type domain.Elkarrizketa is not enhanced.
+
+[2022-05-15 13:31:26 #25 type.registry] 
+New type domain.Mezua
+
+[2022-05-15 13:31:26 #26 type.registry] 
+New type java.util.Vector<domain.Mezua>
+
+[2022-05-15 13:31:26 #27 type] 
+Type domain.Jarraipena is not enhanced.
+
+[2022-05-15 13:31:26 #28 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2022-05-15 13:31:26 #29 type] 
+Type domain.Mezua is not enhanced.
+
+[2022-05-15 13:31:26 #30 type.registry] 
+New type domain.Admin
+
+[2022-05-15 13:31:26 #31 type] 
+Type domain.Admin is not enhanced.
+
+[2022-05-15 13:31:26 #32 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-05-15 13:31:26 #33 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-05-15 13:31:26 #34 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-15 13:34:34 #1 store] 
+Database 'C:\Users\ibaih\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 18092@DESKTOP-1QBPJUI
+
+[2022-05-15 13:34:34 #2 type.registry] 
+New type domain.Question
+
+[2022-05-15 13:34:34 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-05-15 13:34:34 #4 type.registry] 
+New type domain.ErantzunPosiblea
+
+[2022-05-15 13:34:34 #5 type.registry] 
+New type java.util.Vector<domain.ErantzunPosiblea>
+
+[2022-05-15 13:34:34 #6 type.registry] 
+New type domain.Event
+
+[2022-05-15 13:34:34 #7 type] 
+Type domain.ErantzunPosiblea is not enhanced.
+
+[2022-05-15 13:34:34 #8 type.registry] 
+New type domain.ApustuAnitza
+
+[2022-05-15 13:34:34 #9 type.registry] 
+New type java.util.Vector<domain.ApustuAnitza>
+
+[2022-05-15 13:34:34 #10 type.registry] 
+New type domain.Apustua
+
+[2022-05-15 13:34:34 #11 type.registry] 
+New type java.util.Vector<domain.Apustua>
+
+[2022-05-15 13:34:34 #12 type] 
+Type domain.Event is not enhanced.
+
+[2022-05-15 13:34:34 #13 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-05-15 13:34:34 #14 type] 
+Type domain.ApustuAnitza is not enhanced.
+
+[2022-05-15 13:34:34 #15 type.registry] 
+New type domain.User
+
+[2022-05-15 13:34:34 #16 type] 
+Type domain.Apustua is not enhanced.
+
+[2022-05-15 13:34:34 #17 type] 
+Type domain.User is not enhanced.
+
+[2022-05-15 13:34:34 #18 type.registry] 
+New type domain.Elkarrizketa
+
+[2022-05-15 13:34:34 #19 type.registry] 
+New type java.util.Vector<domain.Elkarrizketa>
+
+[2022-05-15 13:34:34 #20 type.registry] 
+New type domain.Jarraipena
+
+[2022-05-15 13:34:34 #21 type.registry] 
+New type java.util.Vector<domain.Jarraipena>
+
+[2022-05-15 13:34:35 #22 type.registry] 
+New type domain.Mugimendua
+
+[2022-05-15 13:34:35 #23 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2022-05-15 13:34:35 #24 type] 
+Type domain.Elkarrizketa is not enhanced.
+
+[2022-05-15 13:34:35 #25 type.registry] 
+New type domain.Mezua
+
+[2022-05-15 13:34:35 #26 type.registry] 
+New type java.util.Vector<domain.Mezua>
+
+[2022-05-15 13:34:35 #27 type] 
+Type domain.Jarraipena is not enhanced.
+
+[2022-05-15 13:34:35 #28 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2022-05-15 13:34:35 #29 type] 
+Type domain.Mezua is not enhanced.
+
+[2022-05-15 13:34:35 #30 type.registry] 
+New type domain.Admin
+
+[2022-05-15 13:34:35 #31 type] 
+Type domain.Admin is not enhanced.
+
+[2022-05-15 13:34:35 #32 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-05-15 13:34:35 #33 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-05-15 13:34:35 #34 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-05-15 13:36:05 #1 store] 
+Database 'C:\Users\ibaih\OneDrive\Documents\GitHub\Bets21\src\main\resources\bets.temp' is opened by 4168@DESKTOP-1QBPJUI
+
+[2022-05-15 13:36:05 #2 type.registry] 
+New type domain.Question
+
+[2022-05-15 13:36:05 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-05-15 13:36:05 #4 type.registry] 
+New type domain.ErantzunPosiblea
+
+[2022-05-15 13:36:05 #5 type.registry] 
+New type java.util.Vector<domain.ErantzunPosiblea>
+
+[2022-05-15 13:36:05 #6 type.registry] 
+New type domain.Event
+
+[2022-05-15 13:36:05 #7 type] 
+Type domain.ErantzunPosiblea is not enhanced.
+
+[2022-05-15 13:36:05 #8 type.registry] 
+New type domain.ApustuAnitza
+
+[2022-05-15 13:36:05 #9 type.registry] 
+New type java.util.Vector<domain.ApustuAnitza>
+
+[2022-05-15 13:36:05 #10 type.registry] 
+New type domain.Apustua
+
+[2022-05-15 13:36:05 #11 type.registry] 
+New type java.util.Vector<domain.Apustua>
+
+[2022-05-15 13:36:05 #12 type] 
+Type domain.Event is not enhanced.
+
+[2022-05-15 13:36:05 #13 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-05-15 13:36:05 #14 type] 
+Type domain.ApustuAnitza is not enhanced.
+
+[2022-05-15 13:36:05 #15 type.registry] 
+New type domain.User
+
+[2022-05-15 13:36:05 #16 type] 
+Type domain.Apustua is not enhanced.
+
+[2022-05-15 13:36:05 #17 type] 
+Type domain.User is not enhanced.
+
+[2022-05-15 13:36:05 #18 type.registry] 
+New type domain.Elkarrizketa
+
+[2022-05-15 13:36:05 #19 type.registry] 
+New type java.util.Vector<domain.Elkarrizketa>
+
+[2022-05-15 13:36:05 #20 type.registry] 
+New type domain.Jarraipena
+
+[2022-05-15 13:36:05 #21 type.registry] 
+New type java.util.Vector<domain.Jarraipena>
+
+[2022-05-15 13:36:05 #22 type.registry] 
+New type domain.Mugimendua
+
+[2022-05-15 13:36:05 #23 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2022-05-15 13:36:05 #24 type] 
+Type domain.Elkarrizketa is not enhanced.
+
+[2022-05-15 13:36:05 #25 type.registry] 
+New type domain.Mezua
+
+[2022-05-15 13:36:05 #26 type.registry] 
+New type java.util.Vector<domain.Mezua>
+
+[2022-05-15 13:36:05 #27 type] 
+Type domain.Jarraipena is not enhanced.
+
+[2022-05-15 13:36:05 #28 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2022-05-15 13:36:05 #29 type] 
+Type domain.Mezua is not enhanced.
+
+[2022-05-15 13:36:05 #30 type.registry] 
+New type domain.Admin
+
+[2022-05-15 13:36:05 #31 type] 
+Type domain.Admin is not enhanced.
+
+[2022-05-15 13:36:05 #32 type.registry] 
+New type domain.Erabiltzailea
+
+[2022-05-15 13:36:05 #33 type] 
+Type domain.Erabiltzailea is not enhanced.
+
+[2022-05-15 13:36:05 #34 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
