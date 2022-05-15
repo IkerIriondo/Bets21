@@ -46,6 +46,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
 	private JComboBox<String> erantzunPosibleComboBox = new JComboBox<String>();
 	private ApustuAnitzakGUI apustuAnitzak;
+	private Vector<Integer> galdZbn = new Vector<Integer>();
 
 	private JTable tableEvents= new JTable();
 	private JTable tableQueries = new JTable();
@@ -271,6 +272,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 		frame.getContentPane().add(scrollPaneQueries);
 		apustuaGehituButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				int indize = erantzunPosibleComboBox.getSelectedIndex();
 				int i = tableQueries.getSelectedRow();
 				int galdZenb = (int)tableModelQueries.getValueAt(i, 0);
@@ -278,12 +280,20 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 				Question galdera = facade.bilatuGaldera(galdZenb);
 				ErantzunPosiblea er = galdera.getErantzunPosibleak().get(indize);
 				
-				Vector<Object> row = new Vector<Object>();
-				row.add(galdera.getQuestionNumber());
-				row.add(er.getErantzunPosiblea());
-				apustuAnitzak.getErantzunakTableModel().addRow(row);
-				float kuota = Float.parseFloat(apustuAnitzak.getKuotaField().getText())*er.getKuota();
-				apustuAnitzak.getKuotaField().setText(String.valueOf(kuota));
+				if(!galdZbn.contains(galdZenb)) {
+					galdZbn.add(galdZenb);
+					
+					Vector<Object> row = new Vector<Object>();
+					row.add(galdera.getQuestionNumber());
+					row.add(er.getErantzunPosiblea());
+					apustuAnitzak.getErantzunakTableModel().addRow(row);
+				
+					float kuota = Float.parseFloat(apustuAnitzak.getKuotaField().getText())*er.getKuota();
+					apustuAnitzak.getKuotaField().setText(String.valueOf(kuota));
+				
+					float apustuMin = Float.parseFloat(apustuAnitzak.getApustuMinField().getText())+galdera.getBetMinimum();
+					apustuAnitzak.getApustuMinField().setText(String.valueOf(apustuMin));
+				}
 				
 			}
 		});

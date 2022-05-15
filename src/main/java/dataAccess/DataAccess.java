@@ -672,5 +672,21 @@ public boolean existQuestion(Event event, String question) {
 		db.getTransaction().commit();
 		return u;
 	}
+
+	public User apustuAnitzaEgin(Vector<ErantzunPosiblea> erPosibleak, float kuota, float dirua, User user) {
+		db.getTransaction().begin();
+		User u = db.find(Erabiltzailea.class, user);
+		
+		ApustuAnitza a = new ApustuAnitza(kuota, dirua, u);
+		u.addApustuAnitza(a);
+		for (ErantzunPosiblea er : erPosibleak) {
+			ErantzunPosiblea e = db.find(ErantzunPosiblea.class, er);
+			e.addApustuAnitza(a);
+			a.addErantzunPosiblea(er);
+		}
+		
+		db.getTransaction().commit();	
+		return u;
+	}
 	
 }

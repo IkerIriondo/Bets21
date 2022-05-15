@@ -176,7 +176,20 @@ public class Question implements Serializable {
 	public void addErantzunPosibleak(ErantzunPosiblea k) {
 		erantzunPosibleak.add(k);
 	}
-
+	
+	public ErantzunPosiblea getErantzuna(String er) {
+		ErantzunPosiblea era=null;
+		
+		for (ErantzunPosiblea erantzunPosiblea : erantzunPosibleak) {
+			if (erantzunPosiblea.getErantzunPosiblea().contentEquals(er)) {
+				era= erantzunPosiblea;
+		
+			}	
+		}
+		return era;
+		
+		
+	}
 
 	
 }

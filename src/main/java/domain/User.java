@@ -36,6 +36,8 @@ public abstract class User implements Serializable{
 	private Vector<Jarraipena> jarraitzaileak;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Vector<Jarraipena> jarraituak;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Vector<ApustuAnitza> apustuAnitzak;
 	
 	private boolean baneatua;
 	private Date zenbatDenboraBan;
@@ -68,6 +70,7 @@ public abstract class User implements Serializable{
 		apustuak = new Vector<Apustua>();
 		jarraitzaileak = new Vector<Jarraipena>();
 		jarraituak = new Vector<Jarraipena>();
+		apustuAnitzak = new Vector<ApustuAnitza>();
 		baneatua = false;
 		
 		String gaur = LocalDate.now().toString();
@@ -158,6 +161,14 @@ public abstract class User implements Serializable{
 
 	public void setDirua(float dirua) {
 		this.dirua = dirua;
+	}
+	
+	public Vector<ApustuAnitza> getApustuAnitzak() {
+		return apustuAnitzak;
+	}
+
+	public void setApustuAnitzak(Vector<ApustuAnitza> apustuAnitzak) {
+		this.apustuAnitzak = apustuAnitzak;
 	}
 
 	public void diruaGehitu(float diru) {
@@ -299,6 +310,10 @@ public abstract class User implements Serializable{
 	public void elkarrizketaEzabatu(Elkarrizketa e) {
 		elkarrizketak.remove(e);
 		
+	}
+	
+	public void addApustuAnitza(ApustuAnitza a) {
+		apustuAnitzak.add(a);
 	}
 	
 }

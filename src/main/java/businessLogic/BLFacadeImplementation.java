@@ -317,5 +317,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		return u;
 	}
 
+	@Override
+	public User apustuAnitzaEgin(Vector<ErantzunPosiblea> erPosibleak, float kuota, float dirua, User user) {
+		dbManager.open(false);
+		User u = dbManager.apustuAnitzaEgin(erPosibleak,kuota,dirua,user);
+		dbManager.close();
+		return u;
+	}
+
 }
 

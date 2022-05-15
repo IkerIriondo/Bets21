@@ -31,6 +31,8 @@ public class ErantzunPosiblea implements Serializable{
 	private String erantzunPosiblea;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Vector<Apustua> apustuak;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Vector<ApustuAnitza> apustuAnitzak;
 	
 	public ErantzunPosiblea() {
 		super();
@@ -41,6 +43,7 @@ public class ErantzunPosiblea implements Serializable{
 		kuota = kuo;
 		erantzunPosiblea = emaPosiblea;
 		apustuak = new Vector<Apustua>();
+		apustuAnitzak = new Vector<ApustuAnitza>();
 	}
 	
 	public Vector<Apustua> getApustuak() {
@@ -77,4 +80,17 @@ public class ErantzunPosiblea implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public Vector<ApustuAnitza> getApustuAnitzak() {
+		return apustuAnitzak;
+	}
+
+	public void setApustuAnitzak(Vector<ApustuAnitza> apustuAnitzak) {
+		this.apustuAnitzak = apustuAnitzak;
+	}
+	
+	public void addApustuAnitza(ApustuAnitza a) {
+		apustuAnitzak.add(a);
+	}
+	
 }

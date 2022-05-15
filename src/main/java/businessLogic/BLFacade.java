@@ -99,4 +99,6 @@ public interface BLFacade  {
 
 	@WebMethod public User elkarrizketaEzabatu(Elkarrizketa elkarrizketa, User bidaltzaile);
 
+	@WebMethod public User apustuAnitzaEgin(Vector<ErantzunPosiblea> erPosibleak, float kuota, float dirua, User user);
+
 }

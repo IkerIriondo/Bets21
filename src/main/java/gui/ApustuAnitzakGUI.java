@@ -6,11 +6,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import businessLogic.BLFacade;
 import domain.*;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -27,12 +29,15 @@ public class ApustuAnitzakGUI extends JFrame{
 	private JTextField DiruaField;
 	private JTable erantzunakTable;
 	private DefaultTableModel erantzunakTableModel;
+	private Vector<Question> galderak = new Vector<Question>();
+	private Vector<ErantzunPosiblea> erPosibleak = new Vector<ErantzunPosiblea>();
 	
 	private String[] elkarrizketakColumnNames = {ResourceBundle.getBundle("Etiquetas").getString("Question"), 
 			ResourceBundle.getBundle("Etiquetas").getString("PossibleAnswer")};
 	
 	private User user;
 	private ApustuAnitzakAukeratuGUI apustuakAukeratu = new ApustuAnitzakAukeratuGUI(user, this);
+	private JTextField apustuMinField;
 	/**
 	 * Launch the application.
 	 */
@@ -81,26 +86,64 @@ public class ApustuAnitzakGUI extends JFrame{
 		frame.getContentPane().setLayout(null);
 		
 		JLabel KuotaLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Kuota"));
-		KuotaLabel.setBounds(292, 93, 183, 14);
+		KuotaLabel.setBounds(292, 67, 183, 14);
 		frame.getContentPane().add(KuotaLabel);
 		
 		JLabel DiruaLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("HowMuchBet"));
 		DiruaLabel.setBounds(292, 141, 183, 14);
 		frame.getContentPane().add(DiruaLabel);
 		
+		JLabel apustuMinLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MinBet"));
+		apustuMinLabel.setBounds(292, 104, 183, 14);
+		frame.getContentPane().add(apustuMinLabel);
+		
 		KuotaField = new JTextField();
-		KuotaField.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuAnitzakGUI.KuotaField.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		KuotaField.setText("1"); 
 		KuotaField.setEditable(false);
-		KuotaField.setBounds(485, 90, 131, 20);
+		KuotaField.setBounds(485, 64, 131, 20);
 		frame.getContentPane().add(KuotaField);
 		KuotaField.setColumns(10);
 		
 		DiruaField = new JTextField();
 		DiruaField.setBounds(485, 138, 131, 20);
 		frame.getContentPane().add(DiruaField);
-		DiruaField.setColumns(10);
+		DiruaField.setColumns(10);		
+
+		apustuMinField = new JTextField();
+		apustuMinField.setText("0"); 
+		apustuMinField.setEditable(false);
+		apustuMinField.setColumns(10);
+		apustuMinField.setBounds(485, 101, 131, 20);
+		frame.getContentPane().add(apustuMinField);
 		
 		JButton apustuAnitzaEginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MakeABet"));
+		apustuAnitzaEginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BLFacade facade = MainGUI.getBusinessLogic();
+				
+				for(int i=0; i<erantzunakTableModel.getRowCount();i++) {
+					int zbn =(int)erantzunakTableModel.getValueAt(i, 0);
+					galderak.add(facade.bilatuGaldera(zbn));
+				}
+				int i=0;
+				for (Question eq : galderak) {
+					String er =(String) erantzunakTableModel.getValueAt(i, 1);
+					ErantzunPosiblea era = eq.getErantzuna(er);
+					
+					if(era!=null) 
+					erPosibleak.add(era);
+					
+					i++;
+				}
+				
+				float kuota = Float.parseFloat(KuotaField.getText());
+				float betMin = Float.parseFloat(apustuMinField.getText());
+				float dirua = Float.parseFloat(DiruaField.getText());
+				
+				user = facade.apustuAnitzaEgin(erPosibleak,kuota,dirua,user);
+					
+			}
+		});
 		apustuAnitzaEginButton.setBounds(394, 195, 170, 40);
 		frame.getContentPane().add(apustuAnitzaEginButton);
 		
@@ -127,6 +170,7 @@ public class ApustuAnitzakGUI extends JFrame{
 		atzeraButton.setBounds(505, 284, 111, 33);
 		frame.getContentPane().add(atzeraButton);
 		
+		
 		erantzunakTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		erantzunakTable.getColumnModel().getColumn(1).setPreferredWidth(180);
 		
@@ -140,4 +184,7 @@ public class ApustuAnitzakGUI extends JFrame{
 		return KuotaField;		
 	}
 
+	public JTextField getApustuMinField() {
+		return apustuMinField;
+	}
 }
