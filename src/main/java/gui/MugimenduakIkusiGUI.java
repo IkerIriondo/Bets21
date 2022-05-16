@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import businessLogic.BLFacade;
 import domain.Mugimendua;
 import domain.User;
 
@@ -29,7 +30,7 @@ public class MugimenduakIkusiGUI extends Frame{
 	String mugimenduakColumnNames[] = {ResourceBundle.getBundle("Etiquetas").getString("Zenb"),
 			ResourceBundle.getBundle("Etiquetas").getString("Mug")};
 	
-	User user;
+	private User user;
 	
 	
 	/**
@@ -96,6 +97,9 @@ public class MugimenduakIkusiGUI extends Frame{
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		BLFacade facade = MainGUI.getBusinessLogic();
+		user = facade.bilatuErabiltzailea(user);
 		
 		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {

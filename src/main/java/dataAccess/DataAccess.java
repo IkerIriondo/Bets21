@@ -829,5 +829,12 @@ public boolean existQuestion(Event event, String question) {
 		db.getTransaction().commit();
 		return ema;
 	}
+
+	public User bilatuErabiltzailea(User user) {
+		db.getTransaction().begin();
+		User u = db.find(User.class, user);
+		db.getTransaction().commit();
+		return u;
+	}
 	
 }

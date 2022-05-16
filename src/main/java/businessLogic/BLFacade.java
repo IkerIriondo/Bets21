@@ -107,4 +107,6 @@ public interface BLFacade  {
 
 	@WebMethod public Vector<MezuContainer> lortuMezuak(Vector<MezuContainer> mezuak);
 
+	@WebMethod public User bilatuErabiltzailea(User user);
+
 }

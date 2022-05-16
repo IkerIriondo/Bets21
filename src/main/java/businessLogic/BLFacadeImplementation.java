@@ -349,5 +349,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		return ema;
 	}
 
+	@Override
+	public User bilatuErabiltzailea(User user) {
+		dbManager.open(false);
+		User u = dbManager.bilatuErabiltzailea(user);
+		dbManager.close();
+		return u;
+	}
+
 }
 
