@@ -166,5 +166,15 @@ public class AdminGUI extends JFrame{
 		});
 		erreporteakIkusiButton.setBounds(254, 174, 147, 23);
 		frame.getContentPane().add(erreporteakIkusiButton);
+		
+		JButton mezuaBidaliButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SendMessage")); //$NON-NLS-1$ //$NON-NLS-2$
+		mezuaBidaliButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ElkarrizketakGUI(user);
+				frame.setVisible(false);
+			}
+		});
+		mezuaBidaliButton.setBounds(254, 212, 147, 23);
+		frame.getContentPane().add(mezuaBidaliButton);
 	}
 }

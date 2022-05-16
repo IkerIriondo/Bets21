@@ -256,9 +256,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko) {
+	public List<User> bilatuErabiltzaileak(String bilatzeko) {
 		dbManager.open(false);
-		List<Erabiltzailea> ema = dbManager.bilatuErabiltzaileak(bilatzeko);
+		List<User> ema = dbManager.bilatuErabiltzaileak(bilatzeko);
 		dbManager.close();
 		return ema;
 	}

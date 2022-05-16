@@ -83,7 +83,7 @@ public interface BLFacade  {
 
 	@WebMethod public ElkarrizketaContainer bidaliMezua(User bidaltzaile, Elkarrizketa elkarrizketa, String testua);
 
-	@WebMethod public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko);
+	@WebMethod public List<User> bilatuErabiltzaileak(String bilatzeko);
 
 	@WebMethod public User elkarrizketaBerria(User user, User zeinekin);
 

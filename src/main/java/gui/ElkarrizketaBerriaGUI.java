@@ -33,9 +33,9 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 	private User user;
 	private JTextField bilatuField;
 	private Vector<ElkarrizketaContainer> elkarrizketak;
-	private List<Erabiltzailea> erabil;
+	private List<User> erabil;
 	private List<String> emailak;
-	private List<Erabiltzailea> borratzeko;
+	private List<User> borratzeko;
 	
 	private String[] erabiltzaileakColumnNames = {ResourceBundle.getBundle("Etiquetas").getString("Zenb"), 
 			ResourceBundle.getBundle("Etiquetas").getString("Username")};
@@ -76,7 +76,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		});
 		emailak = new LinkedList<String>();
 		this.user = user;
-		borratzeko = new LinkedList<Erabiltzailea>();
+		borratzeko = new LinkedList<User>();
 		initialize();
 		frame.setVisible(true);
 	}
@@ -129,7 +129,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 				elkarrizketakTableModel.setRowCount(0);
 				
 				int i = 1;
-				for (Erabiltzailea era : erabil) {
+				for (User era : erabil) {
 					if(!emailak.contains(era.getEmail())) {
 						Vector<Object> row = new Vector<Object>();
 						row.add(i);
@@ -140,7 +140,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 						borratzeko.add(era);
 					}
 				}
-				for (Erabiltzailea erab : borratzeko) {
+				for (User erab : borratzeko) {
 					erabil.remove(erab);
 				}
 			}

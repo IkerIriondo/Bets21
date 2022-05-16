@@ -646,12 +646,12 @@ public boolean existQuestion(Event event, String question) {
 		return elkCont;
 	}
 
-	public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko) {
+	public List<User> bilatuErabiltzaileak(String bilatzeko) {
 		db.getTransaction().begin();
 		
-		TypedQuery<Erabiltzailea> query = db.createQuery("SELECT e FROM Erabiltzailea e WHERE e.getUsername() LIKE '%"+bilatzeko+"%'",Erabiltzailea.class);
+		TypedQuery<User> query = db.createQuery("SELECT e FROM User e WHERE e.getUsername() LIKE '%"+bilatzeko+"%'",User.class);
 
-		List<Erabiltzailea> ema = query.getResultList();
+		List<User> ema = query.getResultList();
 		
 		db.getTransaction().commit();
 		return ema;
@@ -744,8 +744,8 @@ public boolean existQuestion(Event event, String question) {
 		}else {
 			 u2 = elkar.getUser1();
 		}
-		User u = db.find(Erabiltzailea.class, bidaltzaile);
-		User u1 = db.find(Erabiltzailea.class, u2);
+		User u = db.find(User.class, bidaltzaile);
+		User u1 = db.find(User.class, u2);
 		u.elkarrizketaEzabatu(elkar);
 		u1.elkarrizketaEzabatu(elkar);
 		db.remove(elkar);
