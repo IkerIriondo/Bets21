@@ -6,17 +6,27 @@ import java.util.Vector;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @SuppressWarnings("serial")
-@Entity
+@Entity @XmlAccessorType(XmlAccessType.FIELD)
 public class ApustuAnitza implements Serializable {
 
-	@GeneratedValue
-	@Id
-	private int id;
+	@GeneratedValue @Id @XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	private Integer id;
+	@XmlElementWrapper
+    @XmlElement(name = "erPosiblea")
 	private Vector<ErantzunPosiblea> erPosibleak;
 	private float kuota;
 	private float dirua;
+	@XmlIDREF
 	private User user;
 	
 	
@@ -83,5 +93,11 @@ public class ApustuAnitza implements Serializable {
 	public void addErantzunPosiblea(ErantzunPosiblea e) {
 		erPosibleak.add(e);
 	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 	
 }

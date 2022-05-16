@@ -30,7 +30,6 @@ import domain.*;
 public class ApustuAnitzakAukeratuGUI extends JFrame{
 
 	private JFrame frame;
-	private User user;
 	
 	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate"));
 	private final JLabel jLabelQueries = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Queries")); 
@@ -86,7 +85,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public ApustuAnitzakAukeratuGUI(User user, ApustuAnitzakGUI a) {
+	public ApustuAnitzakAukeratuGUI(ApustuAnitzakGUI a) {
 		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -101,7 +100,6 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 			}
 		});
 		this.apustuAnitzak=a;
-		this.user = user;
 		initialize();
 		frame.setVisible(true);
 	}
@@ -278,6 +276,7 @@ public class ApustuAnitzakAukeratuGUI extends JFrame{
 		frame.getContentPane().add(scrollPaneEvents);
 		frame.getContentPane().add(scrollPaneQueries);
 		apustuaGehituButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				infoLabel.setText("");
 				

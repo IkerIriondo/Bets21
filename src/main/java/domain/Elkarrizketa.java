@@ -4,14 +4,22 @@ import java.io.Serializable;
 import java.util.Vector;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @SuppressWarnings("serial")
-@Entity
+@Entity @XmlAccessorType(XmlAccessType.FIELD)
 public class Elkarrizketa implements Serializable{
 	
-	@Id @GeneratedValue
-	private int id;
+	@Id @GeneratedValue @XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	private Integer id;
+	@XmlIDREF
 	private User user1;
+	@XmlIDREF
 	private User user2;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Vector<Mezua> mezuak;
@@ -46,5 +54,15 @@ public class Elkarrizketa implements Serializable{
 	public void gehituMezua(Mezua m) {
 		mezuak.add(m);
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 	
 }

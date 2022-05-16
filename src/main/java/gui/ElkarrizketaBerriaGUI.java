@@ -32,8 +32,10 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 	private JFrame frame;
 	private User user;
 	private JTextField bilatuField;
+	private Vector<ElkarrizketaContainer> elkarrizketak;
 	private List<Erabiltzailea> erabil;
 	private List<String> emailak;
+	private List<Erabiltzailea> borratzeko;
 	
 	private String[] erabiltzaileakColumnNames = {ResourceBundle.getBundle("Etiquetas").getString("Zenb"), 
 			ResourceBundle.getBundle("Etiquetas").getString("Username")};
@@ -74,6 +76,7 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		});
 		emailak = new LinkedList<String>();
 		this.user = user;
+		borratzeko = new LinkedList<Erabiltzailea>();
 		initialize();
 		frame.setVisible(true);
 	}
@@ -87,6 +90,9 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		BLFacade facade = MainGUI.getBusinessLogic();
+		
+		elkarrizketak = facade.lortuElkarContainer(user);
 		
 		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
@@ -98,15 +104,18 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		atzeraButton.setBounds(10, 227, 89, 23);
 		frame.getContentPane().add(atzeraButton);
 		
-		for (Elkarrizketa e : user.getElkarrizketak()) {
+		
+		
+		for (ElkarrizketaContainer e : elkarrizketak) {
 			
-			if (e.getUser1()==user) {
+			if (e.getUser1().getEmail().contentEquals(user.getEmail())) {
 				emailak.add(e.getUser2().getEmail());
 			}else {
 				emailak.add(e.getUser1().getEmail());
 			}
 			
 		}
+		emailak.add(user.getEmail());
 		
 		bilatuField = new JTextField();
 		bilatuField.addKeyListener(new KeyAdapter() {
@@ -121,21 +130,19 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 				
 				int i = 1;
 				for (Erabiltzailea era : erabil) {
-					if(!user.getEmail().contentEquals(era.getEmail())) {
-						if(!emailak.contains(era.getEmail())) {
-							Vector<Object> row = new Vector<Object>();
-							row.add(i);
-							row.add(era.getUsername());
-							i++;
-							elkarrizketakTableModel.addRow(row);	
-						}else {
-							erabil.remove(era);
-						}
+					if(!emailak.contains(era.getEmail())) {
+						Vector<Object> row = new Vector<Object>();
+						row.add(i);
+						row.add(era.getUsername());
+						i++;
+						elkarrizketakTableModel.addRow(row);	
 					}else {
-						erabil.remove(era);
+						borratzeko.add(era);
 					}
 				}
-				
+				for (Erabiltzailea erab : borratzeko) {
+					erabil.remove(erab);
+				}
 			}
 		});
 		
@@ -165,16 +172,16 @@ public class ElkarrizketaBerriaGUI extends JFrame{
 		JButton elkarrizketaBerriaButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("NewChat")); //$NON-NLS-1$ //$NON-NLS-2$
 		elkarrizketaBerriaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
+				//try {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					int i = elkarrizketakTable.getSelectedRow();
-					User zeinekin = erabil.get(i+1);
+					User zeinekin = erabil.get(i);
 					user = facade.elkarrizketaBerria(user, zeinekin);
-					new MezuakBidaliGUI(user, user.getElkarrizketak().lastElement()/*user.getElkarrizketak().get(user.getElkarrizketak().size())*/);
+					new MezuakBidaliGUI(user, user.getElkarrizketak().lastElement());
 					frame.setVisible(false);
-				} catch (Exception e2) {
+				/*} catch (Exception e2) {
 					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoSelectedChat"));
-				}
+				}*/
 				
 			}
 		});

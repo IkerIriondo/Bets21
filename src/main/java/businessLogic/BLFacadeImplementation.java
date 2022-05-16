@@ -232,9 +232,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public List<Erabiltzailea> lortuErabiltzaileZerrenda() {
+	public List<Erabiltzailea> lortuErabiltzaileZerrenda(User user) {
 		dbManager.open(false);
-		List<Erabiltzailea> erabiltzaileak = dbManager.lortuErabiltzaileak();
+		List<Erabiltzailea> erabiltzaileak = dbManager.lortuErabiltzaileak(user);
 		dbManager.close();
 		return erabiltzaileak;
 	}
@@ -248,11 +248,11 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public Elkarrizketa bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
+	public ElkarrizketaContainer bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
 		dbManager.open(false);
-		Elkarrizketa m = dbManager.bidaliMezua(user,elkarrizketa,testua);
+		ElkarrizketaContainer elkCont = dbManager.bidaliMezua(user,elkarrizketa,testua);
 		dbManager.close();
-		return m;
+		return elkCont;
 	}
 
 	@Override
@@ -279,17 +279,17 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public Mezua mezuaBilatu(Mezua mezua) {
+	public MezuContainer mezuaBilatu(Mezua mezua) {
 		dbManager.open(false);
-		Mezua m = dbManager.mezuaBilatu(mezua);
+		MezuContainer m = dbManager.mezuaBilatu(mezua);
 		dbManager.close();
 		return m;
 	}
 
 	@Override
-	public List<Mezua> lortuErreportatutakoMezuak() {
+	public List<MezuContainer> lortuErreportatutakoMezuak() {
 		dbManager.open(false);
-		List<Mezua> mezuak = dbManager.lortuErreportatutakoMezuak();
+		List<MezuContainer> mezuak = dbManager.lortuErreportatutakoMezuak();
 		dbManager.close();
 		return mezuak;
 	}
@@ -323,6 +323,30 @@ public class BLFacadeImplementation  implements BLFacade {
 		User u = dbManager.apustuAnitzaEgin(erPosibleak,kuota,dirua,user);
 		dbManager.close();
 		return u;
+	}
+
+	@Override
+	public Vector<ElkarrizketaContainer> lortuElkarContainer(User user) {
+		dbManager.open(false);
+		Vector<ElkarrizketaContainer> elkarCont = dbManager.lortuElkarContainer(user);
+		dbManager.close();
+		return elkarCont;
+	}
+
+	@Override
+	public ElkarrizketaContainer sortuElkarContainer(Elkarrizketa elkar) {
+		dbManager.open(false);
+		ElkarrizketaContainer elkCont = dbManager.sortuElkarContainer(elkar);
+		dbManager.close();
+		return elkCont;
+	}
+
+	@Override
+	public Vector<MezuContainer> lortuMezuak(Vector<MezuContainer> mezuak) {
+		dbManager.open(false);
+		Vector<MezuContainer> ema = dbManager.lortuMezuak(mezuak);
+		dbManager.close();
+		return ema;
 	}
 
 }

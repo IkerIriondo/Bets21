@@ -77,11 +77,11 @@ public interface BLFacade  {
 
 	@WebMethod public Event gertaeraBikoiztu(Event gertaera, Date data);
 
-	@WebMethod public List<Erabiltzailea> lortuErabiltzaileZerrenda();
+	@WebMethod public List<Erabiltzailea> lortuErabiltzaileZerrenda(User user);
 
 	@WebMethod public User jarraituErabiltzailea(User user, Erabiltzailea erabil, float dirua);
 
-	@WebMethod public Elkarrizketa bidaliMezua(User bidaltzaile, Elkarrizketa elkarrizketa, String testua);
+	@WebMethod public ElkarrizketaContainer bidaliMezua(User bidaltzaile, Elkarrizketa elkarrizketa, String testua);
 
 	@WebMethod public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko);
 
@@ -89,9 +89,9 @@ public interface BLFacade  {
 
 	@WebMethod public void erreportatuMezua(Mezua mezua);
 
-	@WebMethod public Mezua mezuaBilatu(Mezua mezua);
+	@WebMethod public MezuContainer mezuaBilatu(Mezua mezua);
 
-	@WebMethod public List<Mezua> lortuErreportatutakoMezuak();
+	@WebMethod public List<MezuContainer> lortuErreportatutakoMezuak();
 
 	@WebMethod public void baneatuErabiltzailea(User baneatzekoa, Date noizArte);
 
@@ -100,5 +100,11 @@ public interface BLFacade  {
 	@WebMethod public User elkarrizketaEzabatu(Elkarrizketa elkarrizketa, User bidaltzaile);
 
 	@WebMethod public User apustuAnitzaEgin(Vector<ErantzunPosiblea> erPosibleak, float kuota, float dirua, User user);
+
+	@WebMethod public Vector<ElkarrizketaContainer> lortuElkarContainer(User user);
+
+	@WebMethod public ElkarrizketaContainer sortuElkarContainer(Elkarrizketa elkar);
+
+	@WebMethod public Vector<MezuContainer> lortuMezuak(Vector<MezuContainer> mezuak);
 
 }

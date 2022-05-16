@@ -187,22 +187,43 @@ public class ErabiltzaileaJarraituGUI extends JFrame{
 				}
 			}
 		});
-		jarraituButton.setBounds(311, 260, 138, 23);
+		jarraituButton.setBounds(199, 257, 138, 23);
 		frame.getContentPane().add(jarraituButton);
 		
-		JButton mezuaBidaliButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SendMessage"));
-		mezuaBidaliButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		mezuaBidaliButton.setBounds(101, 260, 138, 23);
-		frame.getContentPane().add(mezuaBidaliButton);
+		erabilTable = new JTable();
+	
+		erabiltzaileakTableModel = new DefaultTableModel(null, erabiltzaileakColumnNames);
+		erabilTable.setModel(erabiltzaileakTableModel);
+		
+		JLabel zenbatDiruLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ZenbatDiru"));
+		zenbatDiruLabel.setBounds(101, 212, 105, 14);
+		frame.getContentPane().add(zenbatDiruLabel);
+		
+		zenbatDiruField = new JTextField();
+		zenbatDiruField.setBounds(287, 209, 86, 20);
+		frame.getContentPane().add(zenbatDiruField);
+		zenbatDiruField.setColumns(10);
+		
+		erabilTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		erabilTable.getColumnModel().getColumn(1).setPreferredWidth(268);
+		
+		BLFacade facade = MainGUI.getBusinessLogic();
+		erabiltzaileak = facade.lortuErabiltzaileZerrenda(user);
+		
+		int i = 1;
+		for (Erabiltzailea e : erabiltzaileak) {
+			
+			Vector<Object> row = new Vector<Object>();
+			row.add(i);
+			row.add(e.getUsername());
+			i++;
+			erabiltzaileakTableModel.addRow(row);
+		}
 		
 		JScrollPane erabilScrollPane = new JScrollPane();
-		erabilScrollPane.addMouseListener(new MouseAdapter() {
+		erabilTable.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				try {
 					int i = erabilTable.getSelectedRow();
 					Erabiltzailea erabil = erabiltzaileak.get(i);
@@ -221,35 +242,7 @@ public class ErabiltzaileaJarraituGUI extends JFrame{
 		erabilScrollPane.setBounds(10, 11, 222, 143);
 		frame.getContentPane().add(erabilScrollPane);
 		
-		erabilTable = new JTable();
 		erabilScrollPane.setViewportView(erabilTable);
-	
-		erabiltzaileakTableModel = new DefaultTableModel(null, erabiltzaileakColumnNames);
-		erabilTable.setModel(erabiltzaileakTableModel);
-		
-		JLabel zenbatDiruLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ZenbatDiru")); //$NON-NLS-1$ //$NON-NLS-2$
-		zenbatDiruLabel.setBounds(101, 212, 105, 14);
-		frame.getContentPane().add(zenbatDiruLabel);
-		
-		zenbatDiruField = new JTextField();
-		zenbatDiruField.setBounds(287, 209, 86, 20);
-		frame.getContentPane().add(zenbatDiruField);
-		zenbatDiruField.setColumns(10);
-		
-		erabilTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-		erabilTable.getColumnModel().getColumn(1).setPreferredWidth(268);
-		
-		BLFacade facade = MainGUI.getBusinessLogic();
-		
-		erabiltzaileak = facade.lortuErabiltzaileZerrenda();
-		int i = 1;
-		for (Erabiltzailea e : erabiltzaileak) {
-			Vector<Object> row = new Vector<Object>();
-			row.add(i);
-			row.add(e.getUsername());
-			i++;
-			erabiltzaileakTableModel.addRow(row);
-		}
 		
 	}
 	

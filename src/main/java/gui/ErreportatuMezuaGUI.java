@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
@@ -41,17 +39,6 @@ public class ErreportatuMezuaGUI extends JFrame{
 	 */
 	public ErreportatuMezuaGUI(Mezua m) {
 		super();
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				try {
-					//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
-				} catch (Exception e1) {
-					System.out.println("Error: "+e1.toString()+" , probably problems with Business Logic or Database");
-				}
-				System.exit(1);
-			}
-		});
 		mezua = m;
 		initialize();
 		frame.setVisible(true);

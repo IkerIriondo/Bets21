@@ -28,7 +28,7 @@ public class MezuErreportatuakGUI extends JFrame{
 	private User user;
 	private JTable errepMezuakTable;
 
-	private List<Mezua> errepMezuak;
+	private List<MezuContainer> errepMezuak;
 	
 	private DefaultTableModel errepMezuakTableModel;
 	
@@ -110,10 +110,10 @@ public class MezuErreportatuakGUI extends JFrame{
 		
 		errepMezuak = facade.lortuErreportatutakoMezuak();
 		
-		for (Mezua m : errepMezuak) {
+		for (MezuContainer m : errepMezuak) {
 			Vector<Object> row = new Vector<Object>();
 			row.add(m.getNork().getUsername());
-			row.add(m.getMezua());
+			row.add(m.getTestua());
 			errepMezuakTableModel.addRow(row);
 		}
 		
@@ -127,9 +127,9 @@ public class MezuErreportatuakGUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int i = errepMezuakTable.getSelectedRow();
-					Mezua m = errepMezuak.get(i);
+					MezuContainer m = errepMezuak.get(i);
 					User baneatzekoa = m.getNork();
-					new BaneatuErabiltzaileaGUI(user, baneatzekoa, m);
+					new BaneatuErabiltzaileaGUI(user, baneatzekoa, m.getMezua());
 					frame.setVisible(false);
 				} catch (Exception e2) {
 					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoSelectedMessege"));

@@ -458,28 +458,31 @@ public boolean existQuestion(Event event, String question) {
 			u.apustuaGehitu(apustu);
 			e.getApustuak().add(apustu);
 		}
-		for (Jarraipena j : user.getJarraitzaileak()) {
-			User us = db.find(Erabiltzailea.class, j.getZeinek());
-			Jarraipena ja = db.find(Jarraipena.class, j);
-			float diru = ja.getZenbatDiru();
-			if(diru <= apostu) {
-				ap = new Apustua(diru,us,erantzun);
-				u.ezabatuJarraitzailea(ja);
-				us.ezabatuJarraituak(ja);
-				us.apustuaGehitu(ap);
-				ezabatzekoak.add(ja);
-			}else {
-				ap = new Apustua(apostu,us,erantzun);
-				us.apustuaGehitu(ap);
-				ja.setZenbatDiru(diru - apostu);
+		try {
+			for (Jarraipena j : user.getJarraitzaileak()) {
+				Jarraipena ja = db.find(Jarraipena.class, j);
+				User us = db.find(Erabiltzailea.class, ja.getZeinek());
+				float diru = ja.getZenbatDiru();
+				if(diru <= apostu) {
+					ap = new Apustua(diru,us,erantzun);
+					u.ezabatuJarraitzailea(ja);
+					us.ezabatuJarraituak(ja);
+					us.apustuaGehitu(ap);
+					ezabatzekoak.add(ja);
+				}else {
+					ap = new Apustua(apostu,us,erantzun);
+					us.apustuaGehitu(ap);
+					ja.setZenbatDiru(diru - apostu);
+				}
+				e.getApustuak().add(ap);
 			}
-			e.getApustuak().add(ap);
-		}
-		for (Jarraipena j : ezabatzekoak) {
-			db.remove(j);
+			for (Jarraipena j : ezabatzekoak) {
+				db.remove(j);
+			}
+		} catch (Exception e2) {
+			// TODO: handle exception
 		}
 		db.getTransaction().commit();
-		
 		return u;
 	}
 
@@ -593,10 +596,19 @@ public boolean existQuestion(Event event, String question) {
 		return e;
 	}
 
-	public List<Erabiltzailea> lortuErabiltzaileak() {
+	public List<Erabiltzailea> lortuErabiltzaileak(User user) {
 		db.getTransaction().begin();
 		TypedQuery<Erabiltzailea> query = db.createQuery("SELECT e FROM Erabiltzailea e ORDER BY e.zenbatDiruIrabazi DESC",Erabiltzailea.class);
 		List<Erabiltzailea> erabiltzaileak = query.getResultList();
+		
+		User u = db.find(User.class, user);
+		erabiltzaileak.remove(u);
+		
+		for (Jarraipena ja : u.getJarraituak()) {
+			User nori = db.find(User.class, ja.getZeineri());
+			erabiltzaileak.remove(nori);
+		}
+		
 		db.getTransaction().commit();
 		return erabiltzaileak;
 	}
@@ -617,7 +629,7 @@ public boolean existQuestion(Event event, String question) {
 		return gu;
 	}
 
-	public Elkarrizketa bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
+	public ElkarrizketaContainer bidaliMezua(User user, Elkarrizketa elkarrizketa, String testua) {
 		db.getTransaction().begin();
 		
 		Elkarrizketa elk = db.find(Elkarrizketa.class, elkarrizketa);
@@ -627,8 +639,11 @@ public boolean existQuestion(Event event, String question) {
 		elk.gehituMezua(m);
 		
 		db.persist(m);
+		
+		ElkarrizketaContainer elkCont = new ElkarrizketaContainer(elk);
+		
 		db.getTransaction().commit();
-		return elk;
+		return elkCont;
 	}
 
 	public List<Erabiltzailea> bilatuErabiltzaileak(String bilatzeko) {
@@ -666,22 +681,27 @@ public boolean existQuestion(Event event, String question) {
 		db.getTransaction().commit();
 	}
 
-	public Mezua mezuaBilatu(Mezua mezua) {
+	public MezuContainer mezuaBilatu(Mezua mezua) {
 		db.getTransaction().begin();
 		Mezua m = db.find(Mezua.class, mezua);
+		MezuContainer mCont = new MezuContainer(m);
 		db.getTransaction().commit();
-		return m;
+		return mCont;
 	}
 
-	public List<Mezua> lortuErreportatutakoMezuak() {
+	public List<MezuContainer> lortuErreportatutakoMezuak() {
 		db.getTransaction().begin();
 		
 		TypedQuery<Mezua> query = db.createQuery("SELECT m FROM Mezua m WHERE m.isReported() = true ORDER BY m.getNork().getUsername()",Mezua.class);
 		
 		List<Mezua> mezuak = query.getResultList();
 		
+		List<MezuContainer> ema = new LinkedList<MezuContainer>();
+		for (Mezua m : mezuak) {
+			ema.add(new MezuContainer(m));
+		}
 		db.getTransaction().commit();
-		return mezuak;
+		return ema;
 	}
 
 	public void baneatuErabiltzailea(User baneatzekoa, Date noizArte) {
@@ -717,18 +737,18 @@ public boolean existQuestion(Event event, String question) {
 
 	public User elkarrizketaEzabatu(Elkarrizketa elkarrizketa, User bidaltzaile) {
 		db.getTransaction().begin();
-		User u2;
-		if(bidaltzaile==elkarrizketa.getUser1()) {
-			 u2 = elkarrizketa.getUser2();
+		User u2 = new Erabiltzailea();
+		Elkarrizketa elkar = db.find(Elkarrizketa.class, elkarrizketa);
+		if(bidaltzaile.getEmail().contentEquals(elkar.getUser1().getEmail())) {
+			 u2 = elkar.getUser2();
 		}else {
-			 u2 = elkarrizketa.getUser1();
+			 u2 = elkar.getUser1();
 		}
-		Elkarrizketa e = db.find(Elkarrizketa.class, elkarrizketa);
 		User u = db.find(Erabiltzailea.class, bidaltzaile);
 		User u1 = db.find(Erabiltzailea.class, u2);
-		u.elkarrizketaEzabatu(e);
-		u1.elkarrizketaEzabatu(e);
-		db.remove(e);
+		u.elkarrizketaEzabatu(elkar);
+		u1.elkarrizketaEzabatu(elkar);
+		db.remove(elkar);
 		db.getTransaction().commit();
 		return u;
 	}
@@ -744,31 +764,70 @@ public boolean existQuestion(Event event, String question) {
 			e.addApustuAnitza(a);
 			a.addErantzunPosiblea(er);
 		}
-		for (Jarraipena j : user.getJarraitzaileak()) {
-			User us = db.find(Erabiltzailea.class, j.getZeinek());
-			Jarraipena ja= db.find(Jarraipena.class, j);
-			float diru = ja.getZenbatDiru();
-			if(diru <= dirua) {
-				a = new ApustuAnitza(erPosibleak, kuota, dirua, us);
-				u.ezabatuJarraitzailea(ja);
-				us.ezabatuJarraituak(ja);
-				us.addApustuAnitza(a);
-				ezabatzekoak.add(ja);
-			}else {
-				a = new ApustuAnitza(erPosibleak, kuota, dirua, us);
-				us.addApustuAnitza(a);
-				ja.setZenbatDiru(diru - dirua);
+		try {
+			for (Jarraipena j : user.getJarraitzaileak()) {
+				Jarraipena ja= db.find(Jarraipena.class, j);
+				User us = db.find(Erabiltzailea.class, ja.getZeinek());
+				float diru = ja.getZenbatDiru();
+				if(diru <= dirua) {
+					a = new ApustuAnitza(erPosibleak, kuota, dirua, us);
+					u.ezabatuJarraitzailea(ja);
+					us.ezabatuJarraituak(ja);
+					us.addApustuAnitza(a);
+					ezabatzekoak.add(ja);
+				}else {
+					a = new ApustuAnitza(erPosibleak, kuota, dirua, us);
+					us.addApustuAnitza(a);
+					ja.setZenbatDiru(diru - dirua);
+				}
+				for (ErantzunPosiblea er : erPosibleak) {
+					ErantzunPosiblea e = db.find(ErantzunPosiblea.class, er);
+					e.addApustuAnitza(a);
+				}
 			}
-			for (ErantzunPosiblea er : erPosibleak) {
-				ErantzunPosiblea e = db.find(ErantzunPosiblea.class, er);
-				e.addApustuAnitza(a);
+			for (Jarraipena j : ezabatzekoak) {
+				db.remove(j);
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-		for (Jarraipena j : ezabatzekoak) {
-			db.remove(j);
-		}
+		
 		db.getTransaction().commit();	
 		return u;
+	}
+
+	public Vector<ElkarrizketaContainer> lortuElkarContainer(User user) {
+		db.getTransaction().begin();
+		User u = db.find(User.class, user);
+		Vector<ElkarrizketaContainer> elkarrizketakCont = new Vector<ElkarrizketaContainer>();
+		
+		for (Elkarrizketa elkar : u.getElkarrizketak()) {
+			ElkarrizketaContainer elkCont = new ElkarrizketaContainer(elkar);
+			elkarrizketakCont.add(elkCont);
+		}
+		db.getTransaction().commit();
+		return elkarrizketakCont;
+	}
+
+	public ElkarrizketaContainer sortuElkarContainer(Elkarrizketa elkar) {
+		db.getTransaction().begin();
+		Elkarrizketa elk = db.find(Elkarrizketa.class, elkar);
+		
+		ElkarrizketaContainer elkCont = new ElkarrizketaContainer(elk);
+		
+		db.getTransaction().commit();
+		return elkCont;
+	}
+
+	public Vector<MezuContainer> lortuMezuak(Vector<MezuContainer> mezuak) {
+		db.getTransaction().begin();
+		Vector<MezuContainer> ema = new Vector<MezuContainer>();
+		for (MezuContainer mCont : mezuak) {
+			Mezua m = db.find(Mezua.class, mCont.getMezua());
+			ema.add(new MezuContainer(m));
+		}
+		db.getTransaction().commit();
+		return ema;
 	}
 	
 }

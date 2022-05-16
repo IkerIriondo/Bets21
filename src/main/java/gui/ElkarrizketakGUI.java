@@ -14,6 +14,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import businessLogic.BLFacade;
+
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -23,7 +26,7 @@ public class ElkarrizketakGUI extends JFrame{
 
 	private JFrame frame;
 	private User user;
-	private Vector<Elkarrizketa> elkarrizketak;
+	private Vector<ElkarrizketaContainer> elkarrizketak;
 	
 	private JTable elkarrizketakTable;
 	
@@ -64,7 +67,6 @@ public class ElkarrizketakGUI extends JFrame{
 			}
 		});
 		this.user = user;
-		elkarrizketak = user.getElkarrizketak();
 		initialize();
 		frame.setVisible(true);
 	}
@@ -77,6 +79,10 @@ public class ElkarrizketakGUI extends JFrame{
 		frame.setBounds(100, 100, 486, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		BLFacade facade = MainGUI.getBusinessLogic();
+		
+		elkarrizketak = facade.lortuElkarContainer(user);
 		
 		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
@@ -116,14 +122,13 @@ public class ElkarrizketakGUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int i = elkarrizketakTable.getSelectedRow();
-				Elkarrizketa elkarrizketa = elkarrizketak.get(i);
+					ElkarrizketaContainer elkarrizketa = elkarrizketak.get(i);
 				
-				new MezuakBidaliGUI(user,elkarrizketa);
-				frame.setVisible(false);
+					new MezuakBidaliGUI(user,elkarrizketa.getElkarrizketa());
+					frame.setVisible(false);
 				} catch (Exception e2) {
 					infoLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NoSelectedChat"));
 				}
-				
 			}
 		});
 		mezuaBidaliButton.setBounds(162, 227, 150, 23);
@@ -141,15 +146,14 @@ public class ElkarrizketakGUI extends JFrame{
 		
 		
 		int i = 1;
-		for (Elkarrizketa elk : user.getElkarrizketak()) {
+		for (ElkarrizketaContainer elkCont : elkarrizketak) {
 			Vector<Object> row = new Vector<Object>();
 			row.add(i);
-			if(elk.getUser1().getUsername().contentEquals(user.getUsername())) {
-				row.add(elk.getUser2().getUsername());
+			if(elkCont.getUser1().getUsername().contentEquals(user.getUsername())) {
+				row.add(elkCont.getUser2().getUsername());
 			}else {
-				row.add(elk.getUser1().getUsername());
+				row.add(elkCont.getUser1().getUsername());
 			}
-			
 			i++;
 			elkarrizketakTableModel.addRow(row);
 		}

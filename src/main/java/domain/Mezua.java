@@ -5,14 +5,22 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @SuppressWarnings("serial")
-@Entity
+@Entity @XmlAccessorType(XmlAccessType.FIELD)
 public class Mezua implements Serializable{
 
-	@Id @GeneratedValue
-	private int id;
+	@Id @GeneratedValue  @XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	private Integer id;
+	@XmlIDREF
 	private Elkarrizketa elkarrizketa;
+	@XmlIDREF
 	private User nork;
 	private String mezua;
 	private boolean reported;
@@ -53,11 +61,12 @@ public class Mezua implements Serializable{
 		this.reported = reported;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
 }

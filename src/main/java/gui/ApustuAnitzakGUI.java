@@ -17,7 +17,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
@@ -39,7 +38,7 @@ public class ApustuAnitzakGUI extends JFrame{
 			ResourceBundle.getBundle("Etiquetas").getString("PossibleAnswer")};
 	
 	private User user;
-	private ApustuAnitzakAukeratuGUI apustuakAukeratu = new ApustuAnitzakAukeratuGUI(user, this);
+	private ApustuAnitzakAukeratuGUI apustuakAukeratu = new ApustuAnitzakAukeratuGUI(this);
 	private JTextField apustuMinField;
 	/**
 	 * Launch the application.

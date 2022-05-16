@@ -27,8 +27,9 @@ public class MezuakBidaliGUI extends JFrame{
 
 	private JFrame frame;
 	private User bidaltzaile;
-	private Elkarrizketa elkarrizketa;
-	private Vector<Mezua> mezuak;
+	private Elkarrizketa elkar;
+	private ElkarrizketaContainer elkarrizketa;
+	private Vector<MezuContainer> mezuak;
 	
 	private JTable mezuakTable;
 	private JScrollPane mezuakScrollPane;
@@ -71,8 +72,7 @@ public class MezuakBidaliGUI extends JFrame{
 			}
 		});
 		this.bidaltzaile = bidaltzaile;
-		elkarrizketa = elkar;
-		mezuak = elkarrizketa.getMezuak();
+		this.elkar = elkar;
 		initialize();
 		frame.setVisible(true);
 	}
@@ -87,19 +87,22 @@ public class MezuakBidaliGUI extends JFrame{
 		
 		frame.getContentPane().setLayout(null);
 		
+		BLFacade facade = MainGUI.getBusinessLogic();
+		elkarrizketa = facade.sortuElkarContainer(elkar);
+		
+		mezuak = facade.lortuMezuak(elkarrizketa.getMezuak());
+		mezuak.addAll(new Vector<MezuContainer>());
+		
 		JButton atzeraButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		atzeraButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(elkarrizketa.getMezuak().size()==0) {
-					
+				if(elkarrizketa.mezurikEz()) {
 					BLFacade facade = MainGUI.getBusinessLogic();
-					bidaltzaile = facade.elkarrizketaEzabatu(elkarrizketa, bidaltzaile);
-					
+					bidaltzaile = facade.elkarrizketaEzabatu(elkarrizketa.getElkarrizketa(), bidaltzaile);
 				}
+				
 				new ElkarrizketakGUI(bidaltzaile);
 				frame.setVisible(false);
-				
-				
 			}
 		});
 		atzeraButton.setBounds(10, 286, 89, 23);
@@ -117,9 +120,9 @@ public class MezuakBidaliGUI extends JFrame{
 				
 				int i = mezuakTable.getSelectedRow();
 				BLFacade facade = MainGUI.getBusinessLogic();
-				Mezua m = facade.mezuaBilatu(mezuak.get(i));
+				MezuContainer m = facade.mezuaBilatu(mezuak.get(i).getMezua());
 				if(!m.isReported() && !m.getNork().getUsername().equals(bidaltzaile.getUsername())) {
-					new ErreportatuMezuaGUI(m);
+					new ErreportatuMezuaGUI(m.getMezua());
 				}
 			}
 		});
@@ -139,12 +142,14 @@ public class MezuakBidaliGUI extends JFrame{
 				String testua = mezuaField.getText();
 				if(!testua.isBlank()) {
 					BLFacade facade = MainGUI.getBusinessLogic();
-					elkarrizketa = facade.bidaliMezua(bidaltzaile,elkarrizketa,testua);
+					elkarrizketa = facade.bidaliMezua(bidaltzaile,elkarrizketa.getElkarrizketa(),testua);
+					mezuak = elkarrizketa.getMezuak();
 					if(elkarrizketa.getUser1().getEmail().contentEquals(bidaltzaile.getEmail())) {
 						bidaltzaile = elkarrizketa.getUser1();
 					}else {
 						bidaltzaile = elkarrizketa.getUser2();
 					}
+					mezuak = elkarrizketa.getMezuak();
 					eguneratuMezuakTable(testua);
 					mezuaField.setText("");
 				}
@@ -156,13 +161,16 @@ public class MezuakBidaliGUI extends JFrame{
 		mezuakTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		mezuakTable.getColumnModel().getColumn(1).setPreferredWidth(268);
 		
-		for(Mezua m: mezuak) {
-			Vector<Object> row = new Vector<Object>();
-			row.add(m.getNork().getUsername());
-			row.add(m.getMezua());
-			mezuakTableModel.addRow(row);
+		try {
+			for(MezuContainer m: mezuak) {
+				Vector<Object> row = new Vector<Object>();
+				row.add(m.getNork().getUsername());
+				row.add(m.getTestua());
+				mezuakTableModel.addRow(row);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-		
 	}
 
 	private void eguneratuMezuakTable(String m) {
