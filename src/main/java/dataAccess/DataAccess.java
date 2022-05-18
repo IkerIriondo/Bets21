@@ -190,6 +190,7 @@ public class DataAccess  {
 			
 			Jarraipena jarrai = new Jarraipena(user,user1,50);
 			
+			user2.diruaGehitu(200);
 			user1.diruaGehitu(500);
 			user.diruaGehitu(200);		
 
