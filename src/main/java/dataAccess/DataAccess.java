@@ -771,7 +771,7 @@ public boolean existQuestion(Event event, String question) {
 				User us = db.find(Erabiltzailea.class, ja.getZeinek());
 				float diru = ja.getZenbatDiru();
 				if(diru <= dirua) {
-					a = new ApustuAnitza(erPosibleak, kuota, dirua, us);
+					a = new ApustuAnitza(erPosibleak, kuota, diru, us);
 					u.ezabatuJarraitzailea(ja);
 					us.ezabatuJarraituak(ja);
 					us.addApustuAnitza(a);
@@ -790,7 +790,7 @@ public boolean existQuestion(Event event, String question) {
 				db.remove(j);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("error");
 		}
 		
 		db.getTransaction().commit();	
