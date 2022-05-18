@@ -192,7 +192,7 @@ public class DataAccess  {
 			
 			user2.diruaGehitu(200);
 			user1.diruaGehitu(500);
-			user.diruaGehitu(200);		
+			user.diruaGehitu(300);		
 
 			user1.gehituJarraitzailea(jarrai);
 			user.gehituJarraitua(jarrai);
