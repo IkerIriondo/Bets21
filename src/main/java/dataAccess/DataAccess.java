@@ -765,7 +765,8 @@ public boolean existQuestion(Event event, String question) {
 			e.addApustuAnitza(a);
 			a.addErantzunPosiblea(er);
 		}
-		try {
+		//try {
+		if(!u.getJarraitzaileak().isEmpty()) {
 			for (Jarraipena j : user.getJarraitzaileak()) {
 				Jarraipena ja= db.find(Jarraipena.class, j);
 				User us = db.find(Erabiltzailea.class, ja.getZeinek());
@@ -789,9 +790,10 @@ public boolean existQuestion(Event event, String question) {
 			for (Jarraipena j : ezabatzekoak) {
 				db.remove(j);
 			}
-		} catch (Exception e) {
-			System.out.println("error");
 		}
+		//} catch (Exception e) {
+		//	System.out.println("error");
+		//}
 		
 		db.getTransaction().commit();	
 		return u;
